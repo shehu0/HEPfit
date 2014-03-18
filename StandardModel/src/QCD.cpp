@@ -24,24 +24,9 @@ const std::string QCD::QCDvars[NQCDvars] = {
     "AlsM", "MAls",
     "mup", "mdown", "mcharm", "mstrange", "mtop", "mbottom",    
     "muc", "mub", "mut", 
-    "MK0", "MKp", "MD", "MBd", "MBp", "MBs",
-    "tKl", "tKp", "tBd", "tBs",
-    "FK", "FD", "FBs", "FBsoFBd",
-    "BK1", "BK2", "BK3", "BK4", "BK5", "BKscale", "BKscheme",
-    "BD1", "BD2", "BD3", "BD4", "BD5", "BDscale", "BDscheme",
-    "BBsoBBd",
-    "BBs1", "BBs2", "BBs3", "BBs4", "BBs5", "BBsscale", "BBsscheme",
-    "BK(1/2)1", "BK(1/2)2", "BK(1/2)3", "BK(1/2)4", "BK(1/2)5",
-    "BK(1/2)6", "BK(1/2)7", "BK(1/2)8", "BK(1/2)9", "BK(1/2)10", 
-    "BK(3/2)1", "BK(3/2)2", "BK(3/2)3", "BK(3/2)4", "BK(3/2)5",
-    "BK(3/2)6", "BK(3/2)7", "BK(3/2)8", "BK(3/2)9", "BK(3/2)10",
-    "BKd_scale", "BKd_scheme",
-    "ReA2_Kd", "ReA0_Kd", "Omega_eta_etap",
-    "Br_Kp_P0enu", "Br_Kp_munu", "Br_B_Xcenu", "DeltaP_cu", "IB_Kl", "IB_Kp"
 };
 
 QCD::QCD() 
-: BBs(5), BBd(5), BD(5), BK(5), BKd1(10), BKd3(10)
 {
     Nc=3.;
     CF = Nc/2.-1./(2.*Nc);
@@ -103,10 +88,6 @@ bool QCD::Init(const std::map<std::string, double>& DPars)
 
 bool QCD::PreUpdate() 
 {
-    requireYu = false;
-    requireYd = false;
-    computeBd = false;
-    computeFBd = false;
     computemt = false;
 
     return (true);
@@ -130,10 +111,6 @@ bool QCD::Update(const std::map<std::string, double>& DPars)
 
 bool QCD::PostUpdate()
 {
-    if (computeFBd)
-        mesons[B_D].setDecayconst(mesons[B_S].getDecayconst() / FBsoFBd);
-    if (computeBd)
-        BBd.setBpars(0, BBs.getBpars()(0) / BBsoBBd);
     if (computemt) {
         quarks[TOP].setMass(Mp2Mbar(mtpole, FULLNNLO));
         quarks[TOP].setMass_scale(quarks[TOP].getMass());
@@ -147,44 +124,34 @@ void QCD::setParameter(const std::string name, const double& value)
     if(name.compare("AlsM")==0) {
         AlsM = value;
         computemt = true;
-        requireYu = true;
-        requireYd = true;
     }
     else if(name.compare("MAls")==0) {
         MAls = value;
         computemt = true;
-        requireYu = true;
-        requireYd = true;
     }
     else if(name.compare("mup")==0) {
         if(value < MEPS) UpdateError = true; 
         quarks[UP].setMass(value);
-        requireYu = true;
     }
     else if(name.compare("mdown")==0) {
         if(value < MEPS) UpdateError = true;
         quarks[DOWN].setMass(value);
-        requireYd = true;
     }
     else if(name.compare("mcharm")==0) {
         quarks[CHARM].setMass(value);
         quarks[CHARM].setMass_scale(value);        
-        requireYu = true;
     }
     else if(name.compare("mstrange")==0) {
         if(value < MEPS) UpdateError = true;
         quarks[STRANGE].setMass(value);
-        requireYd = true;
     }
     else if(name.compare("mtop")==0) {
         mtpole = value;
-        requireYu = true;
         computemt = true;
     }
     else if(name.compare("mbottom")==0) {
         quarks[BOTTOM].setMass(value);
         quarks[BOTTOM].setMass_scale(value);        
-        requireYd = true;
     }
     else if(name.compare("muc")==0)
         muc = value;
@@ -192,168 +159,6 @@ void QCD::setParameter(const std::string name, const double& value)
         mub = value;
     else if(name.compare("mut")==0)
         mut = value;
-    else if(name.compare("MK0")==0)
-        mesons[K_0].setMass(value);
-    else if(name.compare("MKp")==0)
-        mesons[K_P].setMass(value);
-    else if(name.compare("MD")==0)
-        mesons[D_0].setMass(value);
-    else if(name.compare("MBd")==0)
-        mesons[B_D].setMass(value);
-    else if(name.compare("MBp")==0)
-        mesons[B_P].setMass(value);
-    else if(name.compare("MBs")==0)
-        mesons[B_S].setMass(value);
-    else if (name.compare("tKl")==0)
-        mesons[K_0].setLifetime(value);
-    else if (name.compare("tKp")==0)
-        mesons[K_P].setLifetime(value);
-    else if(name.compare("tBd")==0)
-        mesons[B_D].setLifetime(value);
-    else if(name.compare("tBs")==0)
-        mesons[B_S].setLifetime(value);
-    //else if(name.compare("FP")==0) {
-    //    mesons[P_0].setDecayconst(value);
-    //    mesons[P_P].setDecayconst(value);
-    //}
-    else if(name.compare("FK")==0)
-        mesons[K_0].setDecayconst(value);
-    else if(name.compare("FD")==0)
-        mesons[D_0].setDecayconst(value);
-    else if(name.compare("FBs")==0) {
-        mesons[B_S].setDecayconst(value);
-        computeFBd = true;
-    }
-    else if(name.compare("FBsoFBd")==0) {
-        FBsoFBd = value;
-        computeFBd = true;
-    }
-    else if(name.compare("BK1")==0)
-        BK.setBpars(0,value);
-    else if(name.compare("BK2")==0)
-        BK.setBpars(1,value);
-    else if(name.compare("BK3")==0)
-        BK.setBpars(2,value);
-    else if(name.compare("BK4")==0)
-        BK.setBpars(3,value);
-    else if(name.compare("BK5")==0)
-        BK.setBpars(4,value);
-    else if(name.compare("BKscale")==0)
-        BK.setMu(value);
-    else if(name.compare("BKscheme")==0)
-        BK.setScheme((schemes) value);
-    else if(name.compare("BD1")==0)
-        BD.setBpars(0,value);
-    else if(name.compare("BD2")==0)
-        BD.setBpars(1,value);
-    else if(name.compare("BD3")==0)
-        BD.setBpars(2,value);
-    else if(name.compare("BD4")==0)
-        BD.setBpars(3,value);
-    else if(name.compare("BD5")==0)
-        BD.setBpars(4,value);
-    else if(name.compare("BDscale")==0)
-        BD.setMu(value);
-    else if(name.compare("BDscheme")==0)
-        BD.setScheme((schemes) value);
-    else if(name.compare("BBsoBBd")==0) {
-        BBsoBBd = value;
-        computeBd = true;
-    }
-    else if(name.compare("BBs1")==0) {
-        BBs.setBpars(0,value);
-        computeBd = true;
-    }
-    else if(name.compare("BBs2")==0) {
-        BBd.setBpars(1,value);
-        BBs.setBpars(1,value);
-    }
-    else if(name.compare("BBs3")==0) {
-        BBd.setBpars(2,value);
-        BBs.setBpars(2,value);
-    }
-    else if(name.compare("BBs4")==0) {
-        BBd.setBpars(3,value);
-        BBs.setBpars(3,value);
-    }
-    else if(name.compare("BBs5")==0) {
-        BBd.setBpars(4,value);
-        BBs.setBpars(4,value);
-    }    
-    else if(name.compare("BBsscale")==0) {
-        BBd.setMu(value);
-        BBs.setMu(value);
-    }    
-    else if(name.compare("BBsscheme")==0) {
-        BBd.setScheme((schemes) value);
-        BBs.setScheme((schemes) value);
-    }
-    else if(name.compare("BK(1/2)1")==0)
-        BKd1.setBpars(0,value);
-    else if(name.compare("BK(1/2)2")==0)
-        BKd1.setBpars(1,value);
-    else if(name.compare("BK(1/2)3")==0)
-        BKd1.setBpars(2,value);
-    else if(name.compare("BK(1/2)4")==0)
-        BKd1.setBpars(3,value);
-    else if(name.compare("BK(1/2)5")==0)
-        BKd1.setBpars(4,value);
-    else if(name.compare("BK(1/2)6")==0)
-        BKd1.setBpars(5,value);
-    else if(name.compare("BK(1/2)7")==0)
-        BKd1.setBpars(6,value);
-    else if(name.compare("BK(1/2)8")==0)
-        BKd1.setBpars(7,value);
-    else if(name.compare("BK(1/2)9")==0)
-        BKd1.setBpars(8,value);
-    else if(name.compare("BK(1/2)10")==0)
-        BKd1.setBpars(9,value);
-    else if(name.compare("BK(3/2)1")==0)
-        BKd3.setBpars(0,value);
-    else if(name.compare("BK(3/2)2")==0)
-        BKd3.setBpars(1,value);
-    else if(name.compare("BK(3/2)3")==0)
-        BKd3.setBpars(2,value);
-    else if(name.compare("BK(3/2)4")==0)
-        BKd3.setBpars(3,value);
-    else if(name.compare("BK(3/2)5")==0)
-        BKd3.setBpars(4,value);
-    else if(name.compare("BK(3/2)6")==0)
-        BKd3.setBpars(5,value);
-    else if(name.compare("BK(3/2)7")==0)
-        BKd3.setBpars(6,value);
-    else if(name.compare("BK(3/2)8")==0)
-        BKd3.setBpars(7,value);
-    else if(name.compare("BK(3/2)9")==0)
-        BKd3.setBpars(8,value);
-    else if(name.compare("BK(3/2)10")==0)
-        BKd3.setBpars(9,value);
-    else if(name.compare("BKd_scale")==0) {
-        BKd1.setMu(value);
-        BKd3.setMu(value);
-    }    
-    else if(name.compare("BKd_scheme")==0) {
-        BKd1.setScheme((schemes) value);
-        BKd3.setScheme((schemes) value);
-    }
-    else if (name.compare("ReA0_Kd")==0)
-        ReA0_Kd = value;
-    else if (name.compare("ReA2_Kd")==0)
-        ReA2_Kd = value;
-    else if (name.compare("Omega_eta_etap")==0)
-        Omega_eta_etap = value;
-    else if (name.compare("Br_Kp_P0enu")==0)
-        Br_Kp_P0enu = value;
-    else if (name.compare("Br_Kp_munu")==0)
-        Br_Kp_munu = value;
-    else if (name.compare("Br_B_Xcenu")==0)
-        Br_B_Xcenu = value;
-    else if (name.compare("DeltaP_cu")==0)
-        DeltaP_cu = value;
-    else if (name.compare("IB_Kl")==0)
-        IB_Kl = value;
-    else if (name.compare("IB_Kp")==0)
-        IB_Kp = value;
     else 
         std::cout << "WARNING: unknown parameter " << name 
                   << " in model initialization" << std::endl;

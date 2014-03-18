@@ -9,7 +9,7 @@
 #define	QCD_H
 
 #include "Model.h"
-#include "Meson.h"
+#include "Particle.h"
 #include "OrderScheme.h"
 #define MEPS 1.e-10 // mass precision
 
@@ -110,195 +110,6 @@
  * and the model classes inherited from it.
  *
  * 
- * The parameters below are associated with flavour observables
- * <table class="model">
- * <tr>
- *   <td class="mod_name">%MK0</td>
- *   <td class="mod_symb">@f$M_{K^0}@f$</td>
- *   <td class="mod_desc">The mass of the \f$ K^0 \f$ meson in GeV.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%MKp</td>
- *   <td class="mod_symb">@f$M_{K^\pm}@f$</td>
- *   <td class="mod_desc">The mass of the \f$ K^\pm \f$ meson in GeV.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%MD</td>
- *   <td class="mod_symb">@f$M_{D^0}@f$</td>
- *   <td class="mod_desc">The mass of the \f$ D^0 \f$ meson in GeV.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%MBd</td>
- *   <td class="mod_symb">@f$M_{B_d}@f$</td>
- *   <td class="mod_desc">The mass of the \f$ B_d \f$ meson in GeV.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%MBp</td>
- *   <td class="mod_symb">@f$M_{B^\pm}@f$</td>
- *   <td class="mod_desc">The mass of the \f$ B^\pm \f$ meson in GeV.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%MBs</td>
- *   <td class="mod_symb">@f$M_{B_s}@f$</td>
- *   <td class="mod_desc">The mass of the \f$ B_s \f$ meson in GeV.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%tKl</td>
- *   <td class="mod_symb">@f$\tau_{K_L}@f$</td>
- *   <td class="mod_desc">The lifetime of the \f$ K_L \f$ meson in \f$\mathrm{ps}^{-1} \f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%tKp</td>
- *   <td class="mod_symb">@f$\tau_{K^\pm}@f$</td>
- *   <td class="mod_desc">The lifetime of the \f$ K^\pm \f$ meson in \f$\mathrm{ps}^{-1} \f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%tBd</td>
- *   <td class="mod_symb">@f$\tau_{B_d}@f$</td>
- *   <td class="mod_desc">The lifetime of the \f$ B_d \f$ meson in \f$\mathrm{ps}^{-1} \f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%tBs</td>
- *   <td class="mod_symb">@f$\tau_{B_s}@f$</td>
- *   <td class="mod_desc">The lifetime of the \f$ B_d \f$ meson in \f$\mathrm{ps}^{-1} \f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%FK</td>
- *   <td class="mod_symb"></td>
- *   <td class="mod_desc"></td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%FD</td>
- *   <td class="mod_symb">@f$F_{D^0}@f$</td>
- *   <td class="mod_desc">The decay constant of the \f$ D^0 \f$ meson in GeV.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%FBs</td>
- *   <td class="mod_symb">@f$F_{B_s}@f$</td>
- *   <td class="mod_desc">The decay constant of the \f$ B_s \f$ meson in GeV.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%FBsoFBd</td>
- *   <td class="mod_symb">@f$F_{B_d}/F_{B_d}@f$</td>
- *   <td class="mod_desc">The ratio \f$ F_{B_s}/F_{B_d} \f$ necessary to compute \f$ F_{B_s} \f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BK1 - %BK5</td>
- *   <td class="mod_symb">@f$B^1_{K} - B^5_{K}@f$</td>
- *   <td class="mod_desc">The bag parameter for \f$ O_1 - O_5\f$ in \f$ \Delta s = 2 \f$ processes in \f$ K^0 \f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BKscale</td>
- *   <td class="mod_symb">@f$\mu_K@f$</td>
- *   <td class="mod_desc">The scale at which the bag parameters are specified for the \f$ K^0 \f$ system.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BKscheme</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc">The scheme in which the bag parameters are specified for the \f$ K^0 \f$ system.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BD1 - %BD5</td>
- *   <td class="mod_symb">@f$B^1_{D} - B^5_{D}@f$</td>
- *   <td class="mod_desc">The bag parameter for \f$ O_1 - O_5\f$ in \f$ \Delta c = 2 \f$ processes in \f$ D^0 \f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BDscale</td>
- *   <td class="mod_symb">@f$\mu_D@f$</td>
- *   <td class="mod_desc">The scale at which the bag parameters are specified for the \f$ D_0 \f$ system.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BDscheme</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc">The scheme in which the bag parameters are specified for the \f$ D_0 \f$ system.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BBsoBBd</td>
- *   <td class="mod_symb">@f$B_{B_s}/B_{B_d}@f$</td>
- *   <td class="mod_desc">The ratio \f$ B_{B_s}/B_{B_d} \f$ necessary to compute \f$ B_{B_s} \f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BBs1 - %BBs5</td>
- *   <td class="mod_symb">@f$B^1_{B_s} - B^5_{B_s}@f$</td>
- *   <td class="mod_desc">The bag parameter for \f$ O_1 - O_5 \f$ in \f$ \Delta b = 2 \f$ processes in \f$ B_s \f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BBsscale</td>
- *   <td class="mod_symb">@f$\mu_{B_{s}}@f$</td>
- *   <td class="mod_desc">The scale at which the bag parameters are specified for the \f$ B_s \f$ system.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BBsscheme</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc">The scheme in which the bag parameters are specified for the \f$ B_s \f$ system.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BK(1/2)1 - %BK(1/2)10</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc"></td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BK(3/2)1 - %BK(3/2)10</td>
- *   <td class="mod_symb"></td>
- *   <td class="mod_desc"></td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BKd_scale</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc"></td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%BKd_scheme</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc"></td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%ReA0_Kd</td>
- *   <td class="mod_symb">@f${\cal Re}(A_0(K\to\pi\pi))@f$</td>
- *   <td class="mod_desc">The experimental value of the real part of the amplitude for \f$K^0\to\pi\pi\f$ with \f$\Delta I=0\f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%ReA2_Kd</td>
- *   <td class="mod_symb">@f${\cal Re}(A_2(K\to\pi\pi))@f$</td>
- *   <td class="mod_desc">the experimental value of the real part of the amplitude for \f$K^0\to\pi\pi\f$ with \f$\Delta I=2\f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%Omega_eta_etap</td>
- *   <td class="mod_symb">@f$\Omega_{\eta/\eta'}@f$</td>
- *   <td class="mod_desc">The isospin breaking contribution in \f$K^0\to\pi\pi\f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%Br_Kp_P0enu</td>
- *   <td class="mod_symb">@f$\mathrm{BR}(K^+\to\pi^0e^+\nu)@f$</td>
- *   <td class="mod_desc">The experimental value for the branching ratio of \f$K^+\to\pi^0e^+\nu\f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%Br_Kp_munu</td>
- *   <td class="mod_symb">@f$\mathrm{BR}(K^+\to\mu^+\nu)@f$</td>
- *   <td class="mod_desc">The experimental value for the branching ratio of \f$K^+\to\mu^+\nu\f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%Br_B_Xcenu</td>
- *   <td class="mod_symb">@f$\mathrm{BR}(B\to X_ce\nu)@f$</td>
- *   <td class="mod_desc">The experimental value for the branching ratio of \f$B\to X_c e\nu\f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%DeltaP_cu</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc">The long-distance correction to the charm contribution of \f$K^+\to\pi^+\nu\bar{\nu}\f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%IB_Kl</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc">the isospin breaking corrections between @f$K_L\to\pi^0\nu\bar{\nu}@f$ and \f$K^+\to\pi^0 e^+\nu\f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%IB_Kp</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc">The isospin breaking corrections between @f$K^+\to\pi^+ \nu\bar{\nu}@f$ and \f$K^+\to\pi^0 e^+\nu\f$.</td>
- * </tr>
- * </table>
- *
  * The set of the model parameters are initialized and updated with the methods
  * Init() and Update(), respectively, where the former calls the latter.
  * In Update(), the methods PreUpdate() and PostUpdate() are called to run all
@@ -493,22 +304,6 @@ class QCD: public Model {
 public:
     
     /**
-     * @brief An enum type for mesons.
-     */
-    enum meson
-    {
-        P_0, /**< @f$\pi^0@f$ meson */
-        P_P, /**< @f$\pi^\pm@f$ meson */
-        K_0, /**< @f$K^0@f$ meson */
-        K_P, /**< @f$K^\pm@f$ meson */
-        D_0, /**< @f$D^0@f$ meson */
-        B_D, /**< @f$B_d@f$ meson */
-        B_P, /**< @f$B^\pm@f$ meson */
-        B_S, /**< @f$B_s@f$ meson */
-        MESON_END /**< The size of this enum. */
-    };
-    
-    /**
      * @brief An enum type for quarks.
      */
     enum quark
@@ -521,7 +316,7 @@ public:
         BOTTOM /**< Bottom quark */
     };
     
-    static const int NQCDvars = 78; ///< The number of model parameters in %QCD. 
+    static const int NQCDvars = 11; ///< The number of model parameters in %QCD. 
     
     /**
      * @brief An array containing the labels under which all %QCD parameters are stored
@@ -552,8 +347,7 @@ public:
     
     /**
      * @brief The pre-update method for %QCD
-     * @details This method resets the internal flags #requireYu, #requireYd,
-     * #computeBd, #computeFBd and #computemt before updating the model parameters with the method Update().
+     * @details This method resets the internal flag #computemt before updating the model parameters with the method Update().
      * @return a boolean that is true if the execution is successful
      */
     virtual bool PreUpdate();
@@ -637,16 +431,6 @@ public:
     }
     
     /**
-     * @brief A get method to access a meson as an object of the type Meson.
-     * @param[in] m the name of a meson
-     * @return the object of the meson specified in the argument
-     */
-    Meson getMesons(const meson m) const
-    {
-        return mesons[m];
-    }
-    
-    /**
      * @brief A get method to access a quark as an object of the type Particle.
      * @param[in] q the name of a quark
      * @return the object of the quark found in the argument
@@ -717,146 +501,6 @@ public:
     double getCF() const
     {
         return CF;
-    }
-    
-    /**
-     * @brief For getting the bag parameters corresponding
-     * to the operator basis \f$O_1 -O_5\f$ in \f$\Delta b = 2\f$
-     * process in the \f$B_d\f$ meson system.
-     * @return the vector of bag parameters
-     */
-    BParameter getBBd() const
-    {
-        return BBd;
-    }
-    
-    /**
-     * @brief For getting the bag parameters corresponding
-     * to the operator basis \f$O_1 -O_5\f$ in \f$\Delta b = 2\f$
-     * process in the \f$B_s\f$ meson system.
-     * @return the vector of bag parameters
-     */
-    BParameter getBBs() const
-    {
-        return BBs;
-    }
-    
-    /**
-     * @brief For getting the bag parameters corresponding
-     * to the operator basis \f$O_1 -O_5\f$ in \f$\Delta c = 2\f$
-     * process in the \f$D^0\f$ meson system.
-     * @return the vector of bag parameters
-     */
-    BParameter getBD() const
-    {
-        return BD;
-    }
-    
-    /**
-     * @brief For getting the bag parameters corresponding
-     * to the operator basis \f$O_1 -O_5\f$ in \f$\Delta s = 2\f$
-     * process in the \f$K^0\f$ meson system.
-     * @return the vector of bag parameters
-     */
-    BParameter getBK() const
-    {
-        return BK;
-    }
-    
-    /**
-     * @return
-     */
-    BParameter getBKd1() const
-    {
-        return BKd1;
-    }
-    
-    /**
-     * @return
-     */
-    BParameter getBKd3() const
-    {
-        return BKd3;
-    }
-    
-    /**
-     * @return the experimental value of the real part of the amplitude for
-     * @f$K^0\to\pi\pi@f$ with @f$\Delta I=0@f$
-     */
-    double getReA0_Kd() const
-    {
-        return ReA0_Kd;
-    }
-    
-    /**
-     * @return the experimental value of the real part of the amplitude for
-     * @f$K^0\to\pi\pi@f$ with @f$\Delta I=2@f$
-     */
-    double getReA2_Kd() const
-    {
-        return ReA2_Kd;
-    }
-    
-    /**
-     * @return the isospin breaking contribution in @f$K^0\to\pi\pi@f$
-     */
-    double getOmega_eta_etap() const
-    {
-        return Omega_eta_etap;
-    }
-    
-    /**
-     * @return the experimental value for the branching ratio of @f$K^+\to\pi^0e^+\nu@f$
-     */
-    double getBr_Kp_P0enu() const
-    {
-        return Br_Kp_P0enu;
-    }
-    
-    /**
-     * @return the experimental value for the branching ratio of @f$K^+\to\mu^+\nu@f$
-     */
-    double getBr_Kp_munu() const
-    {
-        return Br_Kp_munu;
-    }
-    
-    /**
-     * @return the experimental value for the branching ratio of @f$B\to X_c e\nu@f$
-     */
-    double getBr_B_Xcenu() const
-    {
-        return Br_B_Xcenu;
-    }
-    
-    /**
-     * @return the long-distance correction to the charm contribution of @f$K^+\to\pi^+\nu\bar{\nu}@f$
-     *
-     * References:
-     * [<A HREF="http://inspirehep.net/record/678222?ln=en" target="blank">Isidori et al.(2005)</A>],
-     * [<A HREF="http://inspirehep.net/record/712083?ln=en" target="blank">Buras et al.(2006)</A>]
-     */
-    double getDeltaP_cu() const
-    {
-        return DeltaP_cu;
-    }
-    
-    /**
-     * @return the isospin breaking corrections between
-     * @f$K_L\to\pi^0\nu\bar{\nu}@f$ and @f$K^+\to\pi^0 e^+\nu@f$
-     */
-    double getIB_Kl() const
-    {
-        return IB_Kl;
-    }
-    
-    /**
-     * @return the isospin breaking corrections between
-     * @f$K^+\to\pi^+ \nu\bar{\nu}@f$ and @f$K^+\to\pi^0 e^+\nu@f$
-     */
-    double getIB_Kp() const
-    {
-        return IB_Kp;
     }
     
     ////////////////////////////////////////////////////////////////////////
@@ -1072,8 +716,6 @@ protected:
     virtual void setParameter(const std::string name, const double& value);
     
     bool computemt; ///< Switch for computing the \f$\overline{\mathrm{MS}}\f$ mass of the top quark.
-    bool requireYu; ///< Switch for generating the Yukawa couplings to the up-type quarks.
-    bool requireYd; ///< Switch for generating the Yukawa couplings to the down-type quarks.
     
     // model parameters
     double AlsM; ///< The strong coupling constant at the mass scale MAls, \f$\alpha_s(M_{\alpha_s})\f$. 
@@ -1082,35 +724,15 @@ protected:
     double mut; ///< The threshold between six- and five-flavour theory in GeV. 
     double mub; ///< The threshold between five- and four-flavour theory in GeV. 
     double muc; ///< The threshold between four- and three-flavour theory in GeV. 
-    double ReA0_Kd; 
-    double ReA2_Kd; 
-    double Omega_eta_etap; 
-    double Br_Kp_P0enu;
-    double IB_Kl;
-    double IB_Kp;
-    double DeltaP_cu;
-    double Br_Kp_munu;
-    double Br_B_Xcenu;
-    double BBsoBBd; ///< The ratio \f$ B_{B_s}/B_{B_d} \f$ necessary to compute \f$ B_{B_s} \f$. 
-    double FBsoFBd; ///< The ratio \f$ F_{B_s}/F_{B_d} \f$ necessary to compute \f$ F_{B_s} \f$. 
 
     double Nc; ///< The number of colours.
     double CF; ///< The Casimir factor in the \f$SU(N_c)\f$ gauge theory.
     Particle quarks[6]; ///< The vector of all SM quarks.
-    Meson mesons[MESON_END]; ///< The vector of defined mesons.
-    BParameter BBs; ///< The bag parameters for \f$\Delta b=2\f$ processes for the \f$B_s\f$ meson system.
-    BParameter BBd; ///< The bag parameters for \f$\Delta b=2\f$ processes for the \f$B_d\f$ meson system.
-    BParameter BD; ///< The bag parameters for \f$\Delta c=2\f$ processes for the \f$D^0\f$ meson system.
-    BParameter BK; ///< The bag parameters for \f$\Delta s=2\f$ processes for the \f$K^0\f$ meson system.
-    BParameter BKd1;
-    BParameter BKd3;
     
 private:
 
     double zeta2; ///< \f$\zeta(2)\f$ computed with the <a href="http://www.gnu.org/software/gsl/" target=blank>GSL</a>.
     double zeta3; ///< \f$\zeta(3)\f$ computed with the <a href="http://www.gnu.org/software/gsl/" target=blank>GSL</a>.
-    bool computeFBd; ///< Swith for computing \f$F_{B_d}\f$ from \f$F_{B_s}\f$.
-    bool computeBd; ///< Swith for computing \f$B_{B_d}\f$ from \f$B_{B_s}\f$.
     static const int CacheSize = 5; ///< Defines the depth of the cache.
     mutable double als_cache[8][CacheSize]; ///< Cache for \f$\alpha_s\f$.
     mutable double logLambda5_cache[4][CacheSize]; 

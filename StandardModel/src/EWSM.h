@@ -20,8 +20,6 @@
 #include "EWSMThreeLoopEW2QCD.h"
 #include "EWSMThreeLoopEW.h"
 #include "EWSMApproximateFormulae.h"
-#include "EWSMOneLoopEW_HV.h"
-#include "EWSMTwoFermionsLEP2.h"
 
 using namespace gslpp;
 
@@ -307,15 +305,6 @@ public:
     EWSMApproximateFormulae* getMyApproximateFormulae() const
     {
         return myApproximateFormulae;
-    }
-
-    /**
-     * @brief A get method to retrieve the member pointer of type EWSMTwoFermionsLEP2.
-     * @return the pointer #myTwoFermionsLEP2
-     */
-    EWSMTwoFermionsLEP2* getMyTwoFermionsLEP2() const 
-    {
-        return myTwoFermionsLEP2;
     }
 
     
@@ -1121,8 +1110,6 @@ private:
     EWSMThreeLoopEW2QCD* myThreeLoopEW2QCD;///< A pointer to an object of type EWSMThreeLoopEW2QCD.
     EWSMThreeLoopEW* myThreeLoopEW; ///< A pointer to an object of type EWSMThreeLoopEW.
     EWSMApproximateFormulae* myApproximateFormulae;///< A pointer to an object of type EWSMApproximateFormulae.
-    
-    EWSMTwoFermionsLEP2* myTwoFermionsLEP2;///< A pointer to an object of type EWSMTwoFermionsLEP2.
     
     
     ////////////////////////////////////////////////////////////////////////     

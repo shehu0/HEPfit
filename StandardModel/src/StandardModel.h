@@ -10,9 +10,6 @@
 
 #include <gslpp.h>
 #include "QCD.h"
-#include "CKM.h"
-#include "WilsonCoefficient.h"
-#include "StandardModelMatching.h"
 
 using namespace gslpp;
 class EWSM; // forward reference to EWSM class
@@ -34,7 +31,7 @@ class EWSM; // forward reference to EWSM class
  * The constructor StandardModel() initializes some of the model flags to their
  * default values. After creating an instance of the current class,
  * it is required to call the initialization method InitializeModel(), which
- * allocates memory to the pointers #myEWSM and #myStandardModelMatching. 
+ * allocates memory to the pointer #myEWSM. 
  * These pointers are then used in computing %EW precision and flavour observables,
  * respectively. In the Monte Carlo run, the constructor as well as the initialization
  * method are called in InputParser::ReadParameters().
@@ -314,7 +311,7 @@ public:
         TAU /**< Tau */
     };
 
-    static const int NSMvars = 26;///< The number of the model parameters in %StandardModel.
+    static const int NSMvars = 15;///< The number of the model parameters in %StandardModel.
 
     /**
      * @brief  A string array containing the labels of the model parameters in %StandardModel.
@@ -333,7 +330,7 @@ public:
     /**
      * @brief A method to initialize the model.
      * @details This method, called via InputParser::ReadParameters(), allocates
-     * memory to the pointers #myEWSM and #myStandardModelMatching, which are used
+     * memory to the pointer #myEWSM, which are used
      * for %EW precision and flavour observables, respectively. 
      * @return a boolean that is true if model initialization is successful
      */
@@ -346,15 +343,6 @@ public:
     EWSM* getEWSM() const
     {
         return myEWSM;
-    }
-
-    /**
-     * @brief A get method to access the member pointer of type StandardModelMatching.
-     * @return the pointer #myStandardModelMatching
-     */
-    virtual StandardModelMatching* getMyMatching() const
-    {
-        return myStandardModelMatching;
     }
 
 
@@ -390,10 +378,7 @@ public:
     /**
      * @brief The post-update method for %StandardModel.
      * @details This method runs all the procedures that are need to be executed
-     * after the model is successfully updated. This includes 
-     * \li computing the updated CKM and PMNS matrices
-     * \li computing the Yukawa matrices
-     * \li updating the Standard %Model parameters in the StandardModelMatching class.
+     * after the model is successfully updated. 
      * @return a boolean that is true if the execution is successful
      */
     virtual bool PostUpdate();
@@ -591,149 +576,6 @@ public:
         return delGammaZ;
     }
 
-    /**
-     * @brief A get method to retrieve the %CKM matrix. 
-     * @return the %CKM matrix
-     */
-    matrix<complex> getVCKM() const
-    {
-        return VCKM;
-    }
-
-    /**
-     * @brief A get method to retrieve the member object of type CKM.
-     * @return the object of type CKM
-     */
-    CKM getCKM() const
-    {
-        return myCKM;
-    }
-
-    /**
-     * @brief A get method to retrieve the %CKM element @f$\lambda@f$.
-     * @return @f$\lambda@f$
-     */
-    double getLambda() const 
-    {
-        return lambda;
-    }
-
-    /**
-     * @brief A get method to retrieve the %CKM element @f$A@f$.
-     * @return @f$A@f$
-     */
-    double getA() const
-    {
-        return A;
-    }
-
-    /**
-     * @brief A get method to retrieve the %CKM element @f$\bar{\rho}@f$.
-     * @return @f$\bar{\rho}@f$
-     */
-    double getRhob() const
-    {
-        return rhob;
-    }
-
-    /**
-     * @brief A get method to retrieve the %CKM element @f$\bar{\eta}@f$.
-     * @return @f$\bar{\eta}@f$
-     */
-    double getEtab() const
-    {
-        return etab;
-    }
-
-    /**
-     * @brief A get method to retrieve the object of the %PMNS matrix.
-     * @return the %PMNS matrix
-     */
-    matrix<complex> getUPMNS() const
-    {
-        return UPMNS;
-    }
-
-    /**
-     * @brief A get method to retrieve the Yukawa matrix of the up-type quarks, 
-     * @f$Y_u@f$.
-     * @return @f$Y_u@f$
-     */
-    matrix<complex> getYu() const
-    {
-        return Yu;
-    }
-
-
-    /**
-     * @brief A get method to retrieve the Yukawa matrix of the down-type quarks,
-     * @f$Y_d@f$.
-     * @return @f$Y_d@f$
-     */
-    matrix<complex> getYd() const
-    {
-        return Yd;
-    }
-
-    /**
-     * @brief A get method to retrieve the Yukawa matrix of the neutrinos,
-     * @f$Y_\nu@f$.
-     * @return @f$Y_\nu@f$
-     */
-    matrix<complex> getYn() const
-    {
-        return Yn;
-    }
-
-    /**
-     * @brief A get method to retrieve the Yukawa matrix of the charged leptons,
-     * @f$Y_e@f$.
-     * @return @f$Y_e@f$
-     */
-    matrix<complex> getYe() const
-    {
-        return Ye;
-    }
-
-    /**
-     * @brief A get method to retrieve the matching scale @f$\mu_W@f$ around
-     * the weak scale.
-     * @return @f$\mu_W@f$ in GeV
-     */
-    double getMuw() const
-    {
-        return muw;
-    }
-
-    double getEpsK() const {
-        return EpsK;
-    }
-    
-    double getphiEpsK() const
-    {
-        return phiEpsK;
-    }
-
-    double getKbarEpsK() const
-    {
-        return KbarEpsK;
-    }
-
-    double getDeltaMK() const
-    {
-        return DeltaMK;
-    }
-
-    double getDmk() const
-    {
-        return Dmk;
-    }
-
-    double getSM_M12D() const
-    {
-        return SM_M12D;
-    }
-
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -852,106 +694,6 @@ public:
 
 
     ////////////////////////////////////////////////////////////////////////
-    // CKM parameters
-
-    /**
-     * @brief The %CKM angle @f$\beta@f$.
-     * @return @f$\beta@f$ in radians
-     */
-    double computeBeta() const;
-
-    /**
-     * @brief The %CKM angle @f$\gamma@f$.
-     * @return @f$\gamma@f$ in radians
-     */
-    double computeGamma() const;
-
-    /**
-     * @brief The %CKM angle @f$\alpha@f$.
-     * @return @f$\alpha@f$ in radians
-     */
-    double computeAlpha() const;
-
-    /**
-     * @brief The %CKM angle @f$\beta_s@f$.
-     * @return @f$\beta_s@f$ in radians
-     */
-    double computeBetas() const;
-
-    /**
-     * @brief The product of the %CKM elements @f$V_{td} V_{ts}^*@f$.
-     * @return @f$V_{td} V_{ts}^*@f$
-     */
-    complex computelamt() const;
-
-    /**
-     * @brief The product of the %CKM elements @f$V_{cd} V_{cs}^*@f$.
-     * @return @f$V_{cd} V_{cs}^*@f$
-     */
-    complex computelamc() const;
-
-    /**
-     * @brief The product of the %CKM elements @f$V_{ud} V_{us}^*@f$.
-     * @return @f$V_{ud} V_{us}^*@f$
-     */
-    complex computelamu() const;
-
-    /**
-     * @brief The product of the %CKM elements @f$V_{td} V_{tb}^*@f$.
-     * @return @f$V_{td} V_{tb}^*@f$
-     */
-    complex computelamt_d() const;
-
-    /**
-     * @brief The product of the %CKM elements @f$V_{cd} V_{cb}^*@f$.
-     * @return @f$V_{cd} V_{cb}^*@f$
-     */
-    complex computelamc_d() const;
-
-    /**
-     * @brief The product of the %CKM elements @f$V_{ud} V_{ub}^*@f$.
-     * @return @f$V_{ud} V_{ub}^*@f$
-     */
-    complex computelamu_d() const;
-
-    /**
-     * @brief The product of the %CKM elements @f$V_{ts} V_{tb}^*@f$.
-     * @return @f$V_{ts} V_{tb}^*@f$
-     */
-    complex computelamt_s() const;
-
-    /**
-     * @brief The product of the %CKM elements @f$V_{cs} V_{cb}^*@f$.
-     * @return @f$V_{cs} V_{cb}^*@f$
-     */
-    complex computelamc_s() const;
-
-    /**
-     * @brief The product of the %CKM elements @f$V_{us} V_{ub}^*@f$.
-     * @return @f$V_{us} V_{ub}^*@f$
-     */
-    complex computelamu_s() const;
-
-    /**
-     * @brief @f$R_t=|(V_{td} V_{tb}^*)/(V_{cd}V_{cb}^*)|@f$.
-     * @return @f$R_t@f$
-     */
-    double computeRt() const;
-
-    /**
-     * @brief @f$R_{ts}=|(V_{ts}V_{tb}^*)/(V_{cs}V_{cb}^*)|@f$.
-     * @return @f$R_{ts}@f$
-     */
-    double computeRts() const;
-
-    /**
-     * @brief @f$R_b=|(V_{ud}V_{ub}^*)/(V_{ud}V_{ub}^*)|@f$.
-     * @return @f$R_b@f$
-     */
-    double computeRb() const;
-
-
-    ////////////////////////////////////////////////////////////////////////
 protected:
 
     /**
@@ -961,28 +703,9 @@ protected:
      */
     virtual void setParameter(const std::string name, const double& value);
 
-    /**
-     * @brief The method to compute the %CKM matrix.
-     */
-    virtual void computeCKM();
-
-    /**
-     * @brief The method to compute the Yukawa matrices.
-     * 
-     * @attention This function has not been correctly implemented yet. 
-     */
-    virtual void computeYukawas();
-
     EWSM* myEWSM;///< A pointer to an object of type EWSM.
 
     Particle leptons[6];///< An array of Particle objects for the leptons. 
-    CKM myCKM;///< An object of type CKM. 
-    matrix<complex> VCKM;///< The %CKM matrix.
-    matrix<complex> UPMNS;///<  The %PMNS matrix.
-    matrix<complex> Yu;///< The Yukawa matrix of the up-type quarks.
-    matrix<complex> Yd;///< The Yukawa matrix of the down-type quarks.
-    matrix<complex> Yn;///< The Yukawa matrix of the neutrinos.
-    matrix<complex> Ye;///< The Yukawa matrix of the charged leptons.
 
     // model parameters
     double AlsMz;///< The strong coupling constant at the Z-boson mass, \f$\alpha_s(M_Z)\f$.
@@ -994,34 +717,16 @@ protected:
     double delMw;///< The theoretical uncertainty in @f$M_W@f$, denoted as @f$\delta\,M_W@f$, in GeV.
     double delSin2th_l;///< The theoretical uncertainty in @f$\sin^2\theta_{\rm eff}^{\rm lept}@f$, denoted as @f$\delta\sin^2\theta_{\rm eff}^{\rm lept}@f$.
     double delGammaZ;///< The theoretical uncertainty in @f$\Gamma_Z@f$, denoted as @f$\delta\,\Gamma_Z@f$, in GeV.
-    double lambda;///< The %CKM parameter @f$\lambda@f$ in the Wolfenstein parameterization.
-    double A;///< The %CKM parameter @f$A@f$ in the Wolfenstein parameterization.
-    double rhob;///< The %CKM parameter @f$\bar{\rho}@f$ in the Wolfenstein parameterization.
-    double etab;///< The %CKM parameter @f$\bar{\eta}@f$ in the Wolfenstein parameterization.
-    double muw;///< A matching scale @f$\mu_W@f$ around the weak scale in GeV.
-
-    double EpsK;
-    double phiEpsK;
-    double DeltaMK;
-    double KbarEpsK;
-    double Dmk;
-    double SM_M12D;
     
     
     ////////////////////////////////////////////////////////////////////////    
 private:
-
-    StandardModelMatching* myStandardModelMatching;///< A pointer to an object of type StandardModelMatching.
 
     bool FlagWithoutNonUniversalVC;///< A boolean for the model flag %WithoutNonUniversalVC.
     bool FlagNoApproximateGammaZ;///< A boolean for the model flag %NoApproximateGammaZ.
     std::string FlagMw;///< A string for the model flag %Mw.
     std::string FlagRhoZ;///< A string for the model flag %RhoZ.
     std::string FlagKappaZ;///< A string for the model flag %KappaZ. 
-
-    bool requireCKM;///< An internal flag to control whether the %CKM matrix has to be recomputed.
-    bool requireYe;///< An internal flag to control whether the charged-lepton Yukawa matrix has to be recomputed.
-    bool requireYn;///<  An internal flag to control whether the neutrino Yukawa matrix has to be recomputed.
 
 };
 

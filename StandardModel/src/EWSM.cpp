@@ -38,8 +38,6 @@ EWSM::EWSM(const StandardModel& SM_i)
     myThreeLoopEW = new EWSMThreeLoopEW(*myCache);
     myApproximateFormulae = new EWSMApproximateFormulae(SM);   
 
-    myTwoFermionsLEP2 = new EWSMTwoFermionsLEP2(SM, *myCache);
-
     // Initializations of the caches
     DeltaAlphaLepton_cache = 0.0;
     DeltaAlpha_cache = 0.0;
@@ -69,7 +67,6 @@ EWSM::EWSM(const StandardModel& SM_i)
 
 EWSM::~EWSM()
 {
-    if (myTwoFermionsLEP2 != NULL) delete myTwoFermionsLEP2;
     if (myApproximateFormulae != NULL) delete myApproximateFormulae;
     if (myThreeLoopEW != NULL) delete myThreeLoopEW;
     if (myThreeLoopEW2QCD != NULL) delete myThreeLoopEW2QCD;
