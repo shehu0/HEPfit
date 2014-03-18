@@ -26,8 +26,13 @@ using namespace gslpp;
 class EWSM_Output; // forward reference to EWSM_Output class
 
 /**
+ * @addtogroup StandardModel
+ * @brief A module for the Standard %Model.
+ * @{
+ */
+
+/**
  * @class EWSM
- * @ingroup StandardModel
  * @brief A class for radiative corrections to the %EW precision observables.
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
@@ -1264,6 +1269,10 @@ private:
                        const double DeltaRbar_rem, const bool bool_Zbb) const;
     
 };
+
+/**
+ * @}
+ */
 
 #endif	/* EWSM_H */
 

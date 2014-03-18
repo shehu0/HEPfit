@@ -133,74 +133,13 @@ class EWSM; // forward reference to EWSM class
  *   <td class="mod_symb">@f$m_\tau@f$</td>
  *   <td class="mod_desc">The tau mass in GeV.</td>
  * </tr>
- * <tr>
- *   <td class="mod_name">%lambda</td>
- *   <td class="mod_symb">@f$\lambda@f$</td>
- *   <td class="mod_desc">The %CKM parameter @f$\lambda@f$ in the Wolfenstein parameterization.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%A</td>
- *   <td class="mod_symb">@f$A@f$</td>
- *   <td class="mod_desc">The %CKM parameter @f$A@f$ in the Wolfenstein parameterization.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%rhob</td>
- *   <td class="mod_symb">@f$\bar{\rho}@f$</td>
- *   <td class="mod_desc">The %CKM parameter @f$\bar{\rho}@f$ in the Wolfenstein parameterization.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%etab</td>
- *   <td class="mod_symb">@f$\bar{\eta}@f$</td>
- *   <td class="mod_desc">The %CKM parameter @f$\bar{\eta}@f$ in the Wolfenstein parameterization.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%muw</td>
- *   <td class="mod_symb">@f$\mu_W@f$</td>
- *   <td class="mod_desc">A matching scale around the weak scale in GeV.</td>
- * </tr>
  * </table>
  * 
- * The parameters below, associated with flavour observables, may be removed
- * from the current class later:
- * <table class="model">
- * <tr>
- *   <td class="mod_name">%EpsK</td>
- *   <td class="mod_symb">@f$\varepsilon_{K}@f$</td>
- *   <td class="mod_desc">The experimental value of @f$\varepsilon_{K}@f$.</td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%phiEpsK</td>
- *   <td class="mod_symb"></td>
- *   <td class="mod_desc"></td>
- * </tr>
- * <tr>
- *   <td class="mod_name">%KbarEpsK</td>
- *   <td class="mod_symb"></td>
- *   <td class="mod_desc"></td>
- * </tr>
-  * <tr>
- *   <td class="mod_name">%DeltaMK</td>
- *   <td class="mod_symb">@f$\Delta m_{K}@f$</td>
- *   <td class="mod_desc">The experimental value of @f$\Delta m_{K}@f$ in GeV.</td>
- * </tr>
-  * <tr>
- *   <td class="mod_name">%Dmk</td>
- *   <td class="mod_symb">@f$\Delta m_{K}@f$</td>
- *   <td class="mod_desc">The SM contribution to @f$\Delta m_{K}@f$ in GeV.</td>
- * </tr>
-  * <tr>
- *   <td class="mod_name">%SM_M12D</td>
- *   <td class="mod_symb">@f$@f$</td>
- *   <td class="mod_desc">The SM amplitude of the @f$D^{0}-\bar{D}^{0}@f$ mixing.</td>
- * </tr>
- * </table>
- *
  * The set of the model parameters are initialized and updated with the methods
  * Init() and Update(), respectively, where the former calls the latter actually.
  * In Update(), the methods PreUpdate() and PostUpdate() are called to run all
  * the procedures that are need to be executed before and after the model parameters
- * are updated. The %CKM and %PMNS matrices and the Yukawa matrices are recomputed
- * in PostUpdate() with the updated parameters. Inside the Update() method, the
+ * are updated. Inside the Update() method, the
  * individual model parameter is assigned with the protected member function
  * setParameter(). 
  *
@@ -359,8 +298,7 @@ public:
 
     /**
      * @brief The pre-update method for %StandardModel.
-     * @details This method initializes the internal flags #requireCKM, #requireYe
-     * and #requireYn, and calls QCD::PreUpdate(), before updating the model
+     * @details This method calls QCD::PreUpdate(), before updating the model
      * parameters with the method Update().
      * @return a boolean that is true if the execution is successful
      */
