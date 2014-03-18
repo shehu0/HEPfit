@@ -34,15 +34,5 @@
 #include "Rcharm.h"
 #include "Rbottom.h"
 
-#include "LEP2sigmaHadron.h"
-#include "LEP2sigmaMu.h"
-#include "LEP2sigmaTau.h"
-#include "LEP2AFBmu.h"
-#include "LEP2AFBtau.h"
-#include "LEP2AFBbottom.h"
-#include "LEP2AFBcharm.h"
-#include "LEP2Rbottom.h"
-#include "LEP2Rcharm.h"
-
 #endif	/* EWOBSERVABLES_H */
 

@@ -9,15 +9,12 @@
 #include <stdexcept>
 #include <boost/lexical_cast.hpp>
 #include <EWObservables.h>
-#include <FlavourObservables.h>
-#include <LeptonFlavourObservables.h>
 #include <StandardModelParams.h>
 #include <NewPhysicsParams.h>
-#include <SUSYObservables.h>
 #include "ThFactory.h"
 
 ThFactory::ThFactory(const StandardModel& myModel) 
-: myEW(myModel), myFlavour(myModel), myLeptonFlavour(myModel), myMO(myModel)
+: myEW(myModel), myMO(myModel)
 {    
     //-----  EW precision observables  -----
     thobs["Mw"] = new Mw(myEW);
@@ -42,74 +39,6 @@ ThFactory::ThFactory(const StandardModel& myModel)
     thobs["epsilon3"] = new NewPhysicsParams(myMO, "epsilon3");
     thobs["epsilonb"] = new NewPhysicsParams(myMO, "epsilonb");
 
-    //-----  LEP-II two-fermion processes  -----
-    const double sqrt_s[12] = {130., 136., 161., 172., 183., 189.,
-                               192., 196., 200., 202., 205., 207.};
-    const double sqrt_s_HF[10] = {133., 167., 183., 189., 192.,
-                                  196., 200., 202., 205., 207.};
-    LEP2sigmaHadron* myLEP2sigmaHadron[12];
-    LEP2sigmaMu* myLEP2sigmaMu[12];
-    LEP2sigmaTau* myLEP2sigmaTau[12];
-    LEP2AFBmu* myLEP2AFBmu[12];
-    LEP2AFBtau* myLEP2AFBtau[12];
-    LEP2AFBbottom* myLEP2AFBbottom[10];
-    LEP2AFBcharm* myLEP2AFBcharm[10];
-    LEP2Rbottom* myLEP2Rbottom[10];
-    LEP2Rcharm* myLEP2Rcharm[10];
-    for (int i=0; i<12; i++) { 
-        std::string sqrt_s_str = boost::lexical_cast<std::string, double>(sqrt_s[i]);
-        myLEP2sigmaHadron[i] = new LEP2sigmaHadron(myEW, sqrt_s[i]);
-        thobs["sigmaqLEP2_" + sqrt_s_str] = myLEP2sigmaHadron[i];
-        myLEP2sigmaMu[i] = new LEP2sigmaMu(myEW, sqrt_s[i]);
-        thobs["sigmamuLEP2_" + sqrt_s_str] = myLEP2sigmaMu[i];
-        myLEP2sigmaTau[i] = new LEP2sigmaTau(myEW, sqrt_s[i]);
-        thobs["sigmatauLEP2_" + sqrt_s_str] = myLEP2sigmaTau[i];
-        myLEP2AFBmu[i] = new LEP2AFBmu(myEW, sqrt_s[i]);
-        thobs["AFBmuLEP2_" + sqrt_s_str] = myLEP2AFBmu[i];
-        myLEP2AFBtau[i] = new LEP2AFBtau(myEW, sqrt_s[i]);
-        thobs["AFBtauLEP2_" + sqrt_s_str] = myLEP2AFBtau[i];
-    }
-    for (int i=0; i<10; i++) { 
-        std::string sqrt_s_str = boost::lexical_cast<std::string, double>(sqrt_s_HF[i]);
-        myLEP2AFBbottom[i] = new LEP2AFBbottom(myEW, sqrt_s_HF[i]);
-        thobs["AFBbottomLEP2_" + sqrt_s_str] = myLEP2AFBbottom[i];
-        myLEP2AFBcharm[i] = new LEP2AFBcharm(myEW, sqrt_s_HF[i]);
-        thobs["AFBcharmLEP2_" + sqrt_s_str] = myLEP2AFBcharm[i];
-        myLEP2Rbottom[i] = new LEP2Rbottom(myEW, sqrt_s_HF[i]);  
-        thobs["RbottomLEP2_" + sqrt_s_str] = myLEP2Rbottom[i];
-        myLEP2Rcharm[i] = new LEP2Rcharm(myEW, sqrt_s_HF[i]);
-        thobs["RcharmLEP2_" + sqrt_s_str] = myLEP2Rcharm[i];
-    }    
-
-    //-----  Flavour observables  -----
-    thobs["Dmd1"] = new DmBd(myFlavour);
-    thobs["Dms1"] = new DmBs(myFlavour);
-    thobs["M12D"] = new M12D(myFlavour);
-    thobs["ArgD"] = new ArgD(myFlavour);
-    thobs["EpsilonK"] = new EpsilonK(myFlavour);
-    thobs["EpsiloP_o_Epsilon"] = new EpsilonP_O_Epsilon(myFlavour);
-    thobs["DmK"] = new DmK(myFlavour);
-    thobs["Vud"] = new Vud(myFlavour);
-    thobs["Vus"] = new Vus(myFlavour);
-    thobs["Vub"] = new Vub(myFlavour);
-    thobs["Vcb"] = new Vcb(myFlavour);
-    thobs["alpha"] = new Alpha(myFlavour);
-    thobs["alpha_2a"] = new Alpha_2a(myFlavour);
-    thobs["gamma"] = new CKMGamma(myFlavour);
-    thobs["SJPsiK"] = new SJPsiK(myFlavour);
-    thobs["SJPsiPhi"] = new SJPsiPhi(myFlavour);
-    thobs["BR_Bdmumu"] = new Bdmumu(myFlavour, 1);
-    thobs["BRbar_Bdmumu"] = new Bdmumu(myFlavour, 2);
-    thobs["Amumu_Bd"] = new Bdmumu(myFlavour, 3);
-    thobs["Smumu_Bd"] = new Bdmumu(myFlavour, 4);
-    thobs["BR_Bsmumu"] = new Bsmumu(myFlavour, 1);
-    thobs["BRbar_Bsmumu"] = new Bsmumu(myFlavour, 2);
-    thobs["Amumu_Bs"] = new Bsmumu(myFlavour, 3);
-    thobs["Smumu_Bs"] = new Bsmumu(myFlavour, 4);
-        
-    //-----  Lepton Flavour observables  -----
-    thobs["li_lj_gamma"] = new li_lj_gamma(myLeptonFlavour);
-
     //-----  SM input parameters  -----
     thobs["Mz"] = new StandardModelParams(myMO, "Mz");
     thobs["mHl"] = new StandardModelParams(myMO, "mHl");
@@ -131,38 +60,6 @@ ThFactory::ThFactory(const StandardModel& myModel)
         thobs["deltaGRb"] = new NewPhysicsParams(myMO, "deltaGRb");
         thobs["deltaRhoZb"] = new NewPhysicsParams(myMO, "deltaRhoZb");
         thobs["deltaKappaZb"] = new NewPhysicsParams(myMO, "deltaKappaZb");
-    }
-
-    //-----  SUSY spectra and observables  -----
-    if(myModel.ModelName().compare("SUSY") == 0
-            || myModel.ModelName().compare("SUSYMassInsertion") == 0
-            || myModel.ModelName().compare("GeneralSUSY") == 0
-            || myModel.ModelName().compare("pMSSM") == 0
-            || myModel.ModelName().compare("MFV") == 0) {
-        thobs["OutputSLHAfromFH"] = new OutputSLHAfromFH(myMO); // for debug
-        thobs["MHl"] = new Mhiggs(myMO, 0);
-        thobs["MHh"] = new Mhiggs(myMO, 1);
-        thobs["MHa"] = new Mhiggs(myMO, 2);
-        thobs["MHp"] = new Mhiggs(myMO, 3);
-        thobs["Msu1"] = new Msup(myMO, 0);
-        thobs["Msu2"] = new Msup(myMO, 1);
-        thobs["Msu3"] = new Msup(myMO, 2);
-        thobs["Msu4"] = new Msup(myMO, 3);
-        thobs["Msu5"] = new Msup(myMO, 4);
-        thobs["Msu6"] = new Msup(myMO, 5);
-        thobs["Msd1"] = new Msdown(myMO, 0);
-        thobs["Msd2"] = new Msdown(myMO, 1);
-        thobs["Msd3"] = new Msdown(myMO, 2);
-        thobs["Msd4"] = new Msdown(myMO, 3);
-        thobs["Msd5"] = new Msdown(myMO, 4);
-        thobs["Msd6"] = new Msdown(myMO, 5);
-        thobs["Mch1"] = new Mchargino(myMO, 0);
-        thobs["Mch2"] = new Mchargino(myMO, 1);
-        thobs["Mneu1"] = new Mneutralino(myMO, 0);
-        thobs["Mneu2"] = new Mneutralino(myMO, 1);
-        thobs["Mneu3"] = new Mneutralino(myMO, 2);
-        thobs["Mneu4"] = new Mneutralino(myMO, 3);
-        thobs["Mw_dRho"] = new Mw_dRho(myMO);
     }
 }
 

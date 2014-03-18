@@ -1,0 +1,18 @@
+EXE=analysis
+
+CXX=@CMAKE_CXX_COMPILER@
+
+CXXFLAGS=-Wall @CMAKE_CXX_FLAGS_RELEASE@
+CXXFLAGS+=`@SUSYFIT_INSTALL_DIR@/bin/susyfit-config --cflags` 
+CXXFLAGS+=@EXAMPLE_CXXFLAGS@
+
+LIBS=`@SUSYFIT_INSTALL_DIR@/bin/susyfit-config --libs`
+LIBS+=@EXAMPLE_LIBS@
+
+all: $(EXE)
+
+$(EXE): libmode_header.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $< $(LIBS)
+
+clean:
+	rm $(EXE)

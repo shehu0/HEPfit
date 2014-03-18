@@ -81,7 +81,6 @@ StandardModel* InputParser::ModelFactory(std::string& ModelName){
 
     if (ModelName.compare("StandardModel") == 0) return (new StandardModel());
     else if (ModelName.compare("NPSTU") == 0) return (new NPSTU());
-    else if (ModelName.compare("NPSTUVWXY") == 0) return (new NPSTUVWXY());
     else if (ModelName.compare("NPEpsilons") == 0) return (new NPEpsilons());
     else if (ModelName.compare("NPEpsilons_pureNP") == 0) return (new NPEpsilons_pureNP());
     else if (ModelName.compare("NPHiggs") == 0) return (new NPHiggs());
@@ -89,11 +88,6 @@ StandardModel* InputParser::ModelFactory(std::string& ModelName){
     else if (ModelName.compare("NPZbbbarLR") == 0) return (new NPZbbbar(true));
     else if (ModelName.compare("NPEffective1") == 0) return (new NPEffective1());
     else if (ModelName.compare("NPEffective2") == 0) return (new NPEffective2());
-    else if (ModelName.compare("MFV") == 0) return (new MFV());
-    else if (ModelName.compare("GeneralSUSY") == 0) return (new GeneralSUSY());
-    else if (ModelName.compare("pMSSM") == 0) return (new pMSSM());
-    else if (ModelName.compare("SusyMassInsertion") == 0) return (new SUSYMassInsertion());
-    else if (ModelName.compare("THDM") == 0) return (new THDM());
     else throw std::runtime_error("\nERROR: Incorrect model name passed to InputParser::ModelFactory(): " + ModelName + "\n");
 }
 

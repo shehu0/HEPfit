@@ -20,8 +20,8 @@
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
  * @details This class is responsible for retrieving the values of parameters
- * in NPEffective1, NPEffective2, NPEpsilons, NPEpsilons_pureNP, NPSTU,
- * NPSTUVWXY and NPZbbbar classes.
+ * in NPEffective1, NPEffective2, NPEpsilons, NPEpsilons_pureNP, NPSTU 
+ * and NPZbbbar classes.
  * The available parameters are listed in the description of the constructor
  * NewPhysicsParams().
  */

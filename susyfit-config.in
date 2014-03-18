@@ -1,0 +1,2 @@
+#!/bin/sh
+pkg-config $@ @SUSYFIT_INSTALL_DIR@/bin/SusyFit.pc

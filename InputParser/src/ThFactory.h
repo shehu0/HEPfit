@@ -12,8 +12,6 @@
 #include <ModelObservable.h>
 #include <StandardModel.h>
 #include <EW.h>
-#include <Flavour.h>
-#include <LeptonFlavour.h>
 
 /**
  * @class ThFactory
@@ -143,191 +141,6 @@
  * </tr>
  * </table>
  *
- * @li  LEP-II Two-Fermion Processes, where [sqrt_s] denotes the center of mass
- * energy:
- * 
- * <table class="observables">
- * <tr>
- *   <th>Label</th>
- *   <th>LaTeX symbol</th>
- *   <th>Description</th>
- * </tr>
- * <tr>
- *   <td class="obs_name">%sigmaqLEP2_[sqrt s]</td>
- *   <td class="obs_symb">@f$\sigma(e^+e^-\to q\bar{q})@f$</td>
- *   <td class="obs_desc">The @f$e^+ e^-\rightarrow\mathrm{hadrons}@f$ cross section in pb measured at LEP2.</td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%sigmamuLEP2_[sqrt s]</td>
- *   <td class="obs_symb">@f$\sigma(e^+e^-\to \mu^+\mu^-)@f$</td>
- *   <td class="obs_desc">The @f$e^+ e^-\rightarrow \mu^+ \mu^-@f$ cross section in pb measured at LEP2.</td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%sigmatauLEP2_[sqrt s]</td>
- *   <td class="obs_symb">@f$\sigma(e^+e^-\to \tau^+\tau^-)@f$</td>
- *   <td class="obs_desc">The @f$e^+ e^-\rightarrow \tau^+ \tau^-@f$ cross section in pb measured at LEP2.</td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%AFBmuLEP2_[sqrt s]</td>
- *   <td class="obs_symb">@f$A_{\mathrm{FB}}^\mu@f$</td>
- *   <td class="obs_desc">The forward-backward asymmetry in @f$e^+ e^-\rightarrow \mu^+ \mu^-@f$ measured at LEP2.</td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%AFBtauLEP2_[sqrt s]</td>
- *   <td class="obs_symb">@f$A_{\mathrm{FB}}^\tau@f$</td>
- *   <td class="obs_desc">The forward-backward asymmetry in @f$e^+ e^-\rightarrow \tau^+ \tau^-@f$ measured at LEP2.</td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%AFBbottomLEP2_[sqrt s]</td>
- *   <td class="obs_symb">@f$A_{\mathrm{FB}}^b@f$</td>
- *   <td class="obs_desc">The forward-backward asymmetry in @f$e^+ e^-\rightarrow b \bar{b}@f$ measured at LEP2.</td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%AFBcharmLEP2_[sqrt s]</td>
- *   <td class="obs_symb">@f$A_{\mathrm{FB}}^c@f$</td>
- *   <td class="obs_desc">The forward-backward asymmetry in @f$e^+ e^-\rightarrow c \bar{c}@f$ measured at LEP2.</td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%RbottomLEP2_[sqrt s]</td>
- *   <td class="obs_symb">@f$R_b@f$</td>
- *   <td class="obs_desc">The ratio of the @f$e^+ e^-\rightarrow b \bar{b}@f$ and @f$e^+ e^-\rightarrow\mathrm{hadrons}@f$ cross sections measured at LEP2.</td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%RcharmLEP2_[sqrt s]</td>
- *   <td class="obs_symb">@f$R_c@f$</td>
- *   <td class="obs_desc">The ratio of the @f$e^+ e^-\rightarrow c \bar{c}@f$ and @f$e^+ e^-\rightarrow\mathrm{hadrons}@f$ cross sections measured at LEP2.</td>
- * </tr>
- * </table>
- *
- * @li Flavour Observables:
- * 
- * <table class="observables">
- * <tr>
- *   <th>Label</th>
- *   <th>LaTeX symbol</th>
- *   <th>Description</th>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Dmd1</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Dms1</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%M12D</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%ArgD</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%EpsilonK</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%EpsiloP_o_Epsilon</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%DmK</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Vud</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Vus</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Vub</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Vcb</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%alpha</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%alpha_2a</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%gamma</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%SJPsiK</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%SJPsiPhi</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%BR_Bdmumu</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%BRbar_Bdmumu</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Amumu_Bd</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Smumu_Bd</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%BR_Bsmumu</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%BRbar_Bsmumu</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Amumu_Bs</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Smumu_Bs</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * </table>
  *
  * @li %Model %Parameters of StandardModel class:
  * 
@@ -431,66 +244,6 @@
  * </tr>
  * </table>
  *
- * @li SUSY Spectra and Observables:
- *
- * <table class="observables">
- * <tr>
- *   <th>Label</th>
- *   <th>LaTeX symbol</th>
- *   <th>Description</th>
- * </tr>
- * <tr>
- *   <td class="obs_name">%MHl</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%MHh</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%MHa</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%MHp</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Msu1, %Msu2, %Msu3, %Msu4, %Msu5, %Msu6</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Msd1, %Msd2, %Msd3, %Msd4, %Msd5, %Msd6</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Mch1, %Mch2</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Mneu1, %Mneu2, %Mneu3, %Mneu4</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%Mw_dRho</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * <tr>
- *   <td class="obs_name">%OutputSLHAfromFH</td>
- *   <td class="obs_symb"></td>
- *   <td class="obs_desc"></td>
- * </tr>
- * </table>
- *
  * 
  */
 class ThFactory {
@@ -522,8 +275,6 @@ public:
 private:
     std::map<std::string, ThObservable *> thobs; ///< A map between a pointer of type ThObservable and the name of the observable.
     EW myEW; ///< An object of type EW.
-    Flavour myFlavour; ///< An object of type Flavour.
-    LeptonFlavour myLeptonFlavour;///< An object of type LeptonFlavour.
     ModelObservable myMO; ///< An object of type ModelObservable
 };
 

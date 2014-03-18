@@ -1,0 +1,10 @@
+prefix=@SUSYFIT_INSTALL_DIR@
+includedir=${prefix}/include/SusyFit
+libdir=${prefix}/lib
+bindir=${prefix}/bin
+
+Name: SusyFit
+Description: The SusyFit library
+Version: 0.1
+Cflags: -I${includedir}
+Libs: -L${libdir} -lSusyFit
