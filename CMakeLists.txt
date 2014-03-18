@@ -307,7 +307,6 @@ else()
     set(SRCLIST ${SRCLIST} ${SOURCES})
   endforeach(_project)
   add_library(SusyFit STATIC ${SRCLIST})
-  add_dependencies(analysis Observables)
 endif()
 INSTALL(TARGETS SusyFit DESTINATION ${SUSYFIT_INSTALL_DIR}/lib COMPONENT library)
 
@@ -321,18 +320,20 @@ foreach(_project ${PROJECTLIST})
   endforeach(_header)
 endforeach(_project)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit.h.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h" IMMEDIATE @ONLY)
+               "${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h" @ONLY)
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h 
         DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT headers)
 
 # pkg-config
-find_package(PkgConfig)
-if(PKG_CONFIG_FOUND)
-  configure_file(SusyFit.pc.in ${CMAKE_CURRENT_BINARY_DIR}/SusyFit.pc @ONLY)
-  configure_file(susyfit-config.in ${CMAKE_CURRENT_BINARY_DIR}/susyfit-config @ONLY)
+#find_package(PkgConfig)
+#if(PKG_CONFIG_FOUND)
+  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit.pc.in" 
+                 "${CMAKE_CURRENT_BINARY_DIR}/SusyFit.pc" @ONLY)
+  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/susyfit-config.in" 
+                 "${CMAKE_CURRENT_BINARY_DIR}/susyfit-config" @ONLY)
   INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/susyfit-config ${CMAKE_CURRENT_BINARY_DIR}/SusyFit.pc 
           DESTINATION ${SUSYFIT_INSTALL_DIR}/bin COMPONENT susyfit-config)
-endif()
+#endif()
 
 # example programs
 set(EXAMPLE_CXXFLAGS "-I${BOOST_INC} ${ROOT_CFLAGS} ${GSL_CFLAGS}")
@@ -350,13 +351,13 @@ if(NOT NOMCMC)
   endif(MPIBAT)
 endif(NOT NOMCMC)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/examples-src/LibMode_config/Makefile.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/examples/LibMode_config/Makefile" IMMEDIATE @ONLY)
+               "${CMAKE_CURRENT_BINARY_DIR}/examples/LibMode_config/Makefile" @ONLY)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/examples-src/LibMode_config/libmode_config.cpp"
-               "${CMAKE_CURRENT_BINARY_DIR}/examples/LibMode_config/libmode_config.cpp" IMMEDIATE @ONLY)
+               "${CMAKE_CURRENT_BINARY_DIR}/examples/LibMode_config/libmode_config.cpp" @ONLY)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/examples-src/LibMode_header/Makefile.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/examples/LibMode_header/Makefile" IMMEDIATE @ONLY)
+               "${CMAKE_CURRENT_BINARY_DIR}/examples/LibMode_header/Makefile" @ONLY)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/examples-src/LibMode_header/libmode_header.cpp"
-               "${CMAKE_CURRENT_BINARY_DIR}/examples/LibMode_header/libmode_header.cpp" IMMEDIATE @ONLY)
+               "${CMAKE_CURRENT_BINARY_DIR}/examples/LibMode_header/libmode_header.cpp" @ONLY)
 file(GLOB CONF_FILES ${CMAKE_CURRENT_SOURCE_DIR}/examples-src/configs/*.conf)
 foreach(_confFile ${CONF_FILES})
   get_filename_component(_confFileName ${_confFile} NAME)
@@ -365,16 +366,16 @@ foreach(_confFile ${CONF_FILES})
 endforeach(_confFile)
 if(NOT NOMCMC)
   configure_file("${CMAKE_CURRENT_SOURCE_DIR}/examples-src/MonteCarloMode/Makefile.in"
-                 "${CMAKE_CURRENT_BINARY_DIR}/examples/MonteCarloMode/Makefile" IMMEDIATE @ONLY)
+                 "${CMAKE_CURRENT_BINARY_DIR}/examples/MonteCarloMode/Makefile" @ONLY)
   configure_file("${CMAKE_CURRENT_SOURCE_DIR}/examples-src/MonteCarloMode/MCMC.cpp"
-                 "${CMAKE_CURRENT_BINARY_DIR}/examples/MonteCarloMode/MCMC.cpp" IMMEDIATE @ONLY)
+                 "${CMAKE_CURRENT_BINARY_DIR}/examples/MonteCarloMode/MCMC.cpp" @ONLY)
   configure_file("${CMAKE_CURRENT_SOURCE_DIR}/examples-src/MonteCarloMode/MonteCarlo.conf"
                  "${CMAKE_CURRENT_BINARY_DIR}/examples/MonteCarloMode/MonteCarlo.conf" COPYONLY)
 endif(NOT NOMCMC)
 
 # make uninstall
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake" IMMEDIATE @ONLY)
+               "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake" @ONLY)
 add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} 
                   -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 
