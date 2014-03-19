@@ -64,16 +64,16 @@ if(NOT NOMCMC)
 
 if(MPIBAT)
   add_definitions(-D_MPI)
+  include_directories(${MPI_INCLUDE_DIR})
   find_package(MPI REQUIRED)
-  if (MPI_FOUND)
-    include_directories(${MPI_INCLUDE_DIR})
+  if(MPI_CXX_FOUND)
     #set(CMAKE_CXX_COMPILER ${MPI_CXX_COMPILER}) # This doesn't work!
     #set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_CXX_COMPILE_FLAGS}) # unnecessary
     #set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_CXX_LINK_FLAGS}) # unnecessary
-    #include_directories(${MPI_CXX_INCLUDE_PATHS}) # unnecessary
-  else (MPI_FOUND)
+    include_directories(${MPI_CXX_INCLUDE_PATH})
+  else(MPI_CXX_FOUND)
     message(FATAL_ERROR "MPI requested but implementation could not be found. Please specify the location of the mpic++ compiler with -DCMAKE_CXX_COMPILER=<path to mpi>/mpic++ and the MPI include directory with -DMPI_INCLUDE_DIR=<mpi include dir>")
-  endif(MPI_FOUND)
+  endif(MPI_CXX_FOUND)
 endif(MPIBAT)
 
 message(STATUS "looking for BAT in ${BAT_INSTALL_DIR}")
@@ -308,6 +308,7 @@ else()
   endforeach(_project)
   add_library(SusyFit STATIC ${SRCLIST})
 endif()
+add_dependencies(SusyFit BATBUILD)
 INSTALL(TARGETS SusyFit DESTINATION ${SUSYFIT_INSTALL_DIR}/lib COMPONENT library)
 
 # a single commnon header file SusyFit.h
