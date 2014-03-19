@@ -112,7 +112,7 @@ if(BAT_INSTALL)
         BATBUILD
         PREFIX BATBUILD
         SOURCE_DIR BATBUILD/src
-        STAMP_DIR BATBUILD/src
+        STAMP_DIR BATBUILD/stamp
         BINARY_DIR BATBUILD/src
         INSTALL_DIR BATBUILD/src
         URL ${BAT_URL}
@@ -131,7 +131,7 @@ if(BAT_INSTALL)
          BATBUILD
          PREFIX BATBUILD
          SOURCE_DIR BATBUILD/src
-         STAMP_DIR BATBUILD/src
+         STAMP_DIR BATBUILD/stamp
          BINARY_DIR BATBUILD/src
          INSTALL_DIR BATBUILD/src
          URL ${BAT_URL}
@@ -349,8 +349,13 @@ if(NOT NOMCMC)
   set(EXAMPLE_CXXFLAGS "-I${BAT_INC} ${EXAMPLE_CXXFLAGS}")
   set(EXAMPLE_LIBS "-L${BAT_LIB} -lBATmodels -lBAT ${EXAMPLE_LIBS}")
   if(MPIBAT)
-    set(EXAMPLE_CXXFLAGS "${MPI_COMPILE_FLAGS} ${EXAMPLE_CXXFLAGS}")
-    set(EXAMPLE_LIBS "${MPI_LINK_FLAGS} ${MPI_LIBRARIES} ${EXAMPLE_LIBS}")
+    set(EXAMPLE_CXXFLAGS "-D_MPI ${EXAMPLE_CXXFLAGS}")
+    #set(EXAMPLE_CXXFLAGS "${MPI_COMPILE_FLAGS} ${EXAMPLE_CXXFLAGS}")
+    #foreach(_mpilib ${MPI_LIBRARIES})
+    #  set(EXAMPLE_LIBS "${_mpilib} ${EXAMPLE_LIBS}")
+    #endforeach(_mpilib)
+    #set(EXAMPLE_LIBS "${MPI_LINK_FLAGS} ${EXAMPLE_LIBS}")
+    #message("${EXAMPLE_LIBS}")
   endif(MPIBAT)
 endif(NOT NOMCMC)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/examples-src/LibMode_config/Makefile.in"
