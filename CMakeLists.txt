@@ -143,7 +143,7 @@ if(BAT_INSTALL)
   endif(NOT IBAT OR NOT LBAT)
 endif(BAT_INSTALL)
 
-find_library(LBATM NAMES libBATmodels.a BATmodels PATHS ${BAT_LIB} NO_DEFAULT_PATH)
+#find_library(LBATM NAMES libBATmodels.a BATmodels PATHS ${BAT_LIB} NO_DEFAULT_PATH)
 
 endif(NOT NOMCMC)
 
@@ -308,7 +308,9 @@ else()
   endforeach(_project)
   add_library(SusyFit STATIC ${SRCLIST})
 endif()
-add_dependencies(SusyFit BATBUILD)
+if(NOT NOMCMC)
+  add_dependencies(SusyFit BATBUILD)
+endif(NOT NOMCMC)
 INSTALL(TARGETS SusyFit DESTINATION ${SUSYFIT_INSTALL_DIR}/lib COMPONENT library)
 
 # a single commnon header file SusyFit.h
