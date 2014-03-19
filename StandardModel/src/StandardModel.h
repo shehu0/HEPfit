@@ -665,7 +665,6 @@ private:
     std::string FlagMw;///< A string for the model flag %Mw.
     std::string FlagRhoZ;///< A string for the model flag %RhoZ.
     std::string FlagKappaZ;///< A string for the model flag %KappaZ.
-    int rank; ///< Rank of the process for a MPI run. Value is 0 for a serial run.
 
 };
 
