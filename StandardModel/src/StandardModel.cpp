@@ -15,6 +15,9 @@
 #include <gsl/gsl_sf_zeta.h>
 #include "StandardModel.h"
 #include "EWSM.h"
+#ifdef _MPI
+#include <mpi.h>
+#endif
 
 
 const std::string StandardModel::SMvars[NSMvars] = {
@@ -43,6 +46,11 @@ StandardModel::StandardModel()
     leptons[ELECTRON].setIsospin(-1./2.);
     leptons[MU].setIsospin(-1./2.);   
     leptons[TAU].setIsospin(-1./2.);
+#ifdef _MPI
+    rank = MPI::COMM_WORLD.Get_rank();
+#else
+    rank = 0;
+#endif
 }
 
 
@@ -51,7 +59,7 @@ StandardModel::StandardModel()
 
 bool StandardModel::InitializeModel()
 {
-    std::cout << "Model: " << ModelName() << std::endl;
+    if (rank == 0) std::cout << "\nModel: " << ModelName() << std::endl;
     myEWSM = new EWSM(*this);
     setModelInitialized(true);
     return(true);
