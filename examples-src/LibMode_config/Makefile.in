@@ -7,11 +7,11 @@ CXXFLAGS+=`@SUSYFIT_INSTALL_DIR@/bin/susyfit-config --cflags`
 CXXFLAGS+=@EXAMPLE_CXXFLAGS@
 
 LIBS=`@SUSYFIT_INSTALL_DIR@/bin/susyfit-config --libs`
-LIBS+=@EXAMPLE_LIBS@
+LIBS+=@EXAMPLE_NOMCMC_LIBS@
 
 all: $(EXE)
 
-$(EXE): libmode_config.cpp
+$(EXE): libmode_config.cpp Makefile
 	$(CXX) $(CXXFLAGS) -o $@ $< $(LIBS)
 
 clean:
