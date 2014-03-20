@@ -392,18 +392,25 @@ if(NOT NOMCMC)
 endif(NOT NOMCMC)
 INSTALL(TARGETS SusyFit DESTINATION ${SUSYFIT_INSTALL_DIR}/lib COMPONENT library)
 
-# a single commnon header file SusyFit.h
-#list(REVERSE PROJECTLIST)
+# header files SusyFit.h and SusyFit_noMCMC.h
+list(REVERSE PROJECTLIST)
 foreach(_project ${PROJECTLIST})
   file(GLOB HEADERS ${_project}/src/*.h)
   foreach(_header ${HEADERS})
     get_filename_component(_tmp ${_header} NAME)
     set(INCLUDE_LIST "${INCLUDE_LIST}\#include\ \"${_tmp}\"\n")
+    if(NOT ${_tmp} MATCHES "MonteCarlo.h" AND NOT ${_tmp} MATCHES "MonteCarloEngine.h")
+      set(NOMCMC_INCLUDE_LIST "${NOMCMC_INCLUDE_LIST}\#include\ \"${_tmp}\"\n")
+    endif()
   endforeach(_header)
 endforeach(_project)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit.h.in"
                "${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h" @ONLY)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit_noMCMC.h.in"
+               "${CMAKE_CURRENT_BINARY_DIR}/SusyFit_noMCMC.h" @ONLY)
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h 
+        DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT headers)
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit_noMCMC.h 
         DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT headers)
 
 # pkg-config
@@ -424,6 +431,7 @@ if(LOOPTOOLS)
   set(EXAMPLE_CXXFLAGS "-I${LT_DIR}/include ${EXAMPLE_CXXFLAGS}")
   set(EXAMPLE_LIBS "-L${LT_LIB_PATH} -looptools -l${LFORTRAN} ${EXAMPLE_LIBS}")
 endif(LOOPTOOLS)
+set(EXAMPLE_NOMCMC_CXXFLAGS "${EXAMPLE_CXXFLAGS}")
 set(EXAMPLE_NOMCMC_LIBS "${EXAMPLE_LIBS}")
 if(NOT NOMCMC)
   if(MPIBAT)

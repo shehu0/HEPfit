@@ -6,7 +6,7 @@
  */
 
 #include <iostream>
-#include <SusyFit.h>
+#include <SusyFit_noMCMC.h>
 #include <InputParameters.h>
 
 int main(int argc, char** argv) 

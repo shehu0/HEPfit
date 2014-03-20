@@ -1,5 +1,5 @@
 #include <iostream>
-#include <SusyFit.h>
+#include <SusyFit_noMCMC.h>
 
 int main(int argc, char** argv) 
 {
