@@ -13,31 +13,45 @@ endif()
 project(SusyFit)
 
 # default boolean flags
-option(NOMCMC "No MCMC" OFF)
+option(DEBUG_MODE "Debug mode" OFF)
+option(NOMCMC "No MCMC mode" OFF)
 option(MPIBAT "Use MPI BAT" OFF)
-option(BAT_INSTALL "Install BAT" OFF)
+option(BAT_INSTALL "Download and install BAT" OFF)
 option(LOOPTOOLS "Use LoopTools library" OFF)
 option(INTEL_FORTRAN "Use ifort libraries" OFF)
 
-# default paths
-if(NOT SUSYFIT_INSTALL_DIR)
-  set(SUSYFIT_INSTALL_DIR /usr/local)
+# SusyFit and BAT installation paths
+if(SUSYFIT_INSTALL_DIR)
+  set(SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR} 
+      CACHE PATH "SusyFit installation directory" FORCE)
+else()
+  set(SUSYFIT_INSTALL_DIR /usr/local 
+      CACHE PATH "SusyFit installation directory")
 endif()
-if(NOT BAT_INSTALL_DIR)
-  set(BAT_INSTALL_DIR /usr/local)
+if(BAT_INSTALL_DIR)
+  set(BAT_INSTALL_DIR ${BAT_INSTALL_DIR} 
+      CACHE PATH "BAT installation directory" FORCE)
+else()
+  set(BAT_INSTALL_DIR /usr/local 
+      CACHE PATH "BAT installation directory")
 endif()
 
-# absolute paths
+# convert relative paths to absolute paths
 if(NOT IS_ABSOLUTE ${SUSYFIT_INSTALL_DIR})
    set(SUSYFIT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/${SUSYFIT_INSTALL_DIR})
 endif()
 if(NOT IS_ABSOLUTE ${BAT_INSTALL_DIR})
    set(BAT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/${BAT_INSTALL_DIR})
 endif()
-
-# the path to the home directory
 STRING(REGEX REPLACE "^~" "$ENV{HOME}" SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR})
 STRING(REGEX REPLACE "^~" "$ENV{HOME}" BAT_INSTALL_DIR ${BAT_INSTALL_DIR})
+
+# The argument of "make -j" command for BAT compilation
+if(BAT_MAKE_JOBS)
+  set(BAT_MAKE_JOBS ${BAT_MAKE_JOBS} CACHE STRING "The number of jobs to make BAT." FORCE)
+else()
+  set(BAT_MAKE_JOBS "1" CACHE STRING "The number of jobs to make BAT.")
+endif()
 
 # Fortran libraries 
 if(INTEL_FORTRAN)
@@ -51,11 +65,109 @@ endif()
 
 if(NOT WIN32)
   string(ASCII 27 Esc)
-  set(ColReset "${Esc}[m")
+  set(ColReset    "${Esc}[m")
   set(Red         "${Esc}[31m")
   set(RedBold     "${Esc}[1;31m")
   set(Magenta     "${Esc}[35m")
   set(MagentaBold "${Esc}[1;35m")
+endif()
+
+##########  BOOST  ##########
+
+# find_package(Boost) is not used.
+
+set(BOOST_ERROR_MESSAGE "Boost headers could not be found. Please specify the Boost include path with -DBOOST_INC=<include path>/boost/.")
+
+if(NOT BOOST_INC)
+  find_path(BOOST_INC "boost/tokenizer.hpp" DOC "Boost include path")
+  if(BOOST_INC)
+    set(BOOST_INC "${BOOST_INC}/boost/" CACHE PATH "Boost include path" FORCE)
+    message(STATUS "Found Boost headers in ${BOOST_INC}")
+  else()
+    message(FATAL_ERROR "${BOOST_ERROR_MESSAGE}")
+  endif()
+else()
+  set(BOOST_INC ${BOOST_INC} CACHE PATH "Boost include path" FORCE)
+  find_path(TMP_BOOST_INC_PATH "tokenizer.hpp" PATHS ${BOOST_INC} NO_DEFAULT_PATH)
+  if(NOT TMP_BOOST_INC_PATH)
+    unset(TMP_BOOST_INC_PATH CACHE)
+    message(FATAL_ERROR "${BOOST_ERROR_MESSAGE}")
+  else()
+    unset(TMP_BOOST_INC_PATH CACHE)
+  endif()
+endif()
+
+message(STATUS "Found Boost headers in ${BOOST_INC}")
+string(REGEX REPLACE "/boost$" "" BOOST_INCLUDE_PATH ${BOOST_INC})
+
+##########  GSL  ##########
+
+if(NOT GSL_CONFIG_PATH)
+  find_program(GSL_CONFIG gsl-config)
+  if(GSL_CONFIG)
+    string(REGEX REPLACE "/gsl-config$" "" TMP_PATH ${GSL_CONFIG})
+    set(GSL_CONFIG_PATH ${TMP_PATH} CACHE PATH "Path to gsl-config")
+    unset(TMP_PATH)
+  endif()
+else()
+  set(GSL_CONFIG_PATH ${GSL_CONFIG_PATH} CACHE PATH "Path to gsl-config" FORCE)
+  find_program(GSL_CONFIG gsl-config PATHS ${GSL_CONFIG_PATH} NO_DEFAULT_PATH)
+endif()
+if(NOT GSL_CONFIG)
+  unset(GSL_CONFIG CACHE)
+  message(FATAL_ERROR "gsl-confg could not be found. Please specify the directory of gsl-config command with -DGSL_CONFIG_PATH=<path>.")
+else()  
+  message(STATUS "Found gsl-config in ${GSL_CONFIG_PATH}")
+  execute_process(COMMAND ${GSL_CONFIG} --version
+                  OUTPUT_VARIABLE GSL_VERSION
+                  OUTPUT_STRIP_TRAILING_WHITESPACE)
+  message(STATUS "GSL version: ${GSL_VERSION}")
+  execute_process(COMMAND ${GSL_CONFIG} --cflags
+                  OUTPUT_VARIABLE GSL_CFLAGS
+                  OUTPUT_STRIP_TRAILING_WHITESPACE)
+  message(STATUS "GSL cflags: ${GSL_CFLAGS}")
+  execute_process(COMMAND ${GSL_CONFIG} --libs
+                  OUTPUT_VARIABLE GSL_LIBS
+                  OUTPUT_STRIP_TRAILING_WHITESPACE)
+  message(STATUS "GSL libs: ${GSL_LIBS}")
+  unset(GSL_CONFIG CACHE)
+endif()
+
+##########  ROOT  ##########
+
+if(NOT ROOT_CONFIG_PATH)
+  find_program(ROOT_CONFIG root-config DOC "root-config")
+  if(ROOT_CONFIG)
+    string(REGEX REPLACE "/root-config$" "" TMP_PATH ${ROOT_CONFIG})
+    set(ROOT_CONFIG_PATH ${TMP_PATH} CACHE PATH "Path to root-config")
+    unset(TMP_PATH)
+  endif()
+else()
+  set(ROOT_CONFIG_PATH ${ROOT_CONFIG_PATH} CACHE PATH "Path to root-config" FORCE)
+  find_program(ROOT_CONFIG root-config PATHS ${ROOT_CONFIG_PATH} NO_DEFAULT_PATH DOC "root-config")
+endif()
+if(NOT ROOT_CONFIG)
+  unset(ROOT_CONFIG CACHE)
+  message(FATAL_ERROR "root-config could not be found. Please specify the directory of root-config command with -DROOT_CONFIG_PATH=<path>.")
+else()
+  message(STATUS "Found root-config in ${ROOT_CONFIG_PATH}")
+  execute_process(COMMAND ${ROOT_CONFIG} --version
+                  OUTPUT_VARIABLE ROOT_VERSION
+                  OUTPUT_STRIP_TRAILING_WHITESPACE)
+  message(STATUS "ROOT version: ${ROOT_VERSION}")
+  execute_process(COMMAND ${ROOT_CONFIG} --cflags
+                  OUTPUT_VARIABLE ROOT_CFLAGS
+                  OUTPUT_STRIP_TRAILING_WHITESPACE)
+  message(STATUS "ROOT cflags: ${ROOT_CFLAGS}")
+  execute_process(COMMAND ${ROOT_CONFIG} --libs
+                  OUTPUT_VARIABLE ROOT_LIBS
+                  OUTPUT_STRIP_TRAILING_WHITESPACE)
+  message(STATUS "ROOT libs: ${ROOT_LIBS}")
+  execute_process(COMMAND ${ROOT_CONFIG} --ldflags
+                  OUTPUT_VARIABLE ROOT_LDFLAGS
+                  OUTPUT_STRIP_TRAILING_WHITESPACE)
+  message(STATUS "ROOT ldflags: ${ROOT_LDFLAGS}")
+  unset(ROOT_CONFIG CACHE)
 endif()
 
 ##########  BAT  ##########
@@ -77,31 +189,33 @@ if(MPIBAT)
 endif(MPIBAT)
 
 message(STATUS "looking for BAT in ${BAT_INSTALL_DIR}")
-find_path(IBAT "BCModel.h" ${BAT_INSTALL_DIR}/include/BAT NO_DEFAULT_PATH)
-find_library(LBAT NAMES libBAT.a BAT PATHS ${BAT_INSTALL_DIR}/lib NO_DEFAULT_PATH)
+find_path(IBAT "BCModel.h" PATHS ${BAT_INSTALL_DIR}/include/BAT NO_DEFAULT_PATH)
+find_library(LBAT BAT PATHS ${BAT_INSTALL_DIR} NO_DEFAULT_PATH PATH_SUFFIXES lib lib32 lib64)
 if(IBAT AND LBAT)
-  set(BAT_INC ${IBAT})
-  string(REGEX REPLACE "/BAT$" "" BAT_INC ${BAT_INC})
-  string(REGEX REPLACE "/libBAT.*$" "" BAT_LIB ${LBAT})
-  message(STATUS "Found BAT include in ${BAT_INC}")
-  message("   and libs in ${BAT_LIB}")
+  string(REGEX REPLACE "/BAT$" "" BAT_INCLUDE_PATH ${IBAT})
+  string(REGEX REPLACE "/libBAT.*$" "" BAT_LIB_PATH ${LBAT})
+  message(STATUS "Found BAT headers in ${BAT_INCLUDE_PATH} and libs in ${BAT_LIB_PATH}")
   if(MPIBAT)
     message(STATUS "${MagentaBold}Please make sure that the installed BAT library has been compiled with our patch for MPI support.${ColReset}")
   endif()
 else(IBAT AND LBAT)
   if(NOT BAT_INSTALL)
+    unset(IBAT CACHE)
+    unset(LBAT CACHE)
     message(FATAL_ERROR "BAT could not be found. Please supply the correct path to BAT with -DBAT_INSTALL_DIR=<BAT install path> or install BAT with the option -DBAT_INSTALL=on, where I'll download and install BAT at the default location /usr/local/. If you want me to install BAT at a custom location, you can specify it with -DBAT_INSTALL_DIR=<BAT custom install path>.")  
   endif()
 endif(IBAT AND LBAT)
 
 if(BAT_INSTALL)
   if(NOT IBAT OR NOT LBAT)
+    message(STATUS "Not found BAT in ${BAT_INSTALL_DIR}.")
     message(STATUS "${MagentaBold}I'll download and install BAT into ${BAT_INSTALL_DIR}.${ColReset}")
-    set(BAT_INC ${BAT_INSTALL_DIR}/include)
-    set(BAT_LIB ${BAT_INSTALL_DIR}/lib)
+    set(BAT_INCLUDE_PATH ${BAT_INSTALL_DIR}/include)
+    set(BAT_LIB_PATH ${BAT_INSTALL_DIR}/lib)
     set(BAT_URL http://www.mppmu.mpg.de/bat/source/BAT-0.9.3.tar.gz)
     include(ExternalProject)
     if(MPIBAT)
+      message(STATUS "${MagentaBold}Enable MPI support.${ColReset}")
       set(PATCH patch -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/BAT_mpi_patch.txt)
       if(BAT_INSTALL_DIR)
         set(CONFIGURE_BAT CXX=mpic++ ./configure --prefix=${BAT_INSTALL_DIR})
@@ -118,7 +232,7 @@ if(BAT_INSTALL)
         URL ${BAT_URL}
         PATCH_COMMAND ${PATCH}
         CONFIGURE_COMMAND ${CONFIGURE_BAT}
-        BUILD_COMMAND make
+        BUILD_COMMAND make -j ${BAT_MAKE_JOBS}
         INSTALL_COMMAND make install
         )
      else(MPIBAT)
@@ -136,141 +250,85 @@ if(BAT_INSTALL)
          INSTALL_DIR BATBUILD/src
          URL ${BAT_URL}
          CONFIGURE_COMMAND ${CONFIGURE_BAT}
-         BUILD_COMMAND make
+         BUILD_COMMAND make -j ${BAT_MAKE_JOBS}
          INSTALL_COMMAND make install
          )
     endif(MPIBAT)
+  else(NOT IBAT OR NOT LBAT)
+    message(STATUS "${MagentaBold}BAT will not be installed, since it's already installed in ${BAT_INSTALL_DIR}.${ColReset}")
   endif(NOT IBAT OR NOT LBAT)
 endif(BAT_INSTALL)
 
-#find_library(LBATM NAMES libBATmodels.a BATmodels PATHS ${BAT_LIB} NO_DEFAULT_PATH)
+unset(IBAT CACHE)
+unset(LBAT CACHE)
 
 endif(NOT NOMCMC)
-
-##########  BOOST  ##########
-
-if(NOT BOOST_INC)
-  find_file(IBOOST "boost/program_options.hpp")
-else()
-  find_file(IBOOST "program_options.hpp" PATHS ${BOOST_INC} NO_DEFAULT_PATH)
-endif()
-if(NOT IBOOST)
-  message(FATAL_ERROR "Boost include files could not be found. Please specify the Boost include path with -DBOOST_INC=<include path>/boost/.")
-else()
-  get_filename_component(BOOST_INC ${IBOOST} PATH)
-  string(REGEX REPLACE "/boost$" "" BOOST_INC ${BOOST_INC})
-  message(STATUS "Found Boost include files in ${BOOST_INC}")
-endif()
-
-#if(NOT BOOST_LIB)
-#  find_library(LBOOST NAMES libboost_program_options.a boost_program_options)
-#else()
-#  find_library(LBOOST NAMES libboost_program_options.a boost_program_options PATHS ${BOOST_LIB} NO_DEFAULT_PATH)
-#endif()
-#if(NOT LBOOST)
-#  message(FATAL_ERROR "Boost library could not be found. Please specify the Boost library path with -DBOOST_LIB=<library path>.")
-#else()
-#  get_filename_component(BOOST_LIB ${LBOOST} PATH)
-#  message(STATUS "Found Boost library in ${BOOST_LIB}")
-#endif()
-
-##########  ROOT  ##########
-
-if(NOT ROOT_CONFIG_PATH)
-  find_program(ROOT_CONFIG root-config)
-else()
-  find_program(ROOT_CONFIG root-config PATHS ${ROOT_CONFIG_PATH} NO_DEFAULT_PATH)
-endif()
-if(NOT ROOT_CONFIG)
-  message(FATAL_ERROR "root-config could not be found. Please specify the directory of root-config command with -DROOT_CONFIG_PATH=<path>.")
-else()
-  execute_process(COMMAND ${ROOT_CONFIG} --version
-                  OUTPUT_VARIABLE ROOT_VERSION
-                  OUTPUT_STRIP_TRAILING_WHITESPACE)
-  message(STATUS "ROOT version: ${ROOT_VERSION}")
-  execute_process(COMMAND ${ROOT_CONFIG} --cflags
-                  OUTPUT_VARIABLE ROOT_CFLAGS
-                  OUTPUT_STRIP_TRAILING_WHITESPACE)
-  message(STATUS "ROOT cflags: ${ROOT_CFLAGS}")
-  execute_process(COMMAND ${ROOT_CONFIG} --libs
-                  OUTPUT_VARIABLE ROOT_LIBS
-                  OUTPUT_STRIP_TRAILING_WHITESPACE)
-  message(STATUS "ROOT libs: ${ROOT_LIBS}")
-  execute_process(COMMAND ${ROOT_CONFIG} --ldflags
-                  OUTPUT_VARIABLE ROOT_LDFLAGS
-                  OUTPUT_STRIP_TRAILING_WHITESPACE)
-  message(STATUS "ROOT ldflags: ${ROOT_LDFLAGS}")
-endif()
-
-##########  GSL  ##########
-
-if(NOT GSL_CONFIG_PATH)
-  find_program(GSL_CONFIG gsl-config PATHS ${GSL_CONFIG_PATH})
-else()
-  find_program(GSL_CONFIG gsl-config PATHS ${GSL_CONFIG_PATH} NO_DEFAULT_PATH)
-endif()
-if(NOT GSL_CONFIG)
-  message(FATAL_ERROR "gsl-confg could not be found. Please specify the directory of gsl-config command with -DGSL_CONFIG_PATH=<path>.")
-else()
-  execute_process(COMMAND ${GSL_CONFIG} --version
-                  OUTPUT_VARIABLE GSL_VERSION
-                  OUTPUT_STRIP_TRAILING_WHITESPACE)
-  message(STATUS "GSL version: ${GSL_VERSION}")
-  execute_process(COMMAND ${GSL_CONFIG} --cflags
-                  OUTPUT_VARIABLE GSL_CFLAGS
-                  OUTPUT_STRIP_TRAILING_WHITESPACE)
-  message(STATUS "GSL cflags: ${GSL_CFLAGS}")
-  execute_process(COMMAND ${GSL_CONFIG} --libs
-                  OUTPUT_VARIABLE GSL_LIBS
-                  OUTPUT_STRIP_TRAILING_WHITESPACE)
-  message(STATUS "GSL libs: ${GSL_LIBS}")
-endif()
 
 ##########  LoopTools  ##########
 
 if(LOOPTOOLS)
   add_definitions(-DUSE_LOOPTOOLS)
-  set(LIBOOPTOOLS ooptools)
   if(NOT LT_DIR)
-    find_file(ILT "clooptools.h")
-    find_library(LLT NAMES libooptools.a ooptools)
+    find_path(TMP_INC "clooptools.h")
+    find_library(TMP_LIB ooptools)
   else()
-    find_file(ILT "clooptools.h" PATHS ${LT_DIR}/include NO_DEFAULT_PATH)
-    find_library(LLT NAMES libooptools.a ooptools PATHS ${LT_DIR}/lib NO_DEFAULT_PATH PATH_SUFFIXES lib lib32 lib64)
+    set(LT_DIR ${LT_DIR} CACHE PATH "LoopTools directory" FORCE)
+    find_path(TMP_INC "clooptools.h" PATHS ${LT_DIR}/include NO_DEFAULT_PATH)
+    find_library(TMP_LIB ooptools PATHS ${LT_DIR} NO_DEFAULT_PATH PATH_SUFFIXES lib lib32 lib64)
   endif()
-  if(ILT AND LLT)
-    set(LT_INC ${ILT})
-    string(REGEX REPLACE "/libooptools.*$" "" LT_LIB ${LLT})
-    message(STATUS "Found LoopTools include in ${LT_INC} and libs in ${LT_LIB}")
+  if(TMP_INC AND TMP_LIB)
+    if(NOT LT_DIR)
+      string(REGEX REPLACE "/include$" "" TMP_INC_PATH ${TMP_INC})
+      set(LT_DIR "${TMP_INC_PATH}" CACHE PATH "LoopTools directory")
+    endif()
+    string(REGEX REPLACE "/libooptools.*$" "" TMP_LIB_PATH ${TMP_LIB})
+    set(LT_LIB_PATH ${TMP_LIB_PATH})
+    message(STATUS "Found LoopTools headers in ${LT_DIR}/include and libs in ${LT_LIB_PATH}")
   else()
-    message(FATAL_ERROR "LoopTools include files and libs could not be found. Please specify the LoopTools path with -DLT_DIR=<LoopTools installation path>.")
+    message(FATAL_ERROR "LoopTools headers and/or libs could not be found. Please specify the LoopTools path with -DLT_DIR=<LoopTools installation path>.")
   endif()
+  unset(TMP_INC CACHE)
+  unset(TMP_LIB CACHE)
 endif(LOOPTOOLS)
 
 ##########  DEBUG  ##########
 
-#message("LFORTRAN: ${LFORTRAN}")
+if(DEBUG_MODE)
+  message("\nCache variables:")
+  message("  NOMCMC:BOOL = ${NOMCMC}")
+  message("  SUSYFIT_INSTALL_DIR:PATH = ${SUSYFIT_INSTALL_DIR}")
+  message("  BOOST_INC:PATH = ${BOOST_INC}")
+  message("  GSL_CONFIG_PATH:PATH = ${GSL_CONFIG_PATH}")
+  message("  ROOT_CONFIG_PATH:PATH = ${ROOT_CONFIG_PATH}")
+  message("  MPIBAT:BOOL = ${MPIBAT}")
+  message("  BAT_INSTALL:BOOL = ${BAT_INSTALL}")
+  message("  BAT_INSTALL_DIR:PATH = ${BAT_INSTALL_DIR}")
+  message("  BAT_MAKE_JOBS:STRING = ${BAT_MAKE_JOBS}")
+  message("  LOOPTOOLS:BOOL = ${LOOPTOOLS}")
+  if(LOOPTOOLS)
+    message("  LT_DIR:PATH = ${LT_DIR}")
+  endif()
+  message("  INTEL_FORTRAN:BOOL = ${INTEL_FORTRAN}")
 
-#message("BAT_INC: ${BAT_INC}")
-#message("BAT_LIB: ${BAT_LIB}")
-#message("LBAT: ${LBAT}")
-#message("LBATM: ${LBATM}")
+  message("\nNormal variables:")
+  message("  LIBTYPE = ${LIBTYPE}")
+  message("  BOOST_INCLUDE_PATH = ${BOOST_INCLUDE_PATH}")
+  message("  GSL_VERSION = ${GSL_VERSION}")
+  message("  GSL_CFLAGS = ${GSL_CFLAGS}")
+  message("  GSL_LIBS = ${GSL_LIBS}")
+  message("  ROOT_VERSION = ${ROOT_VERSION}")
+  message("  ROOT_CFLAGS = ${ROOT_CFLAGS}")
+  message("  ROOT_LIBS = ${ROOT_LIBS}")
+  message("  ROOT_LDFLAGS = ${ROOT_LDFLAGS}")
+  message("  BAT_INCLUDE_PATH = ${BAT_INCLUDE_PATH}")
+  message("  BAT_LIB_PATH = ${BAT_LIB_PATH}")
+  if(LOOPTOOLS)
+    message("  LT_LIB_PATH = ${LT_LIB_PATH}")
+  endif()
+  message("  LFORTRAN = ${LFORTRAN}")
+  message("")
 
-#message("BOOST_INC: ${BOOST_INC}")
-#message("BOOST_LIB: ${BOOST_LIB}")
-#message("LBOOST: ${LBOOST}")
-
-#message("ROOT_CFLAGS: ${ROOT_CFLAGS}")
-#message("ROOT_LIBS: ${ROOT_LIBS}")
-#message("ROOT_LDFLAGS: ${ROOT_LDFLAGS}")
-
-#message("GSL_CFLAGS: ${GSL_CFLAGS}")
-#message("GSL_LIBS: ${GSL_LIBS}")
-
-#message("LT_INC: ${LT_INC}")
-#message("LT_LIB: ${LT_LIB}")
-#message("LLT: ${LLT}")
-#message("LIBOOPTOOLS: ${LIBOOPTOOLS}")
+endif(DEBUG_MODE)
 
 ##############################
 
@@ -295,12 +353,12 @@ else()
   # for older CMake
   set(CMAKE_CXX_FLAGS "-Wall ${ROOT_CFLAGS} ${GSL_CFLAGS}")
   if(NOT NOMCMC)
-    include_directories(${BAT_INC})
+    include_directories(${BAT_INCLUDE_PATH})
   endif(NOT NOMCMC)
   if(LOOPTOOLS)
-    include_directories(${LT_INC})
+    include_directories(${LT_DIR}/include)
   endif(LOOPTOOLS)
-  include_directories(${BOOST_INC})
+  include_directories(${BOOST_INCLUDE_PATH})
   foreach(_project ${PROJECTLIST})
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${_project}/src)
     file(GLOB SOURCES ${_project}/src/*.cpp)
@@ -339,15 +397,15 @@ INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h
 #endif()
 
 # example programs
-set(EXAMPLE_CXXFLAGS "-I${BOOST_INC} ${ROOT_CFLAGS} ${GSL_CFLAGS}")
+set(EXAMPLE_CXXFLAGS "-I${BOOST_INCLUDE_PATH} ${ROOT_CFLAGS} ${GSL_CFLAGS}")
 set(EXAMPLE_LIBS "${ROOT_LIBS} ${ROOT_LDFLAGS} ${GSL_LIBS}")
 if(LOOPTOOLS)
-  set(EXAMPLE_CXXFLAGS "-I${LT_INC} ${EXAMPLE_CXXFLAGS}")
-  set(EXAMPLE_LIBS "-L${LT_LIB} ${LIBOOPTOOLS} -l${LFORTRAN} ${EXAMPLE_LIBS}")
+  set(EXAMPLE_CXXFLAGS "-I${LT_DIR}/include ${EXAMPLE_CXXFLAGS}")
+  set(EXAMPLE_LIBS "-L${LT_LIB_PATH} -looptools -l${LFORTRAN} ${EXAMPLE_LIBS}")
 endif(LOOPTOOLS)
 if(NOT NOMCMC)
-  set(EXAMPLE_CXXFLAGS "-I${BAT_INC} ${EXAMPLE_CXXFLAGS}")
-  set(EXAMPLE_LIBS "-L${BAT_LIB} -lBATmodels -lBAT ${EXAMPLE_LIBS}")
+  set(EXAMPLE_CXXFLAGS "-I${BAT_INCLUDE_PATH} ${EXAMPLE_CXXFLAGS}")
+  set(EXAMPLE_LIBS "-L${BAT_LIB_PATH} -lBATmodels -lBAT ${EXAMPLE_LIBS}")
   if(MPIBAT)
     set(EXAMPLE_CXXFLAGS "-D_MPI ${EXAMPLE_CXXFLAGS}")
     foreach(_mpiinc_path ${MPI_CXX_INCLUDE_PATH})
