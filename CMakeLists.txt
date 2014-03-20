@@ -21,7 +21,7 @@ option(LOOPTOOLS "Use LoopTools library" OFF)
 option(INTEL_FORTRAN "Use ifort libraries" OFF)
 
 # SusyFit and BAT installation paths
-if(NOT SUSYFIT_INSTALL_DIR)
+if(SUSYFIT_INSTALL_DIR)
   set(SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR} 
       CACHE PATH "SusyFit installation directory" FORCE)
 else()
