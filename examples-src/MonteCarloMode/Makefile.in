@@ -13,6 +13,7 @@ LIBS+=@EXAMPLE_LIBS@
 LIBS+=`@ROOT_CONFIG_PATH@/root-config --libs` 
 LIBS+=`@ROOT_CONFIG_PATH@/root-config --ldflags` 
 LIBS+=`@GSL_CONFIG_PATH@/gsl-config --libs` 
+LIBS+=@EXAMPLE_RPATHS@
 
 all: $(EXE)
 
