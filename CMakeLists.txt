@@ -22,7 +22,7 @@ option(INTEL_FORTRAN "Use ifort libraries" OFF)
 
 # SusyFit and BAT installation paths
 if(SUSYFIT_INSTALL_DIR)
-  set(SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR} 
+  set(SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR}
       CACHE PATH "SusyFit installation directory" FORCE)
 else()
   set(SUSYFIT_INSTALL_DIR /usr/local 
@@ -191,16 +191,15 @@ if(MPIBAT)
   else(MPI_CXX_FOUND)
     get_filename_component(TMP_PATH ${CMAKE_CXX_COMPILER} DIRECTORY)
     find_path(TMP_MPI_BIN_PATH "mpic++" PATHS ${TMP_PATH} NO_DEFAULT_PATH)
+    unset(TMP_PATH)
     find_path(TMP_MPI_INC_PATH "mpi.h" PATHS ${MPI_INCLUDE_DIR} NO_DEFAULT_PATH)
     if(TMP_MPI_BIN_PATH AND TMP_MPI_INC_PATH)
       message(STATUS "Found MPI binaries in ${TMP_MPI_BIN_PATH} and headers in ${MPI_INCLUDE_DIR}")
       include_directories(${MPI_INCLUDE_DIR})
       set(MPI_CXX_COMPILER "${TMP_MPI_BIN_PATH}/mpic++" CACHE FILEPATH "Path to MPI CXX compiler wrapper")
-      unset(TMP_PATH)
       unset(TMP_MPI_BIN_PATH CACHE)
       unset(TMP_MPI_INC_PATH CACHE)
     else()
-      unset(TMP_PATH)
       unset(TMP_MPI_BIN_PATH CACHE)
       unset(TMP_MPI_INC_PATH CACHE)
       message(FATAL_ERROR "MPI requested but implementation could not be found. Please specify the location of the mpic++ compiler with -DCMAKE_CXX_COMPILER=<path to mpi>/mpic++ and the MPI include directory with -DMPI_INCLUDE_DIR=<mpi include dir>")
@@ -241,9 +240,9 @@ if(BAT_INSTALL)
       message(STATUS "${MagentaBold}Enable MPI support.${ColReset}")
       set(PATCH patch -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/BAT_mpi_patch.txt)
       if(BAT_INSTALL_DIR)
-        set(CONFIGURE_BAT CXX=mpic++ ./configure --prefix=${BAT_INSTALL_DIR})
+        set(CONFIGURE_BAT CXX=${MPI_CXX_COMPILER} ./configure --prefix=${BAT_INSTALL_DIR})
       else()
-        set(CONFIGURE_BAT CXX=mpic++ ./configure)
+        set(CONFIGURE_BAT CXX=${MPI_CXX_COMPILER} ./configure)
       endif()
       ExternalProject_Add(
         BATBUILD
