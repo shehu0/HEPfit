@@ -404,12 +404,14 @@ foreach(_project ${PROJECTLIST})
     endif()
   endforeach(_header)
 endforeach(_project)
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit.h.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h" @ONLY)
+if(NOT NOMCMC)
+  INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h 
+          DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT headers)
+  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit.h.in"
+                 "${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h" @ONLY)
+endif(NOT NOMCMC)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit_noMCMC.h.in"
                "${CMAKE_CURRENT_BINARY_DIR}/SusyFit_noMCMC.h" @ONLY)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h 
-        DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT headers)
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit_noMCMC.h 
         DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT headers)
 
