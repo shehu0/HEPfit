@@ -21,7 +21,7 @@ option(LOOPTOOLS "Use LoopTools library" OFF)
 option(INTEL_FORTRAN "Use ifort libraries" OFF)
 
 # SusyFit and BAT installation paths
-if(SUSYFIT_INSTALL_DIR)
+if(NOT SUSYFIT_INSTALL_DIR)
   set(SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR} 
       CACHE PATH "SusyFit installation directory" FORCE)
 else()
@@ -38,13 +38,23 @@ endif()
 
 # convert relative paths to absolute paths
 if(NOT IS_ABSOLUTE ${SUSYFIT_INSTALL_DIR})
-   set(SUSYFIT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/${SUSYFIT_INSTALL_DIR})
+   set(SUSYFIT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/${SUSYFIT_INSTALL_DIR}
+       CACHE PATH "SusyFit installation directory" FORCE)
 endif()
 if(NOT IS_ABSOLUTE ${BAT_INSTALL_DIR})
-   set(BAT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/${BAT_INSTALL_DIR})
+   set(BAT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/${BAT_INSTALL_DIR}
+       CACHE PATH "BAT installation directory" FORCE)
 endif()
-STRING(REGEX REPLACE "^~" "$ENV{HOME}" SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR})
-STRING(REGEX REPLACE "^~" "$ENV{HOME}" BAT_INSTALL_DIR ${BAT_INSTALL_DIR})
+string(REGEX REPLACE "^~" "$ENV{HOME}" TMP_DIR ${SUSYFIT_INSTALL_DIR})
+set(SUSYFIT_INSTALL_DIR ${TMP_DIR} CACHE PATH "SusyFit installation directory" FORCE)
+string(REGEX REPLACE "^~" "$ENV{HOME}" TMP_DIR ${BAT_INSTALL_DIR})
+set(BAT_INSTALL_DIR ${TMP_DIR} CACHE PATH "BAT installation directory" FORCE)
+unset(TMP_DIR)
+
+# Optional MPI include directory
+if(MPI_INCLUDE_DIR)
+  set(MPI_INCLUDE_DIR ${MPI_INCLUDE_DIR} CACHE PATH "MPI include directory" FORCE)
+endif()
 
 # The argument of "make -j" command for BAT compilation
 if(BAT_MAKE_JOBS)
@@ -176,15 +186,25 @@ if(NOT NOMCMC)
 
 if(MPIBAT)
   add_definitions(-D_MPI)
-  include_directories(${MPI_INCLUDE_DIR})
-  find_package(MPI REQUIRED)
+  find_package(MPI)
   if(MPI_CXX_FOUND)
-    #set(CMAKE_CXX_COMPILER ${MPI_CXX_COMPILER}) # This doesn't work!
-    #set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_CXX_COMPILE_FLAGS}) # unnecessary
-    #set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_CXX_LINK_FLAGS}) # unnecessary
     include_directories(${MPI_CXX_INCLUDE_PATH})
   else(MPI_CXX_FOUND)
-    message(FATAL_ERROR "MPI requested but implementation could not be found. Please specify the location of the mpic++ compiler with -DCMAKE_CXX_COMPILER=<path to mpi>/mpic++ and the MPI include directory with -DMPI_INCLUDE_DIR=<mpi include dir>")
+    get_filename_component(TMP_PATH ${CMAKE_CXX_COMPILER} DIRECTORY)
+    find_path(TMP_MPI_BIN_PATH "mpic++" PATHS ${TMP_PATH} NO_DEFAULT_PATH)
+    find_path(TMP_MPI_INC_PATH "mpi.h" PATHS ${MPI_INCLUDE_DIR} NO_DEFAULT_PATH)
+    if(TMP_MPI_BIN_PATH AND TMP_MPI_INC_PATH)
+      message(STATUS "Found MPI binaries in ${TMP_MPI_BIN_PATH} and headers in ${MPI_INCLUDE_DIR}")
+      unset(TMP_PATH)
+      unset(TMP_MPI_BIN_PATH CACHE)
+      unset(TMP_MPI_INC_PATH CACHE)
+      include_directories(${MPI_INCLUDE_DIR})
+    else()
+      unset(TMP_PATH)
+      unset(TMP_MPI_BIN_PATH CACHE)
+      unset(TMP_MPI_INC_PATH CACHE)
+      message(FATAL_ERROR "MPI requested but implementation could not be found. Please specify the location of the mpic++ compiler with -DCMAKE_CXX_COMPILER=<path to mpi>/mpic++ and the MPI include directory with -DMPI_INCLUDE_DIR=<mpi include dir>")
+    endif()
   endif(MPI_CXX_FOUND)
 endif(MPIBAT)
 
@@ -208,7 +228,7 @@ endif(IBAT AND LBAT)
 
 if(BAT_INSTALL)
   if(NOT IBAT OR NOT LBAT)
-    message(STATUS "Not found BAT in ${BAT_INSTALL_DIR}.")
+    message(STATUS "Not found BAT in ${BAT_INSTALL_DIR}")
     message(STATUS "${MagentaBold}I'll download and install BAT into ${BAT_INSTALL_DIR}.${ColReset}")
     set(BAT_INCLUDE_PATH ${BAT_INSTALL_DIR}/include)
     set(BAT_LIB_PATH ${BAT_INSTALL_DIR}/lib)
@@ -301,6 +321,7 @@ if(DEBUG_MODE)
   message("  GSL_CONFIG_PATH:PATH = ${GSL_CONFIG_PATH}")
   message("  ROOT_CONFIG_PATH:PATH = ${ROOT_CONFIG_PATH}")
   message("  MPIBAT:BOOL = ${MPIBAT}")
+  message("  MPI_INCLUDE_DIR:PATH = ${MPI_INCLUDE_DIR}")
   message("  BAT_INSTALL:BOOL = ${BAT_INSTALL}")
   message("  BAT_INSTALL_DIR:PATH = ${BAT_INSTALL_DIR}")
   message("  BAT_MAKE_JOBS:STRING = ${BAT_MAKE_JOBS}")
