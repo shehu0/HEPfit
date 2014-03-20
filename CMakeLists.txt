@@ -20,9 +20,14 @@ option(BAT_INSTALL "Download and install BAT" OFF)
 option(LOOPTOOLS "Use LoopTools library" OFF)
 option(INTEL_FORTRAN "Use ifort libraries" OFF)
 
+# ExternalProject module is available since 2.8.0
+if(BAT_INSTALL AND ${CMAKE_VERSION} VERSION_LESS 2.8.0)
+    message(FATAL_ERROR "The option -DBAT_INSTALL=ON is not applicable for CMake v${CMAKE_VERSION}.")
+endif()
+
 # SusyFit and BAT installation paths
 if(SUSYFIT_INSTALL_DIR)
-  set(SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR}
+  set(SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR} 
       CACHE PATH "SusyFit installation directory" FORCE)
 else()
   set(SUSYFIT_INSTALL_DIR /usr/local 
@@ -186,6 +191,12 @@ if(NOT NOMCMC)
 if(MPIBAT)
   add_definitions(-D_MPI)
   find_package(MPI)
+  if(${CMAKE_VERSION} VERSION_LESS 2.8.5)
+      # MPI_CXX_FOUND, etc. are available since 2.8.5
+      set(MPI_CXX_FOUND ${MPI_FOUND})
+      set(MPI_CXX_COMPILER ${MPI_COMPILER} CACHE FILEPATH "MPI CXX compiler wrapper" FORCE)
+      set(MPI_CXX_INCLUDE_PATH ${MPI_INCLUDE_PATH} CACHE PATH "MPI CXX include path" FORCE)
+  endif()
   if(MPI_CXX_FOUND)
     include_directories(${MPI_CXX_INCLUDE_PATH})
   else(MPI_CXX_FOUND)
@@ -196,7 +207,7 @@ if(MPIBAT)
     if(TMP_MPI_BIN_PATH AND TMP_MPI_INC_PATH)
       message(STATUS "Found MPI binaries in ${TMP_MPI_BIN_PATH} and headers in ${MPI_INCLUDE_DIR}")
       include_directories(${MPI_INCLUDE_DIR})
-      set(MPI_CXX_COMPILER "${TMP_MPI_BIN_PATH}/mpic++" CACHE FILEPATH "Path to MPI CXX compiler wrapper")
+      set(MPI_CXX_COMPILER "${TMP_MPI_BIN_PATH}/mpic++" CACHE FILEPATH "MPI CXX compiler wrapper")
       unset(TMP_MPI_BIN_PATH CACHE)
       unset(TMP_MPI_INC_PATH CACHE)
     else()
@@ -207,7 +218,7 @@ if(MPIBAT)
   endif(MPI_CXX_FOUND)
 endif(MPIBAT)
 
-message(STATUS "looking for BAT in ${BAT_INSTALL_DIR}")
+message(STATUS "Looking for BAT in ${BAT_INSTALL_DIR}")
 find_path(IBAT "BCModel.h" PATHS ${BAT_INSTALL_DIR}/include/BAT NO_DEFAULT_PATH)
 find_library(LBAT BAT PATHS ${BAT_INSTALL_DIR} NO_DEFAULT_PATH PATH_SUFFIXES lib lib32 lib64)
 if(IBAT AND LBAT)
@@ -224,7 +235,7 @@ else(IBAT AND LBAT)
   if(NOT BAT_INSTALL)
     unset(IBAT CACHE)
     unset(LBAT CACHE)
-    message(FATAL_ERROR "BAT could not be found. Please supply the correct path to BAT with -DBAT_INSTALL_DIR=<BAT install path> or install BAT with the option -DBAT_INSTALL=on, where I'll download and install BAT at the default location /usr/local/. If you want me to install BAT at a custom location, you can specify it with -DBAT_INSTALL_DIR=<BAT custom install path>.")  
+    message(FATAL_ERROR "BAT could not be found. Please supply the correct path to BAT with -DBAT_INSTALL_DIR=<BAT install path> or install BAT with the option -DBAT_INSTALL=ON, where I'll download and install BAT at the default location /usr/local/. If you want me to install BAT at a custom location, you can specify it with -DBAT_INSTALL_DIR=<BAT custom install path>.")  
   endif()
 endif(IBAT AND LBAT)
 
@@ -416,7 +427,7 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit_noMCMC.h.in"
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit_noMCMC.h 
         DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT headers)
 
-# pkg-config
+# pkg-config (FindPkgConfig in CMake 2.8.8 contains a bug)
 #find_package(PkgConfig)
 #if(PKG_CONFIG_FOUND)
   configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit.pc.in" 
