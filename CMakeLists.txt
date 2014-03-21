@@ -14,11 +14,22 @@ project(SusyFit)
 
 # default boolean flags
 option(DEBUG_MODE "Debug mode" OFF)
+option(LOCAL_INSTALL_ALL "Local installation" OFF)
 option(NOMCMC "No MCMC mode" OFF)
 option(MPIBAT "Use MPI BAT" OFF)
 option(BAT_INSTALL "Download and install BAT" OFF)
 option(LOOPTOOLS "Use LoopTools library" OFF)
 option(INTEL_FORTRAN "Use ifort libraries" OFF)
+
+# Local installation option
+if(LOCAL_INSTALL_ALL)
+  set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/SusyFit
+      CACHE PATH "SusyFit installation directory" FORCE)
+  set(BAT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/BAT
+      CACHE PATH "BAT installation directory" FORCE)
+  set(MPIBAT ON CACHE BOOL "Use MPI BAT" FORCE)
+  set(BAT_INSTALL ON CACHE BOOL "Download and install BAT" FORCE)
+endif()
 
 # ExternalProject module is available since 2.8.0
 if(BAT_INSTALL AND ${CMAKE_VERSION} VERSION_LESS 2.8.0)
@@ -28,10 +39,10 @@ endif()
 # SusyFit installation path
 if(NOT IS_ABSOLUTE ${CMAKE_INSTALL_PREFIX})
    set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_PREFIX}
-       CACHE PATH "Install path prefix, prepended onto install directories." FORCE)
+       CACHE PATH "SusyFit installation directory" FORCE)
 endif()
 string(REGEX REPLACE "^~" "$ENV{HOME}" TMP_DIR ${CMAKE_INSTALL_PREFIX})
-set(CMAKE_INSTALL_PREFIX ${TMP_DIR} CACHE PATH "Install path prefix, prepended onto install directories." FORCE)
+set(CMAKE_INSTALL_PREFIX ${TMP_DIR} CACHE PATH "SusyFit installation directory" FORCE)
 unset(TMP_DIR)
 
 # BAT installation path
@@ -250,47 +261,57 @@ if(BAT_INSTALL)
     message(STATUS "${RedBold}I'll download and install BAT into ${BAT_INSTALL_DIR}.${ColReset}")
     set(BAT_INCLUDE_PATH ${BAT_INSTALL_DIR}/include)
     set(BAT_LIB_PATH ${BAT_INSTALL_DIR}/lib)
-    set(BAT_URL http://www.mppmu.mpg.de/bat/source/BAT-0.9.3.tar.gz)
+    find_file(BAT_URL "BAT-0.9.3.tar.gz" PATHS ${CMAKE_CURRENT_BINARY_DIR} NO_DEFAULT_PATH)
+    if(NOT BAT_URL)
+      set(BAT_URL http://www.mppmu.mpg.de/bat/source/BAT-0.9.3.tar.gz)
+    endif()
+    set(BAT_MD5 466e9cfde5bd7a2f4ad6c0e0d72d9e76)
     include(ExternalProject)
     if(MPIBAT)
       message(STATUS "${RedBold}Enable MPI support.${ColReset}")
       set(PATCH patch -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/BAT_mpi_patch.txt)
       if(BAT_INSTALL_DIR)
-        set(CONFIGURE_BAT CXX=${MPI_CXX_COMPILER} ./configure --prefix=${BAT_INSTALL_DIR})
+        set(BAT_CONFIGURE CXX=${MPI_CXX_COMPILER} ./configure --prefix=${BAT_INSTALL_DIR})
       else()
-        set(CONFIGURE_BAT CXX=${MPI_CXX_COMPILER} ./configure)
+        set(BAT_CONFIGURE CXX=${MPI_CXX_COMPILER} ./configure)
       endif()
       ExternalProject_Add(
         BATBUILD
         PREFIX BATBUILD
-        SOURCE_DIR BATBUILD/src
+        TMP_DIR BATBUILD/tmp
         STAMP_DIR BATBUILD/stamp
+        SOURCE_DIR BATBUILD/src
         BINARY_DIR BATBUILD/src
         INSTALL_DIR BATBUILD/src
+        DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}
         URL ${BAT_URL}
+        URL_MD5 ${BAT_MD5}
         PATCH_COMMAND ${PATCH}
-        CONFIGURE_COMMAND ${CONFIGURE_BAT}
+        CONFIGURE_COMMAND ${BAT_CONFIGURE}
         BUILD_COMMAND make -j ${BAT_MAKE_JOBS}
         INSTALL_COMMAND make install
         )
-     else(MPIBAT)
-       if(BAT_INSTALL_DIR)
-         set(CONFIGURE_BAT ./configure --prefix=${BAT_INSTALL_DIR})
-       else()
-         set(CONFIGURE_BAT ./configure)
-       endif()
-       ExternalProject_Add(
-         BATBUILD
-         PREFIX BATBUILD
-         SOURCE_DIR BATBUILD/src
-         STAMP_DIR BATBUILD/stamp
-         BINARY_DIR BATBUILD/src
-         INSTALL_DIR BATBUILD/src
-         URL ${BAT_URL}
-         CONFIGURE_COMMAND ${CONFIGURE_BAT}
-         BUILD_COMMAND make -j ${BAT_MAKE_JOBS}
-         INSTALL_COMMAND make install
-         )
+    else(MPIBAT)
+      if(BAT_INSTALL_DIR)
+        set(BAT_CONFIGURE ./configure --prefix=${BAT_INSTALL_DIR})
+      else()
+        set(BAT_CONFIGURE ./configure)
+      endif()
+      ExternalProject_Add(
+        BATBUILD
+        PREFIX BATBUILD
+        TMP_DIR BATBUILD/tmp
+        STAMP_DIR BATBUILD/stamp
+        SOURCE_DIR BATBUILD/src
+        BINARY_DIR BATBUILD/src
+        INSTALL_DIR BATBUILD/src
+        DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}
+        URL ${BAT_URL}
+        URL_MD5 ${BAT_MD5}
+        CONFIGURE_COMMAND ${BAT_CONFIGURE}
+        BUILD_COMMAND make -j ${BAT_MAKE_JOBS}
+        INSTALL_COMMAND make install
+        )
     endif(MPIBAT)
   endif(NOT IBAT OR NOT LBAT)
 endif(BAT_INSTALL)
@@ -332,21 +353,21 @@ endif(LOOPTOOLS)
 
 if(DEBUG_MODE)
   message("\nCache variables:")
+  message("  DEBUG_MODE:BOOL = ${DEBUG_MODE}")
   message("  CMAKE_INSTALL_PREFIX:PATH = ${CMAKE_INSTALL_PREFIX}")
+  message("  LOCAL_INSTALL_ALL:BOOL = ${LOCAL_INSTALL_ALL}")
   message("  NOMCMC:BOOL = ${NOMCMC}")
   message("  BOOST_INC:PATH = ${BOOST_INC}")
   message("  GSL_CONFIG_PATH:PATH = ${GSL_CONFIG_PATH}")
   message("  ROOT_CONFIG_PATH:PATH = ${ROOT_CONFIG_PATH}")
+  message("  MPI_CXX_COMPILER:FILEPATH = ${MPI_CXX_COMPILER}")
+  #message("  MPI_CXX_INCLUDE_PATH:PATH = ${MPI_CXX_INCLUDE_PATH}")
+  message("  MPIBAT:BOOL = ${MPIBAT}")
   message("  BAT_INSTALL:BOOL = ${BAT_INSTALL}")
   message("  BAT_INSTALL_DIR:PATH = ${BAT_INSTALL_DIR}")
   message("  BAT_MAKE_JOBS:STRING = ${BAT_MAKE_JOBS}")
-  message("  MPIBAT:BOOL = ${MPIBAT}")
-  message("  MPI_CXX_COMPILER:FILEPATH = ${MPI_CXX_COMPILER}")
-  #message("  MPI_CXX_INCLUDE_PATH:PATH = ${MPI_CXX_INCLUDE_PATH}")
   message("  LOOPTOOLS:BOOL = ${LOOPTOOLS}")
-  if(LOOPTOOLS)
-    message("  LT_DIR:PATH = ${LT_DIR}")
-  endif()
+  message("  LT_DIR:PATH = ${LT_DIR}")
   message("  INTEL_FORTRAN:BOOL = ${INTEL_FORTRAN}")
 
   message("\nNormal variables:")
@@ -361,11 +382,11 @@ if(DEBUG_MODE)
   message("  ROOT_LIBS = ${ROOT_LIBS}")
   message("  ROOT_LDFLAGS = ${ROOT_LDFLAGS}")
   message("  ROOT_LIB_PATH = ${ROOT_LIB_PATH}")
+  message("  BAT_URL = ${BAT_URL}")
+  message("  BAT_CONFIGURE = ${BAT_CONFIGURE}")
   message("  BAT_INCLUDE_PATH = ${BAT_INCLUDE_PATH}")
   message("  BAT_LIB_PATH = ${BAT_LIB_PATH}")
-  if(LOOPTOOLS)
-    message("  LT_LIB_PATH = ${LT_LIB_PATH}")
-  endif()
+  message("  LT_LIB_PATH = ${LT_LIB_PATH}")
   message("  LFORTRAN = ${LFORTRAN}")
   message("")
 
