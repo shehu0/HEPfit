@@ -17,5 +17,5 @@ file(GLOB srcs "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 add_library(StandardModel ${LIBTYPE} ${srcs})
 
 file(GLOB headers "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
-INSTALL(FILES ${headers} DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT library)
+INSTALL(FILES ${headers} DESTINATION include/SusyFit COMPONENT header)
 

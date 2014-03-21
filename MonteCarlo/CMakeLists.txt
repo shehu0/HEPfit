@@ -23,5 +23,5 @@ add_library(MonteCarlo ${LIBTYPE} ${srcs})
 add_dependencies(MonteCarlo BATBUILD)
 
 file(GLOB headers "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
-INSTALL(FILES ${headers} DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT library)
+INSTALL(FILES ${headers} DESTINATION include/SusyFit COMPONENT header)
 

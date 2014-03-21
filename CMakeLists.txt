@@ -25,14 +25,16 @@ if(BAT_INSTALL AND ${CMAKE_VERSION} VERSION_LESS 2.8.0)
     message(FATAL_ERROR "The option -DBAT_INSTALL=ON is not applicable for CMake v${CMAKE_VERSION}.")
 endif()
 
-# SusyFit and BAT installation paths
-if(SUSYFIT_INSTALL_DIR)
-  set(SUSYFIT_INSTALL_DIR ${SUSYFIT_INSTALL_DIR} 
-      CACHE PATH "SusyFit installation directory" FORCE)
-else()
-  set(SUSYFIT_INSTALL_DIR /usr/local 
-      CACHE PATH "SusyFit installation directory")
+# SusyFit installation path
+if(NOT IS_ABSOLUTE ${CMAKE_INSTALL_PREFIX})
+   set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_PREFIX}
+       CACHE PATH "Install path prefix, prepended onto install directories." FORCE)
 endif()
+string(REGEX REPLACE "^~" "$ENV{HOME}" TMP_DIR ${CMAKE_INSTALL_PREFIX})
+set(CMAKE_INSTALL_PREFIX ${TMP_DIR} CACHE PATH "Install path prefix, prepended onto install directories." FORCE)
+unset(TMP_DIR)
+
+# BAT installation path
 if(BAT_INSTALL_DIR)
   set(BAT_INSTALL_DIR ${BAT_INSTALL_DIR} 
       CACHE PATH "BAT installation directory" FORCE)
@@ -40,18 +42,10 @@ else()
   set(BAT_INSTALL_DIR /usr/local 
       CACHE PATH "BAT installation directory")
 endif()
-
-# convert relative paths to absolute paths
-if(NOT IS_ABSOLUTE ${SUSYFIT_INSTALL_DIR})
-   set(SUSYFIT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/${SUSYFIT_INSTALL_DIR}
-       CACHE PATH "SusyFit installation directory" FORCE)
-endif()
 if(NOT IS_ABSOLUTE ${BAT_INSTALL_DIR})
    set(BAT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/${BAT_INSTALL_DIR}
        CACHE PATH "BAT installation directory" FORCE)
 endif()
-string(REGEX REPLACE "^~" "$ENV{HOME}" TMP_DIR ${SUSYFIT_INSTALL_DIR})
-set(SUSYFIT_INSTALL_DIR ${TMP_DIR} CACHE PATH "SusyFit installation directory" FORCE)
 string(REGEX REPLACE "^~" "$ENV{HOME}" TMP_DIR ${BAT_INSTALL_DIR})
 set(BAT_INSTALL_DIR ${TMP_DIR} CACHE PATH "BAT installation directory" FORCE)
 unset(TMP_DIR)
@@ -338,8 +332,8 @@ endif(LOOPTOOLS)
 
 if(DEBUG_MODE)
   message("\nCache variables:")
+  message("  CMAKE_INSTALL_PREFIX:PATH = ${CMAKE_INSTALL_PREFIX}")
   message("  NOMCMC:BOOL = ${NOMCMC}")
-  message("  SUSYFIT_INSTALL_DIR:PATH = ${SUSYFIT_INSTALL_DIR}")
   message("  BOOST_INC:PATH = ${BOOST_INC}")
   message("  GSL_CONFIG_PATH:PATH = ${GSL_CONFIG_PATH}")
   message("  ROOT_CONFIG_PATH:PATH = ${ROOT_CONFIG_PATH}")
@@ -416,7 +410,7 @@ endif()
 if(NOT NOMCMC)
   add_dependencies(SusyFit BATBUILD)
 endif(NOT NOMCMC)
-INSTALL(TARGETS SusyFit DESTINATION ${SUSYFIT_INSTALL_DIR}/lib COMPONENT library)
+INSTALL(TARGETS SusyFit DESTINATION lib COMPONENT library)
 
 # header files SusyFit.h and SusyFit_noMCMC.h
 list(REVERSE PROJECTLIST)
@@ -432,14 +426,14 @@ foreach(_project ${PROJECTLIST})
 endforeach(_project)
 if(NOT NOMCMC)
   INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h 
-          DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT headers)
+          DESTINATION include/SusyFit COMPONENT header)
   configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit.h.in"
                  "${CMAKE_CURRENT_BINARY_DIR}/SusyFit.h" @ONLY)
 endif(NOT NOMCMC)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/SusyFit_noMCMC.h.in"
                "${CMAKE_CURRENT_BINARY_DIR}/SusyFit_noMCMC.h" @ONLY)
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit_noMCMC.h 
-        DESTINATION ${SUSYFIT_INSTALL_DIR}/include/SusyFit COMPONENT headers)
+        DESTINATION include/SusyFit COMPONENT header)
 
 # pkg-config (FindPkgConfig in CMake 2.8.8 contains a bug)
 #find_package(PkgConfig)
@@ -449,7 +443,7 @@ INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/SusyFit_noMCMC.h
   configure_file("${CMAKE_CURRENT_SOURCE_DIR}/susyfit-config.in" 
                  "${CMAKE_CURRENT_BINARY_DIR}/susyfit-config" @ONLY)
   INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/susyfit-config ${CMAKE_CURRENT_BINARY_DIR}/SusyFit.pc 
-          DESTINATION ${SUSYFIT_INSTALL_DIR}/bin COMPONENT susyfit-config)
+          DESTINATION bin COMPONENT susyfit-config)
 #endif()
 
 # example programs

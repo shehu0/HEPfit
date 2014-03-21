@@ -1,2 +1,2 @@
 #!/bin/sh
-pkg-config $@ @SUSYFIT_INSTALL_DIR@/bin/SusyFit.pc
+pkg-config $@ @CMAKE_INSTALL_PREFIX@/bin/SusyFit.pc
