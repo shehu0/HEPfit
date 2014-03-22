@@ -5,14 +5,14 @@ CXX=@CMAKE_CXX_COMPILER@
 CXXFLAGS=-Wall @CMAKE_CXX_FLAGS_RELEASE@
 CXXFLAGS+=`@CMAKE_INSTALL_PREFIX@/bin/susyfit-config --cflags` 
 CXXFLAGS+=@EXAMPLE_NOMCMC_CXXFLAGS@
-CXXFLAGS+=`@ROOT_CONFIG_PATH@/root-config --cflags` 
-CXXFLAGS+=`@GSL_CONFIG_PATH@/gsl-config --cflags` 
+CXXFLAGS+=`@ROOT_CONFIG_DIR@/root-config --cflags` 
+CXXFLAGS+=`@GSL_CONFIG_DIR@/gsl-config --cflags` 
 
 LIBS=`@CMAKE_INSTALL_PREFIX@/bin/susyfit-config --libs`
 LIBS+=@EXAMPLE_NOMCMC_LIBS@
-LIBS+=`@ROOT_CONFIG_PATH@/root-config --libs` 
-LIBS+=`@ROOT_CONFIG_PATH@/root-config --ldflags` 
-LIBS+=`@GSL_CONFIG_PATH@/gsl-config --libs` 
+LIBS+=`@ROOT_CONFIG_DIR@/root-config --libs` 
+LIBS+=`@ROOT_CONFIG_DIR@/root-config --ldflags` 
+LIBS+=`@GSL_CONFIG_DIR@/gsl-config --libs` 
 LIBS+=@EXAMPLE_NOMCMC_RPATHS@
 
 all: $(EXE)
