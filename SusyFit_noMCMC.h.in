@@ -5,10 +5,10 @@
  * For the licensing terms see doc/COPYING.
  */
 
-#ifndef SUSYFIT_H
-#define	SUSYFIT_H
+#ifndef SUSYFIT_NOMCMC_H
+#define	SUSYFIT_NOMCMC_H
 
 @NOMCMC_INCLUDE_LIST@
 
-#endif	/* SUSYFIT_H */
+#endif	/* SUSYFIT_NOMCMC_H */
 
