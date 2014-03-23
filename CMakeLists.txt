@@ -10,7 +10,6 @@
 #   -DMPIBAT:BOOL=<ON or OFF>
 #   -DBAT_INSTALL:BOOL=<ON or OFF>
 #   -DBAT_INSTALL_DIR:PATH=<BAT installation directory>
-#   -DBAT_MAKE_JOBS:STRING=<the number of jobs to make BAT>
 #   -DLOOPTOOLS:BOOL=<ON or OFF>
 #   -DLOOPTOOLS_DIR:PATH=<LoopTools directory>
 #   -DINTEL_FORTRAN:BOOL=<ON or OFF>
@@ -77,13 +76,6 @@ endif()
 string(REGEX REPLACE "^~" "$ENV{HOME}" TMP_DIR ${BAT_INSTALL_DIR})
 set(BAT_INSTALL_DIR ${TMP_DIR} CACHE PATH "BAT installation directory" FORCE)
 unset(TMP_DIR)
-
-# The argument of "make -j" command for BAT compilation
-if(BAT_MAKE_JOBS)
-  set(BAT_MAKE_JOBS ${BAT_MAKE_JOBS} CACHE STRING "The number of jobs to make BAT" FORCE)
-else()
-  set(BAT_MAKE_JOBS "1" CACHE STRING "The number of jobs to make BAT")
-endif()
 
 # Fortran libraries 
 if(INTEL_FORTRAN)
@@ -203,6 +195,8 @@ else()
   execute_process(COMMAND ${ROOT_CONFIG} --libdir
                   OUTPUT_VARIABLE ROOT_LIB_PATH
                   OUTPUT_STRIP_TRAILING_WHITESPACE)
+  string(REGEX REPLACE "/$" "" ROOT_SYS ${ROOT_CONFIG_DIR})
+  string(REGEX REPLACE "/bin$" "" ROOT_SYS ${ROOT_SYS})
   unset(ROOT_CONFIG CACHE)
 endif()
 
@@ -228,7 +222,7 @@ if(MPIBAT)
       set(MPI_CXX_INCLUDE_PATH ${MPI_INCLUDE_PATH} CACHE PATH "MPI CXX include path" FORCE)
   endif()
   if(NOT MPI_CXX_FOUND)
-    string(REGEX REPLACE "bin/mpic..$" "" TMP_MPI_PATH ${CMAKE_CXX_COMPILER}) 
+    string(REGEX REPLACE "/bin/mpic..$" "" TMP_MPI_PATH ${CMAKE_CXX_COMPILER}) 
     find_path(TMP_MPI_BIN_PATH "mpicxx" PATHS ${TMP_MPI_PATH}/bin)
     find_path(TMP_MPI_INC_PATH "mpi.h" PATHS ${TMP_MPI_PATH}/include)
     unset(TMP_MPI_PATH)
@@ -246,6 +240,9 @@ if(MPIBAT)
     endif()
   endif(NOT MPI_CXX_FOUND)
   include_directories(${MPI_CXX_INCLUDE_PATH})
+  string(REGEX REPLACE "/bin/mpic..$" "" TMP_MPI_PATH ${MPI_CXX_COMPILER}) 
+  set(MPI_LIB_PATH ${TMP_MPI_PATH}/lib)
+  unset(TMP_MPI_PATH)
 endif(MPIBAT)
 
 message(STATUS "Looking for BAT in ${BAT_INSTALL_DIR}")
@@ -273,6 +270,7 @@ if(BAT_INSTALL)
   if(NOT IBAT OR NOT LBAT)
     message(STATUS "Not found BAT in ${BAT_INSTALL_DIR}")
     message(STATUS "${RedBold}I'll download and install BAT into ${BAT_INSTALL_DIR}.${ColReset}")
+    include(ExternalProject)
     set(BAT_FILENAME "BAT-0.9.3.tar.gz")
     find_file(BAT_URL ${BAT_FILENAME} PATHS ${CMAKE_CURRENT_BINARY_DIR} NO_DEFAULT_PATH)
     if(NOT BAT_URL)
@@ -281,15 +279,16 @@ if(BAT_INSTALL)
       message(STATUS "Found ${BAT_FILENAME} in the current directory")
     endif()
     set(BAT_MD5 466e9cfde5bd7a2f4ad6c0e0d72d9e76)
-    include(ExternalProject)
+    # The make command to the top-level make will be inherited to the BAT make. 
+    set(BAT_MAKE $(MAKE))
+    set(BAT_CONFIGURE ./configure)
+    if(BAT_INSTALL_DIR)
+      set(BAT_CONFIGURE ${BAT_CONFIGURE} --prefix=${BAT_INSTALL_DIR})
+    endif()
     if(MPIBAT)
       message(STATUS "${RedBold}Enable MPI support${ColReset}")
       set(PATCH patch -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/BAT_mpi_patch.txt)
-      if(BAT_INSTALL_DIR)
-        set(BAT_CONFIGURE CXX=${MPI_CXX_COMPILER} ./configure --prefix=${BAT_INSTALL_DIR})
-      else()
-        set(BAT_CONFIGURE CXX=${MPI_CXX_COMPILER} ./configure)
-      endif()
+      set(BAT_CONFIGURE CXX=${MPI_CXX_COMPILER} ${BAT_CONFIGURE})
       ExternalProject_Add(
         BATBUILD
         PREFIX BATBUILD
@@ -303,15 +302,10 @@ if(BAT_INSTALL)
         URL_MD5 ${BAT_MD5}
         PATCH_COMMAND ${PATCH}
         CONFIGURE_COMMAND ${BAT_CONFIGURE}
-        BUILD_COMMAND make -j ${BAT_MAKE_JOBS}
+        BUILD_COMMAND ${BAT_MAKE}
         INSTALL_COMMAND make install
         )
     else(MPIBAT)
-      if(BAT_INSTALL_DIR)
-        set(BAT_CONFIGURE ./configure --prefix=${BAT_INSTALL_DIR})
-      else()
-        set(BAT_CONFIGURE ./configure)
-      endif()
       ExternalProject_Add(
         BATBUILD
         PREFIX BATBUILD
@@ -324,7 +318,7 @@ if(BAT_INSTALL)
         URL ${BAT_URL}
         URL_MD5 ${BAT_MD5}
         CONFIGURE_COMMAND ${BAT_CONFIGURE}
-        BUILD_COMMAND make -j ${BAT_MAKE_JOBS}
+        BUILD_COMMAND ${BAT_MAKE}
         INSTALL_COMMAND make install
         )
     endif(MPIBAT)
@@ -382,7 +376,6 @@ if(DEBUG_MODE)
   message("  MPIBAT:BOOL = ${MPIBAT}")
   message("  BAT_INSTALL:BOOL = ${BAT_INSTALL}")
   message("  BAT_INSTALL_DIR:PATH = ${BAT_INSTALL_DIR}")
-  message("  BAT_MAKE_JOBS:STRING = ${BAT_MAKE_JOBS}")
   message("  LOOPTOOLS:BOOL = ${LOOPTOOLS}")
   message("  LOOPTOOLS_DIR:PATH = ${LOOPTOOLS_DIR}")
   message("  INTEL_FORTRAN:BOOL = ${INTEL_FORTRAN}")
@@ -399,10 +392,13 @@ if(DEBUG_MODE)
   message("  ROOT_LIBS = ${ROOT_LIBS}")
   message("  ROOT_LDFLAGS = ${ROOT_LDFLAGS}")
   message("  ROOT_LIB_PATH = ${ROOT_LIB_PATH}")
+  message("  ROOT_SYS = ${ROOT_SYS}")
+  message("  MPI_LIB_PATH=${MPI_LIB_PATH}")
   message("  BAT_FILENAME = ${BAT_FILENAME}")
   message("  BAT_URL = ${BAT_URL}")
   message("  BAT_MD5 = ${BAT_MD5}")
   message("  BAT_CONFIGURE = ${BAT_CONFIGURE}")
+  message("  BAT_MAKE = ${BAT_MAKE}")
   message("  BAT_INCLUDE_PATH = ${BAT_INCLUDE_PATH}")
   message("  BAT_LIB_PATH = ${BAT_LIB_PATH}")
   message("  LOOPTOOLS_LIB_PATH = ${LOOPTOOLS_LIB_PATH}")
