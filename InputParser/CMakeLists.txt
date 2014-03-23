@@ -14,7 +14,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../LoopFunctions/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../NewPhysics/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Observables/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../StandardModel/src)
-include_directories(${BOOST_INCLUDE_PATH})
+include_directories(${BOOST_INC})
 
 file(GLOB srcs "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 add_library(InputParser ${LIBTYPE} ${srcs})
