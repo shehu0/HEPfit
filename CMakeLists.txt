@@ -163,7 +163,6 @@ else()
   message(STATUS "GSL libs: ${GSL_LIBS}")
   string(REGEX MATCH "^-L[^ ]+" GSL_LIB_PATH ${GSL_LIBS})
   string(REGEX REPLACE "^-L" "" GSL_LIB_PATH ${GSL_LIB_PATH})
-  unset(TMP_POS)
   unset(GSL_CONFIG CACHE)
 endif()
 
