@@ -279,16 +279,20 @@ if(BAT_INSTALL)
       message(STATUS "Found ${BAT_FILENAME} in the current directory")
     endif()
     set(BAT_MD5 466e9cfde5bd7a2f4ad6c0e0d72d9e76)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/BAT_make_wrapper.sh.in"
+                   "${CMAKE_CURRENT_BINARY_DIR}/BAT_make_wrapper.sh" @ONLY)
     # The make command to the top-level make will be inherited to the BAT make. 
     set(BAT_MAKE $(MAKE))
-    set(BAT_CONFIGURE ./configure)
+    set(BAT_CONFIGURE "./configure")
     if(BAT_INSTALL_DIR)
-      set(BAT_CONFIGURE ${BAT_CONFIGURE} --prefix=${BAT_INSTALL_DIR})
+      set(BAT_CONFIGURE "${BAT_CONFIGURE} --prefix=${BAT_INSTALL_DIR}")
+    endif()
+    if(ROOT_SYS)
+      set(BAT_CONFIGURE "${BAT_CONFIGURE} --with-rootsys=${ROOT_SYS}")
     endif()
     if(MPIBAT)
       message(STATUS "${RedBold}Enable MPI support${ColReset}")
       set(PATCH patch -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/BAT_mpi_patch.txt)
-      set(BAT_CONFIGURE CXX=${MPI_CXX_COMPILER} ${BAT_CONFIGURE})
       ExternalProject_Add(
         BATBUILD
         PREFIX BATBUILD
@@ -301,8 +305,8 @@ if(BAT_INSTALL)
         URL ${BAT_URL}
         URL_MD5 ${BAT_MD5}
         PATCH_COMMAND ${PATCH}
-        CONFIGURE_COMMAND ${BAT_CONFIGURE}
-        BUILD_COMMAND ${BAT_MAKE}
+        CONFIGURE_COMMAND sh ${CMAKE_CURRENT_BINARY_DIR}/BAT_make_wrapper.sh ${BAT_CONFIGURE} ${MPI_CXX_COMPILER}
+        BUILD_COMMAND sh ${CMAKE_CURRENT_BINARY_DIR}/BAT_make_wrapper.sh ${BAT_MAKE}
         INSTALL_COMMAND make install
         )
     else(MPIBAT)
@@ -317,8 +321,8 @@ if(BAT_INSTALL)
         DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}
         URL ${BAT_URL}
         URL_MD5 ${BAT_MD5}
-        CONFIGURE_COMMAND ${BAT_CONFIGURE}
-        BUILD_COMMAND ${BAT_MAKE}
+        CONFIGURE_COMMAND sh ${CMAKE_CURRENT_BINARY_DIR}/BAT_make_wrapper.sh ${BAT_CONFIGURE}
+        BUILD_COMMAND sh ${CMAKE_CURRENT_BINARY_DIR}/BAT_make_wrapper.sh ${BAT_MAKE}
         INSTALL_COMMAND make install
         )
     endif(MPIBAT)
