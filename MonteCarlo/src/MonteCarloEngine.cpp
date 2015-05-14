@@ -151,7 +151,7 @@ void MonteCarloEngine::DefineParameters()
         if (it->errf == 0. && it->errg == 0.)
             continue;
         AddParameter(it->name.c_str(), it->min, it->max);
-        if (rank == 0) std::cout << "  " << it->name << " " << k << std::endl;
+        if (rank == 0) std::cout << "parameter " << it->name << " n. " << k << " min = " << it->min << " max = " << it->max << std::endl;
         DPars[it->name] = 0.;
         if (it->errf == 0.) SetPriorGauss(k, it->ave, it->errg);
         else if (it->errg == 0.) SetPriorConstant(k);
@@ -221,8 +221,12 @@ double MonteCarloEngine::LogLikelihood(const std::vector<double>& parameters)
 }
 
 double MonteCarloEngine::getEvidence(const std::vector <double>& parameters, const double logpost) {
+    for (unsigned int k = 0; k < parameters.size(); k++) 
+        std::cout << k << ": " << parameters.at(k) << std::endl;
     double evidence = LogLikelihood(parameters);
+    std::cout << evidence << std::endl;
     evidence += LogAPrioriProbability(parameters);
+    std::cout << LogAPrioriProbability(parameters) << std::endl;
     evidence -= logpost;
     return(exp(evidence));
 }

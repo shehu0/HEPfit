@@ -136,7 +136,7 @@ public:
      * of <a href="https://www.mppmu.mpg.de/bat/" target=blank>BAT</a> and run as parallel processes with MPI.
      */
     void Run(const int rank);
-
+    
 private:
     std::string ModelName; ///< The name of the model.
     InputParser myInputParser; ///< An object of the InputParser class.

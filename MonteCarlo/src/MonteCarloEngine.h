@@ -211,6 +211,8 @@ public:
     {
         return NumOfUsedEvents;
     }
+    
+    double getEvidence(const std::vector <double>& parameters, const double logpost);
 
 private:
     const std::vector<ModelParameter>& ModPars; ///< A vector of model parameters.
