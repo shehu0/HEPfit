@@ -13,7 +13,7 @@
 #include <StandardModel.h>
 #include <sstream>
 
-using namespace gslpp;double alsMZ_cache;
+using namespace gslpp;
 
 class EvolDC1Buras : public RGEvolutor {
 /**
