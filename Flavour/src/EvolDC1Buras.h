@@ -13,7 +13,7 @@
 #include <StandardModel.h>
 #include <sstream>
 
-using namespace gslpp;
+using namespace gslpp;double alsMZ_cache;
 
 class EvolDC1Buras : public RGEvolutor {
 /**
@@ -93,6 +93,7 @@ class EvolDC1Buras : public RGEvolutor {
     gslpp::matrix<complex> v, vi, js, h, gg, s_s, jssv, jss, jv, vij;
     gslpp::vector<complex> e;
     unsigned int dim;
+    double alsMZ_cache;
     
  };
 
