@@ -19,6 +19,7 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include <RVersion.h>
 
 MonteCarlo::MonteCarlo(
         ModelFactory& ModelF, ThObsFactory& ThObsF,
@@ -382,6 +383,8 @@ void MonteCarlo::Run(const int rank)
 
                 std::cout << "Evidence: " << MCEngine.getEvidence(pars, logmode) << std::endl;
             }
+            std::cout << "ROOT VERSION:" << ROOT_RELEASE << std::endl;
+            return ;
             // calculate the evidence
             //            if (CalculateEvidence) {
             //                // BAT default: 

@@ -224,9 +224,9 @@ double MonteCarloEngine::getEvidence(const std::vector <double>& parameters, con
     for (unsigned int k = 0; k < parameters.size(); k++) 
         std::cout << k << ": " << parameters.at(k) << std::endl;
     double evidence = LogLikelihood(parameters);
-    std::cout << evidence << std::endl;
+    std::cout << "EVIDENCE: " << evidence << std::endl;
     evidence += LogAPrioriProbability(parameters);
-    std::cout << LogAPrioriProbability(parameters) << std::endl;
+    std::cout << "LOGAPRIORIPROBABILITY: " << LogAPrioriProbability(parameters) << std::endl;
     evidence -= logpost;
     return(exp(evidence));
 }
