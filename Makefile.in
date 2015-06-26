@@ -1142,7 +1142,8 @@ m4datadir = $(datadir)/aclocal
 m4data_DATA = m4/susyfit.m4
 
 # noinst_SCRIPTS = autogen.sh SusyFit_noMCMC_h.sh SusyFit_h.sh 
-dist_noinst_SCRIPTS = ExamplesSrc/config/StandardModel.conf \
+dist_noinst_SCRIPTS = ExamplesSrc/MonteCarloMode/MonteCarlo.conf \
+ExamplesSrc/config/StandardModel.conf \
 ExamplesSrc/config/input \
 ExamplesSrc/config/input/rhopi_win10.root \
 ExamplesSrc/config/input/rhorho_win13.root \
