@@ -35,13 +35,13 @@ ModelFactory& ModelF, ThObsFactory& ThObsF,
     else OutFile = OutFile_i + JobTag + ".root";
     ObsDirName = "Observables" + JobTag;
     FindModeWithMinuit = false;
-    CalculateNormalization = false;
+    CalculateEvidence = false;
     PrintAllMarginalized = false;
     PrintCorrelationMatrix = false;
     PrintKnowledgeUpdatePlots = false;
     PrintParameterPlot = false;
     checkrun = false;
-    normalization = 0.;
+    evidence_min_iterations = 0;
 }
 
 //MonteCarlo::~MonteCarlo() {}
@@ -63,7 +63,7 @@ void MonteCarlo::TestRun(int rank) {
         }
 
         if (!myInputParser.getModel()->Init(DP)) {
-            if (rank == 0) throw std::runtime_error("ERROR: Parameter(s) missing in model initialization. \n");
+            throw std::runtime_error("ERROR: Parameter(s) missing in model initialization. \n");
         }
 
         if (Obs.size() > 0) std::cout << "\nOservables: \n" << std::endl;
@@ -104,11 +104,9 @@ void MonteCarlo::Run(const int rank)
             if (it->errg > 0. || it->errf > 0.)
                 buffsize++;
         }
-        if (buffsize == 0)
-            if (rank == 0) throw std::runtime_error("No parameters being varied. Aborting MCMC run.\n");
         buffsize++;
         if (!myInputParser.getModel()->Init(DP))
-            if (rank == 0) throw std::runtime_error("ERROR: Parameter(s) missing in model initialization.\n");
+            throw std::runtime_error("ERROR: Parameter(s) missing in model initialization.\n");
 
         if (rank == 0) std::cout << std::endl << "Running in MonteCarlo mode...\n" << std::endl;
 
@@ -119,7 +117,7 @@ void MonteCarlo::Run(const int rank)
                 if (gSystem->MakeDirectory(ObsDirName.c_str()) == 0)
                     std::cout << ObsDirName << " directory has been created." << std::endl;
                 else
-                    throw std::runtime_error("ERROR: " + ObsDirName + " directory cannot be created.\n");
+                    throw std::runtime_error("ERROR: " + ObsDirName + " director cannot be created.\n");
             }
         }
 
@@ -243,11 +241,14 @@ void MonteCarlo::Run(const int rank)
                     if (beg->compare("true") == 0) {
                         FindModeWithMinuit = true;
                     }
-                } else if (beg->compare("CalculateNormalization") == 0) {
+                } else if (beg->compare("CalculateEvidence") == 0) {
                     ++beg;
                     if (beg->compare("true") == 0) {
-                        CalculateNormalization = true;
+                        CalculateEvidence = true;
                     }
+                } else if (beg->compare("EvidenceMinIter") == 0) {
+                    ++beg;
+                    evidence_min_iterations = atoi((*beg).c_str());
                 } else if (beg->compare("PrintAllMarginalized") == 0) {
                     ++beg;
                     if (beg->compare("true") == 0) {
@@ -299,7 +300,23 @@ void MonteCarlo::Run(const int rank)
             if (FindModeWithMinuit)
                 MCEngine.FindMode(MCEngine.GetBestFitParameters());
 
-            if (CalculateNormalization) normalization = MCEngine.computeNormalization(); 
+            // calculate the evidence
+            if (CalculateEvidence) {
+                // BAT default: 
+                //   kIntGrid for the number of free parameters <= 2;
+                //   otherwise, kIntMonteCarlo (or kIntCuba if available)
+                //   MCEngine.SetIntegrationMethod(BCIntegrate::kIntCuba);
+                MCEngine.SetRelativePrecision(1.e-3);
+                MCEngine.SetAbsolutePrecision(1.e-10);
+                if (evidence_min_iterations == 0) MCEngine.SetNIterationsMin(10000);
+                else {
+                    MCEngine.SetNIterationsMin(evidence_min_iterations);
+                    MCEngine.SetNIterationsMax(10*evidence_min_iterations);
+                }
+                MCEngine.Integrate();
+                evidence = MCEngine.GetIntegral();
+                BCLog::OutSummary(Form(" Evidence = %.6e", MCEngine.GetIntegral()));
+            }
             
             // draw all marginalized distributions into a pdf file
             if (PrintAllMarginalized)
@@ -346,7 +363,7 @@ void MonteCarlo::Run(const int rank)
             // print statistics for the theory values of the observables into a text file
             std::ofstream outStatLog;
             outStatLog.open((ObsDirName + "/Statistics" + JobTag + ".txt").c_str(), std::ios::out);
-            if (CalculateNormalization) outStatLog << "Normalization for "<< ModelName.c_str() << ": " << normalization << "\n" << std::endl;
+            if (CalculateEvidence) outStatLog << "Evidence for "<< ModelName.c_str() << ": " << evidence << "\n" << std::endl;
             outStatLog << MCEngine.computeStatistics();
             outStatLog.close();
 

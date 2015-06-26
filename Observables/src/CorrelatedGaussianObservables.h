@@ -70,16 +70,6 @@ public:
     {
         return Obs;
     }
-    
-    /**
-     * @brief A get method to access an element of the vector of observables that are defined in
-     * one correlated Gaussian observables set.
-     * @return an element of the vector of type Observable()
-     */
-    Observable getObs(int i) const
-    {
-        return (Obs.at(i));
-    }
 
     /**
      * @brief A get method to access the name of the correlated Gaussian observables set.

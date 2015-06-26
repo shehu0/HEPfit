@@ -7,7 +7,6 @@
 
 #include "DmK.h"
 
-double DmK::computeThValue() 
-{
+double DmK::computeThValue() {
     return(2.*AmpMK(FULLNLO).real() + SM.getDmk());
 }

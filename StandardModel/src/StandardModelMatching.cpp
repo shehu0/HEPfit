@@ -35,7 +35,6 @@ StandardModelMatching::StandardModelMatching(const StandardModel & SM_i)
         mcbdnn(1, NDR, NLO),
         mcbsmm(6, NDR, NLO),
         mcbdmm(6, NDR, NLO),
-        mcbtaunu(3, NDR, NLO),
         mcDL1(2, NDR, LO),
         Vckm(3, 3, 0)
 {
@@ -110,7 +109,7 @@ double StandardModelMatching::x_t(const double mu, const orders order) const
 #if SUSYFIT_DEBUG & 1
     std::cout << "mt(" << mu << "," << order << ")=" << mt << std::endl;
 #endif
-    return mt*mt/Mw/Mw;
+    return mt*mt/Mw/Mw; 
 }
 
 double StandardModelMatching::mt2omh2(const double mu, const orders order) const 
@@ -1015,7 +1014,7 @@ double StandardModelMatching::phi2(double x, double y) const{
 
 double StandardModelMatching::setWCbsg(int i, double x, orders order)
 {    
-    sw =  sqrt( sW2 );//sqrt( (M_PI * Ale )/( sqrt(2) * GF * Mw * Mw) ) ;
+    sw =  sqrt( (M_PI * Ale )/( sqrt(2) * GF * Mw * Mw) ) ;
 
     if ( swa == sw && xcachea == x){
         switch (order){
@@ -1034,18 +1033,28 @@ double StandardModelMatching::setWCbsg(int i, double x, orders order)
     }
     
     swa = sw; xcachea = x;
-    
+    // this function returns the effective Wilson coefficients if  CWbsgArrayNLO[7] = C8NLOeff(x);
+    //                                                             CWbsgArrayNLO[6] = C7NLOeff(x);
+    //                                                             CWbsgArrayLO[6] = C7LOeff(x);
+    //                                                             CWbsgArrayLO[7] = C8LOeff(x);
+    // or the standard one if CWbsgArrayNLO[7] = -0.5 * A0t(x)- 23./36.;
+    //                        CWbsgArrayNLO[6] = -0.5 * F0t(x)- 1./3.;
+    //                        CWbsgArrayLO[6] = 0.;
+    //                        CWbsgArrayLO[7] = 0.;
     switch (order){
         case NNLO:
         case NLO:
-            CWbsgArrayNLO[0] = 15. + 6*L;
-            CWbsgArrayNLO[3] = E0t(x) - (7./9.) + (2./3.* L);
-            CWbsgArrayNLO[6] = -0.5*A1t(x,Muw) + 713./243. + 4./81.*L - 4./9.*CWbsgArrayNLO[3];
-            CWbsgArrayNLO[7] = -0.5*F1t(x,Muw) + 91./324. - 4./27.*L - 1./6.*CWbsgArrayNLO[3];
+            CWbsgArrayNLO[0] = 15.;
+            CWbsgArrayNLO[3] = E0t(x)-(2./3.);
+            CWbsgArrayNLO[6] = C7NLOeff(x);//-0.5 * A0t(x)- 23./36.;
+            CWbsgArrayNLO[7] = C8NLOeff(x);//-0.5 * F0t(x)- 1./3.;
+            CWbsgArrayNLO[8] = (1-4.*sw*sw) / sw *C0t(x) - 1./(sw*sw) *
+                                B0t(x) - D0t(x) + 38./27. + 1./(4.*sw*sw);
+            CWbsgArrayNLO[9] = 1./(sw*sw) * (B0t(x) - C0t(x)) -1./(4.*sw*sw);
         case LO:
             CWbsgArrayLO[1] = 1.;
-            CWbsgArrayLO[6] = -0.5*A0t(x) - 23./36.;
-            CWbsgArrayLO[7] = -0.5*F0t(x) - 1./3.;
+            CWbsgArrayLO[6] = C7LOeff(x);//0.;
+            CWbsgArrayLO[7] = C8LOeff(x);//0.;
             break;
         default:
             std::stringstream out;
@@ -1541,33 +1550,6 @@ std::vector<WilsonCoefficient>& StandardModelMatching::CMbdmm() {
     
     vmcbdmm.push_back(mcbdmm);
     return(vmcbdmm);
-    
-}
-
-/*******************************************************************************
- * Wilson coefficients calcoulus, misiak base for B -> tau nu                   *
- * ****************************************************************************/
-
- std::vector<WilsonCoefficient>& StandardModelMatching::CMbtaunu() {
-    
-    vmcbtaunu.clear();
-    
-    mcbtaunu.setMu(Muw);
- 
-    switch (mcbtaunu.getOrder()) {
-        case NNLO:
-        case NLO:
-        case LO:
-            mcbsmm.setCoeff(0, 4.*GF * Vckm(0,3) / sqrt(2.) , LO);
-            break;
-        default:
-            std::stringstream out;
-            out << mcbsmm.getOrder();
-            throw std::runtime_error("StandardModelMatching::CMbsmm(): order " + out.str() + "not implemented");
-    }
-    
-    vmcbsmm.push_back(mcbsmm);
-    return(vmcbsmm);
     
 }
 

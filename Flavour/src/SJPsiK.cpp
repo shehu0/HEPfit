@@ -7,7 +7,6 @@
 
 #include "SJPsiK.h"
 
-double SJPsiK::computeThValue() 
-{
+double SJPsiK::computeThValue() {
     return sin(-AmpBd(FULLNLO).arg());
 }

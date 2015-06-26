@@ -12,15 +12,6 @@
 #include <HiggsKvKf.h>
 #include <HiggsKvKfgen.h>
 #include <HiggsKvgenKf.h>
-/** BEGIN: REMOVE FROM THE PACKAGE **/
-#include <NPSTUVWXY.h>
-#include <GeneralSUSY.h>
-#include <pMSSM.h>
-#include <SUSYMassInsertion.h>
-#include <MFV.h>
-#include <SUSY.h>
-#include <THDM.h>
-/** END: REMOVE FROM THE PACKAGE **/
 
 ModelFactory::ModelFactory()
 {
@@ -45,14 +36,6 @@ ModelFactory::ModelFactory()
     modelFactory["HiggsKvKf"] = boost::factory<HiggsKvKf*>();
     modelFactory["HiggsKvKfgen"] = boost::factory<HiggsKvKfgen*>();
     modelFactory["HiggsKvgenKf"] = boost::factory<HiggsKvgenKf*>();
-    /** BEGIN: REMOVE FROM THE PACKAGE **/
-    modelFactory["NPSTUVWXY"] = boost::factory<NPSTUVWXY*>();
-    modelFactory["MFV"] = boost::factory<MFV*>();
-    modelFactory["GeneralSUSY"] = boost::factory<GeneralSUSY*>();
-    modelFactory["pMSSM"] = boost::factory<pMSSM*>();
-    modelFactory["SUSYMassInsertion"] = boost::factory<SUSYMassInsertion*>();
-    modelFactory["THDM"] = boost::factory<THDM*>();
-    /** END: REMOVE FROM THE PACKAGE **/
 }
 
 void ModelFactory::addModelToFactory(const std::string name, boost::function<StandardModel*() > funct)
@@ -63,6 +46,6 @@ void ModelFactory::addModelToFactory(const std::string name, boost::function<Sta
 StandardModel* ModelFactory::CreateModel(const std::string& name)
 {
     if (modelFactory.find(name) == modelFactory.end())
-        throw std::runtime_error("ERROR: Wrong model " + name + " passed to ModelFactory.\n");
+        throw std::runtime_error("ERROR: Wrong model " + name + " passed to ModelFactory");
     return (modelFactory[name]());
 }

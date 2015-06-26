@@ -10,11 +10,10 @@
 #include <stdexcept>
 
 
-EvolDC1Buras::EvolDC1Buras(unsigned int dim_i, schemes scheme, orders order, const StandardModel& model) 
-:           RGEvolutor(dim_i, scheme, order), model(model),
-            v(dim_i,0.), vi(dim_i,0.), js(dim_i,0.), h(dim_i,0.), gg(dim_i,0.), s_s(dim_i,0.),
-            jssv(dim_i,0.), jss(dim_i,0.), jv(dim_i,0.), vij(dim_i,0.), e(dim_i,0.), dim(dim_i)  
-{
+EvolDC1Buras::EvolDC1Buras(unsigned int dim_i, schemes scheme, orders order,
+             const StandardModel& model) : RGEvolutor(dim_i, scheme, order), model(model),
+             v(dim_i,0.), vi(dim_i,0.), js(dim_i,0.), h(dim_i,0.), gg(dim_i,0.), s_s(dim_i,0.),
+             jssv(dim_i,0.), jss(dim_i,0.), jv(dim_i,0.), vij(dim_i,0.), e(dim_i,0.), dim(dim_i)  {
     
     /*magic numbers a & b */
     
@@ -74,11 +73,11 @@ EvolDC1Buras::EvolDC1Buras(unsigned int dim_i, schemes scheme, orders order, con
     }
 }
     
-EvolDC1Buras::~EvolDC1Buras() 
-{}
+EvolDC1Buras::~EvolDC1Buras() {
+}
 
-matrix<double> EvolDC1Buras::AnomalousDimension_DC1_Buras(orders order, unsigned int n_u, unsigned int n_d) const
-{
+matrix<double> EvolDC1Buras::AnomalousDimension_DC1_Buras(orders order, unsigned int n_u,
+        unsigned int n_d) const{
    
     /* anomalous dimension related to Delta F = 1 operators in Buras basis, hep-ph/9512380v1 */
     
@@ -184,8 +183,7 @@ matrix<double> EvolDC1Buras::AnomalousDimension_DC1_Buras(orders order, unsigned
     
   }
 
-matrix<double>& EvolDC1Buras::DC1EvolBuras(double mu, double M, orders order, schemes scheme) 
-{
+matrix<double>& EvolDC1Buras::DC1EvolBuras(double mu, double M, orders order, schemes scheme) {
     switch (scheme) {
         case NDR:
             break;
@@ -197,14 +195,8 @@ matrix<double>& EvolDC1Buras::DC1EvolBuras(double mu, double M, orders order, sc
             throw std::runtime_error("EvolDC1::Df1EvolDC1(): scheme " + out.str() + " not implemented "); 
     }
 
-    double alsMZ = model.getAlsMz();
-    double Mz = model.getMz();
-    if(alsMZ == alsMZ_cache && Mz == Mz_cache) {
-        if (mu == this-> mu && M == this->M && scheme == this->scheme)
-        return (*Evol(order));        
-    }
-    alsMZ_cache = alsMZ;
-    Mz_cache = Mz;
+    if (mu == this-> mu && M == this->M && scheme == this->scheme)
+        return (*Evol(order));
 
     if (M < mu) {
         std::stringstream out;
@@ -229,8 +221,7 @@ matrix<double>& EvolDC1Buras::DC1EvolBuras(double mu, double M, orders order, sc
     
     }
     
-void EvolDC1Buras::DC1EvolBuras(double mu, double M, double nf, schemes scheme) 
-{
+void EvolDC1Buras::DC1EvolBuras(double mu, double M, double nf, schemes scheme) {
 
     matrix<double> resLO(dim, 0.), resNLO(dim, 0.), resNNLO(dim, 0.);
 
@@ -273,8 +264,7 @@ void EvolDC1Buras::DC1EvolBuras(double mu, double M, double nf, schemes scheme)
     
   }
  
-matrix<double> EvolDC1Buras::StrongThresholds() const
-{
+matrix<double> EvolDC1Buras::StrongThresholds() const{
 
 // entries of the threshold matrix for the evolution at the NLO
     
@@ -293,8 +283,7 @@ return(deltarsT);
 
 }
 
-void EvolDC1Buras::DC1PenguinThresholds(double M, orders order) 
-{
+void EvolDC1Buras::DC1PenguinThresholds(double M, orders order) {
 
     double alsM = model.Als(M) / 4. / M_PI;
     matrix<double> drsT(dim,0.);

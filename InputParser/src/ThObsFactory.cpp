@@ -5,11 +5,6 @@
 #include <EWObservables.h>
 #include <HiggsThObservables.h>
 #include <FlavourObservables.h>
-/** BEGIN: REMOVE FROM THE PACKAGE **/
-#include <LeptonFlavourObservables.h>
-#include <SUSYObservables.h>
-#include <THDMObservables.h>
-/** END: REMOVE FROM THE PACKAGE **/
 
 ThObsFactory::ThObsFactory()
 {
@@ -34,22 +29,18 @@ ThObsFactory::ThObsFactory()
     const double sqrt_s_LHC7 = 7.0; ///< the center-of-mass energy in TeV
     const double sqrt_s_LHC8 = 8.0; ///< the center-of-mass energy in TeV
     const double sqrt_s_TeV = 1.96;
-    const double sqrt_s_TLEP = .24;
     obsThFactory["ggH7"] = boost::bind(boost::factory<muggH*>(), _1, sqrt_s_LHC7);
     obsThFactory["VBF7"] = boost::bind(boost::factory<muVBF*>(), _1, sqrt_s_LHC7);
     obsThFactory["VH7"] = boost::bind(boost::factory<muVH*>(), _1, sqrt_s_LHC7);
     obsThFactory["ttH7"] = boost::bind(boost::factory<muttH*>(), _1, sqrt_s_LHC7);
     obsThFactory["ggH8"] = boost::bind(boost::factory<muggH*>(), _1, sqrt_s_LHC8);
-    obsThFactory["ggH+ttH8"] = boost::bind(boost::factory<muggHpttH*>(), _1, sqrt_s_LHC8);
     obsThFactory["VBF8"] = boost::bind(boost::factory<muVBF*>(), _1, sqrt_s_LHC8);
-    obsThFactory["VBF+VH8"] = boost::bind(boost::factory<muVBFpVH*>(), _1, sqrt_s_LHC8);
     obsThFactory["VH8"] = boost::bind(boost::factory<muVH*>(), _1, sqrt_s_LHC8);
     obsThFactory["ttH8"] = boost::bind(boost::factory<muttH*>(), _1, sqrt_s_LHC8);
     obsThFactory["ggH196"] = boost::bind(boost::factory<muggH*>(), _1, sqrt_s_TeV);
     obsThFactory["VBF196"] = boost::bind(boost::factory<muVBF*>(), _1, sqrt_s_TeV);
     obsThFactory["VH196"] = boost::bind(boost::factory<muVH*>(), _1, sqrt_s_TeV);
     obsThFactory["ttH196"] = boost::bind(boost::factory<muttH*>(), _1, sqrt_s_TeV);
-    obsThFactory["eeZH240"] = boost::bind(boost::factory<mueeZH*>(), _1, sqrt_s_TLEP);
     obsThFactory["BrHggRatio"] = boost::factory<BrHtoggRatio*>();
     obsThFactory["BrHWWRatio"] = boost::factory<BrHtoWWRatio*>();
     obsThFactory["BrHZZRatio"] = boost::factory<BrHtoZZRatio*>();
@@ -65,45 +56,15 @@ ThObsFactory::ThObsFactory()
     obsThFactory["epsilon3"] = boost::factory<Epsilon3*>();
     obsThFactory["epsilonb"] = boost::factory<Epsilonb*>();
 
-    /** BEGIN: REMOVE FROM THE PACKAGE **/
-    //-----  LEP-II two-fermion processes  -----
-    const double sqrt_s[12] = {130., 136., 161., 172., 183., 189.,
-        192., 196., 200., 202., 205., 207.};
-    const double sqrt_s_HF[10] = {133., 167., 183., 189., 192.,
-        196., 200., 202., 205., 207.};
-    for (int i = 0; i < 12; i++) {
-        std::string sqrt_s_str = boost::lexical_cast<std::string, double>(sqrt_s[i]);
-        obsThFactory["sigmaqLEP2_" + sqrt_s_str] = boost::bind(boost::factory<LEP2sigmaHadron*>(), _1, sqrt_s[i]);
-        obsThFactory["sigmamuLEP2_" + sqrt_s_str] = boost::bind(boost::factory<LEP2sigmaMu*>(), _1, sqrt_s[i]);
-        obsThFactory["sigmatauLEP2_" + sqrt_s_str] = boost::bind(boost::factory<LEP2sigmaTau*>(), _1, sqrt_s[i]);
-        obsThFactory["AFBmuLEP2_" + sqrt_s_str] = boost::bind(boost::factory<LEP2AFBmu*>(), _1, sqrt_s[i]);
-        obsThFactory["AFBtauLEP2_" + sqrt_s_str] = boost::bind(boost::factory<LEP2AFBtau*>(), _1, sqrt_s[i]);
-    }
-    for (int i = 0; i < 10; i++) {
-        std::string sqrt_s_str = boost::lexical_cast<std::string, double>(sqrt_s_HF[i]);
-        obsThFactory["AFBbottomLEP2_" + sqrt_s_str] = boost::bind(boost::factory<LEP2AFBbottom*>(), _1, sqrt_s_HF[i]);
-        obsThFactory["AFBcharmLEP2_" + sqrt_s_str] = boost::bind(boost::factory<LEP2AFBcharm*>(), _1, sqrt_s_HF[i]);
-        obsThFactory["RbottomLEP2_" + sqrt_s_str] = boost::bind(boost::factory<LEP2Rbottom*>(), _1, sqrt_s_HF[i]);
-        obsThFactory["RcharmLEP2_" + sqrt_s_str] = boost::bind(boost::factory<LEP2Rcharm*>(), _1, sqrt_s_HF[i]);
-    }
-    /** END: REMOVE FROM THE PACKAGE **/
 
     //-----  Flavour observables  -----
     //----- DF = 2  -----
-    obsThFactory["DmBd"] = boost::factory<DmBd*>();
-    obsThFactory["DmBs"] = boost::factory<DmBs*>();
+    obsThFactory["Dmd1"] = boost::factory<DmBd*>();
+    obsThFactory["Dms1"] = boost::factory<DmBs*>();
     obsThFactory["SJPsiK"] = boost::factory<SJPsiK*>();
     obsThFactory["Betas_JPsiPhi"] = boost::factory<Betas_JPsiPhi*>();
-    /** BEGIN: REMOVE FROM THE PACKAGE **/
-    obsThFactory["M12D"] = boost::factory<M12D*>();
-    obsThFactory["ArgD"] = boost::factory<ArgD*>();
-    /** END: REMOVE FROM THE PACKAGE **/
     obsThFactory["EpsilonK"] = boost::factory<EpsilonK*>();
     obsThFactory["DmK"] = boost::factory<DmK*>();
-    /** BEGIN: REMOVE FROM THE PACKAGE **/
-    //----- eps'/eps  -----
-    obsThFactory["EpsiloP_o_Epsilon"] = boost::factory<EpsilonP_O_Epsilon*>();
-    /** END: REMOVE FROM THE PACKAGE **/
     //----- CKM  -----
     obsThFactory["Vud"] = boost::bind(boost::factory<VCKM*>(), _1, 1, 1);
     obsThFactory["Vus"] = boost::bind(boost::factory<VCKM*>(), _1, 1, 2);
@@ -128,6 +89,7 @@ ThObsFactory::ThObsFactory()
     obsThFactory["Smumu_Bs"] = boost::bind(boost::factory<Bsmumu*>(), _1, 4);
     //----- b to s gamma  -----
     obsThFactory["BR_bsgamma"] = boost::bind(boost::factory<Bsgamma*>(), _1, 1);
+    obsThFactory["A_CP_bsgamma"] = boost::bind(boost::factory<Bsgamma*>(), _1, 2);
     //----- B to K* ll  -----
     obsThFactory["P_1_BdKstmu"] = boost::bind(boost::factory<P_1*>(), _1, StandardModel::B_D, StandardModel::K_star, StandardModel::MU);
     obsThFactory["P_1_BdKste"] = boost::bind(boost::factory<P_1*>(), _1, StandardModel::B_D, StandardModel::K_star, StandardModel::ELECTRON);
@@ -256,47 +218,8 @@ ThObsFactory::ThObsFactory()
     //----- B to PHI gamma  -----
     obsThFactory["BR_Bsphigamma"] = boost::bind(boost::factory<BR_MVgamma*>(), _1, StandardModel::B_S, StandardModel::PHI);
     obsThFactory["ACP_Bsphigamma"] = boost::bind(boost::factory<ACP_MVgamma*>(), _1, StandardModel::B_S, StandardModel::PHI);
+
     
-    //----- B to tau nu  -----
-    obsThFactory["btaunu"] = boost::factory<Btaunu*>();
-    
-    /** BEGIN: REMOVE FROM THE PACKAGE **/
-    //-----  Lepton Flavour observables  -----
-    obsThFactory["li_lj_gamma"] = boost::factory<li_lj_gamma*>();
-    /** END: REMOVE FROM THE PACKAGE **/
-    
-    /** BEGIN: REMOVE FROM THE PACKAGE **/
-    //-----  SUSY spectra and observables  -----
-    obsThFactory["OutputSLHAfromFH"] = boost::factory<OutputSLHAfromFH*>(); // for debug
-    obsThFactory["MHl"] = boost::bind(boost::factory<Mhiggs*>(), _1, 0);
-    obsThFactory["MHh"] = boost::bind(boost::factory<Mhiggs*>(), _1, 1);
-    obsThFactory["MHa"] = boost::bind(boost::factory<Mhiggs*>(), _1, 2);
-    obsThFactory["MHp"] = boost::bind(boost::factory<Mhiggs*>(), _1, 3);
-    obsThFactory["Msu1"] = boost::bind(boost::factory<Msup*>(), _1, 0);
-    obsThFactory["Msu2"] = boost::bind(boost::factory<Msup*>(), _1, 1);
-    obsThFactory["Msu3"] = boost::bind(boost::factory<Msup*>(), _1, 2);
-    obsThFactory["Msu4"] = boost::bind(boost::factory<Msup*>(), _1, 3);
-    obsThFactory["Msu5"] = boost::bind(boost::factory<Msup*>(), _1, 4);
-    obsThFactory["Msu6"] = boost::bind(boost::factory<Msup*>(), _1, 5);
-    obsThFactory["Msd1"] = boost::bind(boost::factory<Msdown*>(), _1, 0);
-    obsThFactory["Msd2"] = boost::bind(boost::factory<Msdown*>(), _1, 1);
-    obsThFactory["Msd3"] = boost::bind(boost::factory<Msdown*>(), _1, 2);
-    obsThFactory["Msd4"] = boost::bind(boost::factory<Msdown*>(), _1, 3);
-    obsThFactory["Msd5"] = boost::bind(boost::factory<Msdown*>(), _1, 4);
-    obsThFactory["Msd6"] = boost::bind(boost::factory<Msdown*>(), _1, 5);
-    obsThFactory["Mch1"] = boost::bind(boost::factory<Mchargino*>(), _1, 0);
-    obsThFactory["Mch2"] = boost::bind(boost::factory<Mchargino*>(), _1, 1);
-    obsThFactory["Mneu1"] = boost::bind(boost::factory<Mneutralino*>(), _1, 0);
-    obsThFactory["Mneu2"] = boost::bind(boost::factory<Mneutralino*>(), _1, 1);
-    obsThFactory["Mneu3"] = boost::bind(boost::factory<Mneutralino*>(), _1, 2);
-    obsThFactory["Mneu4"] = boost::bind(boost::factory<Mneutralino*>(), _1, 3);
-    obsThFactory["Mw_dRho"] = boost::factory<Mw_dRho*>();
-    /** END: REMOVE FROM THE PACKAGE **/
-    
-    /** BEGIN: REMOVE FROM THE PACKAGE **/
-    //-----  THDM observables  -----
-    obsThFactory["lambda1"] = boost::factory<lambda1*>();
-    /** END: REMOVE FROM THE PACKAGE **/
 }
 
 void ThObsFactory::addObsToFactory(const std::string name, boost::function<ThObservable*(const StandardModel&) > funct)

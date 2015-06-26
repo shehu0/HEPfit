@@ -9,11 +9,10 @@
 
 using namespace gslpp;
 
-HeffDC1::HeffDC1(const StandardModel & SM, StandardModelMatching & SM_Matching) 
-:       model(SM), modelmatching(SM_Matching), coeffdc1(10, NDR, NLO), 
+HeffDC1::HeffDC1(const StandardModel & SM, StandardModelMatching & SM_Matching) :
+        model(SM), modelmatching(SM_Matching), coeffdc1(10, NDR, NLO), 
         coeffdc1g(10, NDR, NLO), ug(10, NDR, NLO, SM), u(10, NDR, NLO, SM), 
-        ckm(3,0.), COEFF_pi(10,0.), COEFF_K(10,0.)
-{
+        ckm(3,0.), COEFF_pi(10,0.), COEFF_K(10,0.){
   
     double co = - 4. * model.getGF() / sqrt(2);
     ckm = model.getVCKM();
@@ -40,8 +39,7 @@ HeffDC1::~HeffDC1() {
  * evolution Wilson Coefficien D-> pi pi, K K                                  * 
  * Misiak basis                                                                *
  ******************************************************************************/
-vector<complex>** HeffDC1::ComputeCoeffDC1_pi(double mu, schemes scheme) 
-{
+vector<complex>** HeffDC1::ComputeCoeffDC1_pi(double mu, schemes scheme) {
     
     const std::vector<WilsonCoefficient>& mc = modelmatching.CMd1();
     coeffdc1.setMu(mu); 
@@ -63,8 +61,7 @@ vector<complex>** HeffDC1::ComputeCoeffDC1_pi(double mu, schemes scheme)
     return coeffdc1.getCoeff();
 }
 
-vector<complex>** HeffDC1::ComputeCoeffDC1_K(double mu, schemes scheme) 
-{
+vector<complex>** HeffDC1::ComputeCoeffDC1_K(double mu, schemes scheme) {
     
     const std::vector<WilsonCoefficient>& mc = modelmatching.CMd1();
     coeffdc1.setMu(mu); 
@@ -92,8 +89,7 @@ vector<complex>** HeffDC1::ComputeCoeffDC1_K(double mu, schemes scheme)
 }
 
 /*  
-vector<complex>** HeffDC1::ComputeCoeffDC1g(double mu, schemes scheme) 
-{
+vector<complex>** HeffDC1::ComputeCoeffDC1g(double mu, schemes scheme) {
     
     const std::vector<WilsonCoefficient>& mcg = modelmatching.CMd1();
     gslpp::vector<complex> vecdc1g(10,0.);

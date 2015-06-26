@@ -8,10 +8,10 @@
 #include <cstring>
 #include "EvolDF2.h"
 
-EvolDF2::EvolDF2(unsigned int dim_i, schemes scheme, orders order, const StandardModel& model) 
-:   RGEvolutor(dim_i, scheme, order),
-    model(model),
-    dim(dim_i)
+EvolDF2::EvolDF2(unsigned int dim_i, schemes scheme, orders order, const StandardModel& model) :
+RGEvolutor(dim_i, scheme, order),
+model(model),
+dim(dim_i)
 {
     //double Nc = model.getNc();
     int basis = 0; //0: Gabbiani, 1: Buras
@@ -63,7 +63,8 @@ EvolDF2::EvolDF2(unsigned int dim_i, schemes scheme, orders order, const Standar
 }
 
 EvolDF2::~EvolDF2()
-{}
+{
+}
 
 matrix<double> EvolDF2::AnomalousDimension(orders order, unsigned int nf, int basis) const
 {
@@ -157,14 +158,8 @@ matrix<double>& EvolDF2::Df2Evol(double mu, double M, orders order, schemes sche
             throw std::runtime_error("EvolDF2::Df2Evol(): scheme " + out.str() + " not implemented ");
     }
 
-    double alsMZ = model.getAlsMz();
-    double Mz = model.getMz();
-    if(alsMZ == alsMZ_cache && Mz == Mz_cache) {
-        if (mu == this->mu && M == this->M && scheme == this->scheme)
-            return (*Evol(order));        
-    }
-    alsMZ_cache = alsMZ;
-    Mz_cache = Mz;
+    if (mu == this->mu && M == this->M && scheme == this->scheme)
+        return (*Evol(order));
 
     if (M < mu) {
         std::stringstream out;

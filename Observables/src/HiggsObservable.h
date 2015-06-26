@@ -32,15 +32,16 @@ public:
     HiggsObservable(const HiggsObservable& orig);
 
 //    virtual ~HiggsObservable();
-    
-    // Read the necessary information from the config file. First row should 
-    // contain the list of categories used in the analysis
+        // Read the necessary information from the config file. Each row contains:
+        // ggH fraction
+        // VBF fraction
+        // VH fraction (ttH is computed as 1-ggH-VBF-VH)
 
     /**
      * Set the parametric likelihood describing one Higgs decay channel from a config file.
      * @param filename the name of the config file
      * @param thObsV a vector of ThObservables containing the ratio of the production cross section for 
-     * the specified categories in the model analyzed over the SM prediction 
+     * ggH, VBF, VH and ttH in the model analyzed over the SM prediction 
      */
     virtual void setParametricLikelihood(std::string filename, std::vector<ThObservable*> thObsV);
 

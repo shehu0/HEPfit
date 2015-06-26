@@ -127,15 +127,12 @@ MonteCarloEngine::~MonteCarloEngine()
 {
     delete [] obval;
     delete [] obweight;
-    /* The following code has been commented out pending further review.
-       It is causing crashes at the termination of the code if the histograms
-       are accessed from the main program.*/
-//    for (std::map<std::string, BCH1D *>::iterator it = Histo1D.begin();
-//            it != Histo1D.end(); it++)
-//        delete it->second;
-//    for (std::map<std::string, BCH2D *>::iterator it = Histo2D.begin();
-//            it != Histo2D.end(); it++)
-//        delete it->second;
+    for (std::map<std::string, BCH1D *>::iterator it = Histo1D.begin();
+            it != Histo1D.end(); it++)
+        delete it->second;
+    for (std::map<std::string, BCH2D *>::iterator it = Histo2D.begin();
+            it != Histo2D.end(); it++)
+        delete it->second;
 };
 
 // ---------------------------------------------------------
@@ -473,7 +470,6 @@ void MonteCarloEngine::PrintHistogram(BCModelOutput & out, Observable& it,
 void MonteCarloEngine::PrintHistogram(BCModelOutput & out, const std::string OutputDir)
 {
     std::vector<double> mode(GetBestFitParameters());
-    if (mode.size() == 0 && rank == 0) throw std::runtime_error("\n ERROR: Global Mode could not be determined possibly because of infinite loglikelihood. Observables histogram cannot be generated.\n");
     for (unsigned int k = 0; k < GetNParameters(); k++)
         DPars[GetParameter(k)->GetName()] = mode[k];
     Mod->Update(DPars);
@@ -563,12 +559,10 @@ void MonteCarloEngine::PrintCorrelationMatrix(const std::string filename)
 
 std::string MonteCarloEngine::computeStatistics()
 {
-    std::vector<double> mode(GetBestFitParameters());
-    if (mode.size() == 0 && rank == 0) throw std::runtime_error("\n ERROR: Global Mode could not be determined possibly because of infinite loglikelihood. Observables statistics cannot be generated.\n");
     std::ostringstream StatsLog;
     int i = 0;
     StatsLog << "Statistics file for Observables, Binned Observables and Corellated Gaussian Observables.\n" << std::endl;
-    if (Obs_ALL.size() > 0) StatsLog << "Observables:\n" << std::endl;
+    StatsLog << "Observables:\n" << std::endl;
     for (boost::ptr_vector<Observable>::iterator it = Obs_ALL.begin(); it < Obs_ALL.end(); it++) {
 
         if (it->getObsType() == 2) {
@@ -583,7 +577,68 @@ std::string MonteCarloEngine::computeStatistics()
         StatsLog << std::endl;
         
         BCH1D * bch1d = Histo1D[it->getName()];
-        if (bch1d->GetHistogram()->Integral() > 0.0) {
+
+        StatsLog << "      Mean +- sqrt(V):                " << std::setprecision(4)
+                 << bch1d->GetMean() << " +- " << std::setprecision(4)
+                 << bch1d->GetRMS() << std::endl
+
+                 << "      (Marginalized) mode:            " << bch1d->GetMode() << std::endl;
+
+        std::vector<double> v1;
+        std::vector<double> v2;
+        std::vector<double> v3;
+        v1 = bch1d->GetSmallestIntervals(0.6827);
+        v2 = bch1d->GetSmallestIntervals(0.9545);
+        v3 = bch1d->GetSmallestIntervals(0.9973);
+        StatsLog << "      Smallest interval(s) containing at least 68.27% and local mode(s):"
+                 << std::endl;
+        for (unsigned j = 0; j < v1.size(); j += 5)
+           StatsLog << "       (" << v1[j] << ", " << v1[j + 1]
+                    << ") (local mode at " << v1[j + 3] << " with rel. height "
+                    << v1[j + 2] << "; rel. area " << v1[j + 4] << ")"
+                    << std::endl;
+        StatsLog << std::endl;
+        
+        StatsLog << "      Smallest interval(s) containing at least 95.45% and local mode(s):"
+                 << std::endl;
+        for (unsigned j = 0; j < v2.size(); j += 5)
+           StatsLog << "       (" << v2[j] << ", " << v2[j + 1]
+                    << ") (local mode at " << v2[j + 3] << " with rel. height "
+                    << v2[j + 2] << "; rel. area " << v2[j + 4] << ")"
+                    << std::endl;
+        StatsLog << std::endl;
+        
+        StatsLog << "      Smallest interval(s) containing at least 99.73% and local mode(s):"
+                 << std::endl;
+        for (unsigned j = 0; j < v3.size(); j += 5)
+           StatsLog << "       (" << v3[j] << ", " << v3[j + 1]
+                    << ") (local mode at " << v3[j + 3] << " with rel. height "
+                    << v3[j + 2] << "; rel. area " << v3[j + 4] << ")"
+                    << std::endl;
+        StatsLog << std::endl;
+    }
+    
+    StatsLog << "\nCorrelated Gaussian Observables:\n" << std::endl;
+    for (std::vector<CorrelatedGaussianObservables>::iterator it1 = CGO.begin();
+            it1 < CGO.end(); it1++) {
+        StatsLog << "\n" << it1->getName() << ":\n" << std::endl;
+        i = 0;
+        std::vector<Observable> CGObs(it1->getObs());
+        for (std::vector<Observable>::iterator it2 = CGObs.begin(); it2 < CGObs.end(); it2++) {
+
+            if (it2->getObsType() == 2) {
+                StatsLog << "  (" << ++i << ") Binned Observable \"";
+                StatsLog << it2->getName() << "[" << it2->getTho()->getBinMin() << ", " << it2->getTho()->getBinMax() << "]"<<"\":";
+            }
+            else {
+                StatsLog << "  (" << ++i << ") Observable \"";
+                StatsLog << it2->getName() << "\":";
+            }
+
+            StatsLog << std::endl;
+
+            BCH1D * bch1d = Histo1D[it2->getName()];
+
             StatsLog << "      Mean +- sqrt(V):                " << std::setprecision(4)
                      << bch1d->GetMean() << " +- " << std::setprecision(4)
                      << bch1d->GetRMS() << std::endl
@@ -622,169 +677,8 @@ std::string MonteCarloEngine::computeStatistics()
                         << v3[j + 2] << "; rel. area " << v3[j + 4] << ")"
                         << std::endl;
             StatsLog << std::endl;
-        } else {
-            StatsLog << "\nWARNING: The histogram of " << it->getName() << " is empty! Statistics cannot be generated\n" << std::endl;
-        }
-    }
-    
-    if (CGO.size() > 0) StatsLog << "\nCorellated Gaussian Observables:\n" << std::endl;
-    for (std::vector<CorrelatedGaussianObservables>::iterator it1 = CGO.begin();
-            it1 < CGO.end(); it1++) {
-        StatsLog << "\n" << it1->getName() << ":\n" << std::endl;
-        i = 0;
-        std::vector<Observable> CGObs(it1->getObs());
-        for (std::vector<Observable>::iterator it2 = CGObs.begin(); it2 < CGObs.end(); it2++) {
-
-            if (it2->getObsType() == 2) {
-                StatsLog << "  (" << ++i << ") Binned Observable \"";
-                StatsLog << it2->getName() << "[" << it2->getTho()->getBinMin() << ", " << it2->getTho()->getBinMax() << "]"<<"\":";
-            }
-            else {
-                StatsLog << "  (" << ++i << ") Observable \"";
-                StatsLog << it2->getName() << "\":";
-            }
-
-            StatsLog << std::endl;
-            BCH1D * bch1d = Histo1D[it2->getName()];
-            if (bch1d->GetHistogram()->Integral() > 0.0) {        
-                StatsLog << "      Mean +- sqrt(V):                " << std::setprecision(4)
-                         << bch1d->GetMean() << " +- " << std::setprecision(4)
-                         << bch1d->GetRMS() << std::endl
-
-                         << "      (Marginalized) mode:            " << bch1d->GetMode() << std::endl;
-
-                std::vector<double> v1;
-                std::vector<double> v2;
-                std::vector<double> v3;
-                v1 = bch1d->GetSmallestIntervals(0.6827);
-                v2 = bch1d->GetSmallestIntervals(0.9545);
-                v3 = bch1d->GetSmallestIntervals(0.9973);
-                StatsLog << "      Smallest interval(s) containing at least 68.27% and local mode(s):"
-                         << std::endl;
-                for (unsigned j = 0; j < v1.size(); j += 5)
-                   StatsLog << "       (" << v1[j] << ", " << v1[j + 1]
-                            << ") (local mode at " << v1[j + 3] << " with rel. height "
-                            << v1[j + 2] << "; rel. area " << v1[j + 4] << ")"
-                            << std::endl;
-                StatsLog << std::endl;
-
-                StatsLog << "      Smallest interval(s) containing at least 95.45% and local mode(s):"
-                         << std::endl;
-                for (unsigned j = 0; j < v2.size(); j += 5)
-                   StatsLog << "       (" << v2[j] << ", " << v2[j + 1]
-                            << ") (local mode at " << v2[j + 3] << " with rel. height "
-                            << v2[j + 2] << "; rel. area " << v2[j + 4] << ")"
-                            << std::endl;
-                StatsLog << std::endl;
-
-                StatsLog << "      Smallest interval(s) containing at least 99.73% and local mode(s):"
-                         << std::endl;
-                for (unsigned j = 0; j < v3.size(); j += 5)
-                   StatsLog << "       (" << v3[j] << ", " << v3[j + 1]
-                            << ") (local mode at " << v3[j + 3] << " with rel. height "
-                            << v3[j + 2] << "; rel. area " << v3[j + 4] << ")"
-                            << std::endl;
-                StatsLog << std::endl;
-            } else {
-                StatsLog << "\nWARNING: The histogram of " << it2->getName() << " is empty! Statistics cannot be generated\n" << std::endl;
-            }
         }
     }
     
     return StatsLog.str().c_str();
-}
-
-double MonteCarloEngine::computeNormalization()
-{
-    
-    unsigned int Npars =  GetNParameters();
-    std::vector<double> mode(GetBestFitParameters());
-    gslpp::matrix<double> Hessian(Npars, Npars,0.);
-    
-    for (unsigned int i = 0; i < Npars; i++)
-        for (unsigned int j = 0; j < Npars; j++) {
-            // calculate Hessian matrix element
-            Hessian.assign(i, j, - SecondDerivative(GetParameter(i), GetParameter(j), GetBestFitParameters()));
-        }
-    
-    double det_Hessian = Hessian.determinant();
-    
-    return exp(Npars/2. * log(2. * M_PI) + 0.5 * log(1./det_Hessian) + LogLikelihood(mode) + LogAPrioriProbability(mode));
-}
-
-double MonteCarloEngine::SecondDerivative(const BCParameter * par1, const BCParameter * par2, std::vector<double> point){
-    
-    if (point.size() != GetNParameters()) {
-      throw std::runtime_error("MCMCENgine::SecondDerivative : Invalid number of entries in the vector.");
-    }
-    
-    // define steps
-    const double dy1 = par2->GetRangeWidth() / NSTEPS;
-    const double dy2 = dy1 * 2.;
-    const double dy3 = dy1 * 3.;
-   
-   // define points at which to evaluate
-    std::vector<double> y1p = point;
-    std::vector<double> y1m = point;
-    std::vector<double> y2p = point;
-    std::vector<double> y2m = point;
-    std::vector<double> y3p = point;
-    std::vector<double> y3m = point;
-   
-    unsigned idy = GetParameters().Index(par2->GetName());
-   
-    y1p[idy] += dy1;
-    y1m[idy] -= dy1;
-    y2p[idy] += dy2;
-    y2m[idy] -= dy2;
-    y3p[idy] += dy3;
-    y3m[idy] -= dy3;
-   
-    const double m1 = (FirstDerivative(par1,y1p) - FirstDerivative(par1,y1m)) / 2. / dy1;
-    const double m2 = (FirstDerivative(par1,y2p) - FirstDerivative(par1,y2m)) / 4. / dy1;
-    const double m3 = (FirstDerivative(par1,y3p) - FirstDerivative(par1,y3m)) / 6. / dy1;
-   
-    return 3./2. * m1 - 3./5. * m2 + 1./10. * m3;
-}
-
-double MonteCarloEngine::FirstDerivative(const BCParameter * par, std::vector<double> point){
-    
-    if (point.size() != GetNParameters()) {
-      throw std::runtime_error("MCMCENgine::FirstDerivative : Invalid number of entries in the vector.");
-   }
-
-   // define steps
-    const double dx1 = par->GetRangeWidth() / NSTEPS;
-    const double dx2 = dx1 * 2.;
-    const double dx3 = dx1 * 3.;
-   
-   // define points at which to evaluate
-    std::vector<double> x1p = point;
-    std::vector<double> x1m = point;
-    std::vector<double> x2p = point;
-    std::vector<double> x2m = point;
-    std::vector<double> x3p = point;
-    std::vector<double> x3m = point;
-   
-    unsigned idx = GetParameters().Index(par->GetName());
-   
-    x1p[idx] += dx1;
-    x1m[idx] -= dx1;
-    x2p[idx] += dx2;
-    x2m[idx] -= dx2;
-    x3p[idx] += dx3;
-    x3m[idx] -= dx3;
-   
-    const double m1 = (Function_h(x1p) - Function_h(x1m)) / 2. / dx1;
-    const double m2 = (Function_h(x2p) - Function_h(x2m)) / 4. / dx1;
-    const double m3 = (Function_h(x3p) - Function_h(x3m)) / 6. / dx1;
-   
-    return 3./2. * m1 - 3./5. * m2 + 1./10. * m3;
-}
-
-double MonteCarloEngine::Function_h(std::vector<double> point){
-    if (point.size() != GetNParameters()) {
-      throw std::runtime_error("MCMCENgine::Function_h : Invalid number of entries in the vector.");
-   }
-    return LogLikelihood(point) + LogAPrioriProbability(point);
 }

@@ -29,7 +29,6 @@
 #define NBINSMODELPARS 100
 #define NBINS1D 100
 #define NBINS2D 100
-#define NSTEPS 1e5
 
 /**
  * @class MonteCarloEngine
@@ -212,25 +211,7 @@ public:
     {
         return NumOfUsedEvents;
     }
-    
-    std::map<std::string, BCH1D * > getHistograms1D() const
-    {
-        return Histo1D;
-    }
 
-    std::map<std::string, BCH2D * > getHistograms2D() const
-    {
-        return Histo2D;
-    }
-    
-    double computeNormalization();
-    
-    double SecondDerivative(const BCParameter * par1, const BCParameter * par2, std::vector<double> point);
-    
-    double FirstDerivative(const BCParameter * par, std::vector<double> point);
-    
-    double Function_h(std::vector<double> point);
-    
 private:
     const std::vector<ModelParameter>& ModPars; ///< A vector of model parameters.
     boost::ptr_vector<Observable>& Obs_ALL; ///< A vector of all observables.

@@ -15,150 +15,110 @@
 
 /**
  * @class P_1
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<P_1>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable P_1. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<P_1>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <P_1>=\frac {<\Sigma_3>}{2<\Sigma_{2s}>}\,.
- * @f]
+ * @details 
  */
 class P_1 : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ P_{1} \f$ 
+    */
     P_1(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     
     /**
-    * @brief The binned observable @f$<P_1>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<P_1>@f$
+    * @return return the clean observable P_1
     */
     double computeThValue ();
     
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
     
 };
 
 
 /**
  * @class P_2
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<P_2>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable P_2. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<P_2>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <P_2>=\frac {<\Sigma_6>}{8<\Sigma_{2s}>}\,.
- * @f]
+ * @details 
  */
 class P_2 : public ThObservable {
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ P_{2} \f$ 
+    */
     P_2(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The binned observable @f$<P_2>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<P_2>@f$
+    * @return return the clean observable P_2
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
     
 };
 
 
 /**
  * @class P_3
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<P_3>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable P_3. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<P_3>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <P_3>=- \frac {<\Sigma_9>}{4<\Sigma_{2s}>}\,.
- * @f]
+ * @details 
  */
 class P_3 : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ P_{3} \f$ 
+    */
     P_3(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The binned observable @f$<P_3>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<P_3>@f$
+    * @return return the clean observable P_3
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class P_4Prime
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<P_4'>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable P'_4. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<P_4'>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <P_4'>=\frac {<\Sigma_4>}{\sqrt{-<\Sigma_{2s}><\Sigma_{2c}>}}\,.
- * @f]
+ * @details 
  */
 class P_4Prime : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ P'_{4} \f$ 
+    */
     P_4Prime(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The binned observable @f$<P_4'>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<P_4'>@f$
+    * @return return the clean observable P'_4
     */
     double computeThValue ();
     
@@ -166,40 +126,31 @@ protected:
     
     
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 };
 
 
 /**
  * @class P_5Prime
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<P_5'>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable P'_5. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<P_5'>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <P_5'>=\frac {<\Sigma_5>}{2\sqrt{-<\Sigma_{2s}><\Sigma_{2c}>}}\,.
- * @f]
+ * @details 
  */
 class P_5Prime : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ P'_{5} \f$ 
+    */
+
     P_5Prime(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The binned observable @f$<P_5'>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<P_5'>@f$
+    * @return return the clean observable P'_5
     */
     double computeThValue ();
     
@@ -207,1368 +158,1034 @@ protected:
     
     
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
-    
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
+
 };
 
 
 /**
  * @class P_6Prime
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<P_6'>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable P'_6. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<P_6'>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <P_6'>=- \frac {<\Sigma_7>}{2 \sqrt{-<\Sigma_{2s}><\Sigma_{2c}>}}\,.
- * @f]
+ * @details 
  */
 class P_6Prime : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ P'_{6} \f$ 
+    */
     P_6Prime(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
 
     /**
-    * @brief The binned observable @f$<P_6'>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<P_6'>@f$
+    * @return return the clean observable P'_6
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class P_8Prime
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<P_8'>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable P'_8. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<P_8'>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <P_8'>=- \frac {<\Sigma_8>}{\sqrt{-<\Sigma_{2s}><\Sigma_{2c}>}}\,.
- * @f]
+ * @details 
  */
 class P_8Prime : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ P'_{8} \f$ 
+    */
     P_8Prime(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
 
     /**
-    * @brief The binned observable @f$<P_8'>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<P_8'>@f$
+    * @return return the clean observable P'_8
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class GammaPrime
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<\Gamma'>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable Gamma'. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<\Gamma'>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <\Gamma'>=- \frac {1}{4} (<(3\Sigma_{1c} - \Sigma_{2c}) + 2(3\Sigma_{1s} - \Sigma_{2s})>)\,.
- * @f]
+ * @details 
  */
 class GammaPrime : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ Gamma' \f$ 
+    */
     GammaPrime(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
-    /**
-     * @brief A method to compute the binned observable @f$<\Gamma'>@f$ in @f$M \to V l^+l^-@f$ in a generic bin.
-     * @param[in] qmin minimal value of the bin
-     * @param[in] qmax maximal value of the bin
-     * @param[in] lep final leptons of the decay
-     * @return @f$<\Gamma'>_{[qmin,qmax]}@f$
-     */
     double computeGammaPrime(double qmin, double qmax, StandardModel::lepton lep);
     
     /**
-    * @brief The binned observable @f$<\Gamma'>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<\Gamma'>@f$
+    * @return return the clean observable Gamma'
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class A_FB
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<A_{FB}>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable A_{FB}. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<A_{FB}>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <A_{FB}>=- \frac {3<\Sigma_{6s}>}{4<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class A_FB : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ A_{FB} \f$ 
+    */
     A_FB(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The binned observable @f$<A_{FB}>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<A_{FB}>@f$
+    * @return return the clean observable A_FB
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
- * @class BR_MVll
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<BR>@f$ in @f$M \to V l^+l^-@f$. 
+ * @class BF
+ * @ingroup flavour
+ * @brief A class for the Branching Fraction. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<BR>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class, and the meson width @f$W_M@f$:
- * @f[
- * <BR>= \frac {<\Gamma'>}{W_M} \,.
- * @f]
+ * @details 
  */
 class BR_MVll : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$BR_{B \to K^* l^+l^-}\f$ 
+    */
     BR_MVll(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The binned observable @f$<BR>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<BR>@f$
+    * @return the branching fraction of \f$B\to K^* l^+l^-\f$
     */
     double computeThValue ();
     
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
     
 };
 
 
 /**
  * @class F_L
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<F_L>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable F_L. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<F_L>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP averaged helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class, and the meson width @f$M_W@f$:
- * @f[
- * <BR>= \frac {3<\Sigma_{1c}>-<\Sigma_{2c}>}{4<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class F_L : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ F_{L} \f$ 
+    */
     F_L(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
-    /**
-     * @brief A method to compute the binned observable @f$<F_L>@f$ in @f$M \to V l^+l^-@f$ in a generic bin.
-     * @param[in] qmin minimal value of the bin
-     * @param[in] qmax maximal value of the bin
-     * @param[in] lep final leptons of the decay
-     * @return @f$<F_L>_{[qmin,qmax]}@f$
-     */
     double computeFL(double qmin, double qmax, StandardModel::lepton lep);
 
+    
     /**
-    * @brief The binned observable @f$<F_L>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<F_L>@f$
+    * @return return the clean observable F_L
     */
     double computeThValue ();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
- * @class R_MVll
- * @ingroup Flavour
- * @brief A class for the binned observable ratio @f$\frac {<BR>_{M \to V l_1^+l_1^-}}{<BR>_{M \to V l_2^+l_2^-}}@f$ in @f$M \to V l^+l^-@f$. 
+ * @class R_K^*
+ * @ingroup flavour
+ * @brief A class for the Branching Fraction ratio. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable ratio 
- * @f$\frac {<BR>_{M \to V l_1^+l_1^-}}{<BR>_{M \to V l_2^+l_2^-}}@f$ 
- * in @f$M \to V l^+l^-@f$ in terms of the binned observables @f$<\Gamma'>_{M \to V l_i^+l_i^-}@f$:
- * @f[
- * <R>_{M \to V l^+ l^-}= \frac {<\Gamma'>_{M \to V l_1^+l_1^-}}{<\Gamma'>_{M \to V l_2^+l_2^-}} \,.
- * @f]
+ * @details 
  */
 class R_MVll : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_1 first final leptons of the decay
-     * @param[in] lep_1 second final leptons of the decay
-     */
+    * @brief \f$ BR_{mu}/BR_{e} \f$ 
+    */
     R_MVll(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_1, StandardModel::lepton lep_2);
     
     /**
-    * @brief The binned observable ratio @f$\frac {<BR>_{M \to V l_1^+l_1^-}}{<BR>_{M \to V l_2^+l_2^-}}@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<R>_{M \to V l^+ l^-}@f$
+    * @return the ratio between branching fractions of \f$ B\to K^* \mu^+ \mu^- \f$ and \f$ B\to K^* e^+ e^- \f$
     */
     double computeThValue ();
     
 private:
-    StandardModel::lepton lep1; /**< First final leptons type. */
-    StandardModel::lepton lep2; /**< Second final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep1;
+    StandardModel::lepton lep2;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 };
 
 
 /**
- * @class RL_MVll
- * @ingroup Flavour
- * @brief A class for the binned observable ratio @f$\frac {<BR_L>_{M \to V l_1^+l_1^-}}{<BR_L>_{M \to V l_2^+l_2^-}}@f$ in @f$M \to V l^+l^-@f$. 
+ * @class R_K^*_L
+ * @ingroup flavour
+ * @brief A class for the longitudinal Branching Fraction ratio. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable longitudinal ratio 
- * @f$\frac {<BR_L>_{M \to V l_1^+l_1^-}}{<BR_L>_{M \to V l_2^+l_2^-}}@f$ 
- * in @f$M \to V l^+l^-@f$ in terms of the binned observables @f$<\Gamma'>_{M \to V l_i^+l_i^-}@f$
- * and @f$<{F_L}>_{M \to V l_i^+l_i^-}@f$:
- * @f[
- * <{R_L}>_{M \to V l^+ l^-}= \frac {<\Gamma'>_{M \to V l_1^+l_1^-}<{F_L}>_{M \to V l_1^+l_1^-}}{<\Gamma'>_{M \to V l_2^+l_2^-}<{F_L}>_{M \to V l_2^+l_2^-}} \,.
- * @f]
+ * @details 
  */
 class RL_MVll : public F_L{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_1 first final leptons of the decay
-     * @param[in] lep_1 second final leptons of the decay
-     */
+    * @brief \f$ BR_{mu,L}/BR_{e,L} \f$ 
+    */
     RL_MVll(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_1, StandardModel::lepton lep_2);
     
     /**
-    * @brief The binned observable ratio @f$\frac {<BR_L>_{M \to V l_1^+l_1^-}}{<BR_L>_{M \to V l_2^+l_2^-}}@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<R_L>_{M \to V l^+ l^-}@f$
+    * @return the ratio between longitudinal branching fractions of \f$ B\to K^* \mu^+ \mu^- \f$ and \f$ B\to K^* e^+ e^- \f$
     */
     double computeThValue ();
     
 private:
-    StandardModel::lepton lep1; /**< First final leptons type. */
-    StandardModel::lepton lep2; /**< Second final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep1;
+    StandardModel::lepton lep2;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 };
 
 
 /**
- * @class RT_MVll
- * @ingroup Flavour
- * @brief A class for the binned observable ratio @f$\frac {<BR_T>_{M \to V l_1^+l_1^-}}{<BR_T>_{M \to V l_2^+l_2^-}}@f$ in @f$M \to V l^+l^-@f$. 
+ * @class R_K^*_T
+ * @ingroup flavour
+ * @brief A class for the transverse Branching Fraction ratio. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable transverse ratio 
- * @f$\frac {<BR_T>_{M \to V l_1^+l_1^-}}{<BR_T>_{M \to V l_2^+l_2^-}}@f$ 
- * in @f$M \to V l^+l^-@f$ in terms of the binned observables @f$<\Gamma'>_{M \to V l_i^+l_i^-}@f$
- * and @f$<{F_L}>_{M \to V l_i^+l_i^-}@f$:
- * @f[
- * <{R_T}>_{M \to V l^+ l^-}= \frac {<\Gamma'>_{M \to V l_1^+l_1^-}(1-<{F_L}>_{M \to V l_1^+l_1^-})}{<\Gamma'>_{M \to V l_2^+l_2^-}(1-<{F_L}>_{M \to V l_2^+l_2^-})} \,.
- * @f]
+ * @details 
  */
 class RT_MVll : public F_L{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_1 first final leptons of the decay
-     * @param[in] lep_1 second final leptons of the decay
-     */
+    * @brief \f$ BR_{mu/,TBR_{e,T} \f$ 
+    */
     RT_MVll(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_1, StandardModel::lepton lep_2);
     
     /**
-    * @brief The binned observable ratio @f$\frac {<BR_T>_{M \to V l_1^+l_1^-}}{<BR_T>_{M \to V l_2^+l_2^-}}@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<R_T>_{M \to V l^+ l^-}@f$
+    * @return the ratio between transverse branching fractions of \f$ B\to K^* \mu^+ \mu^- \f$ and \f$ B\to K^* e^+ e^- \f$
     */
     double computeThValue ();
     
 private:
-    StandardModel::lepton lep1; /**< First final leptons type. */
-    StandardModel::lepton lep2; /**< Second final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep1;
+    StandardModel::lepton lep2;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 };
 
 
 /**
  * @class R_6
- * @ingroup Flavour
- * @brief A class for the binned observable ratio @f$\frac {<\Sigma_6>_{M \to V l_1^+l_1^-}}{<\Sigma_6>_{M \to V l_2^+l_2^-}}@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the Branching Fraction ratio. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable ratio 
- * @f$\frac {<\Sigma_6>_{M \to V l_1^+l_1^-}}{<\Sigma_6>_{M \to V l_2^+l_2^-}}@f$ 
- * in @f$M \to V l^+l^-@f$ in terms of the binned observables @f$<{\Sigma_6}>_{M \to V l_i^+l_i^-}@f$,
- * computed in the MVll class:
- * @f[
- * <{R_6}>_{M \to V l^+ l^-}= \frac {<\Sigma_6>_{M \to V l_1^+l_1^-}}{<\Sigma_6>_{M \to V l_2^+l_2^-}} \,.
- * @f]
+ * @details 
  */
 class R_6 : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_1 first final leptons of the decay
-     * @param[in] lep_1 second final leptons of the decay
-     */
+    * @brief \f$ \Sigma_{6,mu} / \Sigma_{6,e} \f$ 
+    */
     R_6(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_1, StandardModel::lepton lep_2);
     
     /**
-    * @brief The binned observable ratio @f$\frac {<BR_6>_{M \to V l_1^+l_1^-}}{<BR_6>_{M \to V l_2^+l_2^-}}@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<R_6>_{M \to V l^+ l^-}@f$
+    * @return the ratio between Sigma_6 of \f$ B\to K^* \mu^+ \mu^- \f$ and \f$ B\to K^* e^+ e^- \f$
     */
     double computeThValue ();
     
 private:
-    StandardModel::lepton lep1; /**< First final leptons type. */
-    StandardModel::lepton lep2; /**< Second final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep1;
+    StandardModel::lepton lep2;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 };
 
 
 /**
- * @class ACP_MVll
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<A_{CP}>@f$ in @f$M \to V l^+l^-@f$. 
+ * @class ACP
+ * @ingroup flavour
+ * @brief A class for the clean observable ACP. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<A_{CP}>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP asymmetry helicity coefficients 
- * @f$<\Delta_i>@f$, computed in the MVll class, and the @f$\Gamma'@f$:
- * @f[
- * <A_{CP}>= -\frac {3<\Delta_{1c}> - <\Delta_{2c}> + 2(3<\Delta_{1s}> - <\Delta_{2s}>)}{4<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class ACP_MVll : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ A_{CP} \f$ 
+    */
     ACP_MVll(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The binned observable @f$<A_{CP}>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<A_{CP}>@f$
+    * @return return the clean observable ACP
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class P3CP
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<P_3^{CP}>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable P3CP. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<P_3^{CP}>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP asymmetry helicity coefficients 
- * @f$<\Delta_i>@f$ and the CP average helicity coefficients @f$<\Sigma_i>@f$,
- *  computed in the MVll class:
- * @f[
- * <P_3^{CP}>= -\frac {<\Delta_{9}>}{4<\Sigma_{2s}>} \,.
- * @f]
+ * @details 
  */
 class P3CP : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ P_3^{CP} \f$ 
+    */
     P3CP(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The binned observable @f$<P_3^{CP}>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<P_3^{CP}>@f$
+    * @return return the clean observable P3CP
     */
     double computeThValue ();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class M_1Prime
- * @ingroup Flavour
- * @brief A class for the observable @f$M_1'@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable M'_1. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the observable @f$M_1'@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the helicity amplitudes 
- * @f$H_{A,V}^{+,-}@f$ computed in the MVll class:
- * @f[
- * M_1'= \frac {|H_V^+|^2 + |H_V^-|^2 - |H_A^+|^2 - |H_A^-|^2}{2(|H_V^+|^2 + |H_V^-|^2 + |H_A^+|^2 + |H_A^-|^2)} \,.
- * @f]
+ * @details 
  */
 class M_1Prime : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ M'_{1} \f$ 
+    */
     M_1Prime(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$M_1'@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$M_1'@f$
+    * @return return the clean observable M'_1
     */
     double computeThValue ();
     
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class M_2Prime
- * @ingroup Flavour
- * @brief A class for the observable @f$M_2'@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the clean observable M'_2. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the observable @f$M_2'@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the helicity amplitudes 
- * @f$H_{A,V}^0,\,H_{P,S}@f$ computed in the MVll class:
- * @f[
- * M_2'= \frac {q^2/(2m_l^2)^2(|H_P|^2 + \beta|H_S|^2) + (|H_V^0|^2 - |H_A^0|^2)}{|H_V^0|^2 + |H_A^0|^2} \,.
- * @f]
+ * @details 
  */
 class M_2Prime : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ M'_{2} \f$ 
+    */
     M_2Prime(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$M_2'@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$M_2'@f$
+    * @return return the clean observable M'_2
     */
     double computeThValue ();
     
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class S_3
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<S_3>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the observable S_3. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<S_3>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP average helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <S_3>= \frac {<\Sigma_{3}>}{<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class S_3 : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ S_{3} \f$ 
+    */
     S_3(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$<S_3>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<S_3>@f$
+    * @return return the observable S_3
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class S_4
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<S_4>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the observable S_4. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<S_4>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP average helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <S_4>= \frac {<\Sigma_{4}>}{<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class S_4: public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ S_{4} \f$ 
+    */
     S_4(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$<S_4>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<S_4>@f$
+    * @return return the observable S_4
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class S_5
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<S_5>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the observable S_5. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<S_5>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP average helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <S_5>= \frac {<\Sigma_{5}>}{<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class S_5 : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ S_{5} \f$ 
+    */
     S_5(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$<S_5>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<S_5>@f$
+    * @return return the observable S_5
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class S_7
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<S_7>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the observable S_7. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<S_7>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP average helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <S_7>= \frac {<\Sigma_{7}>}{<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class S_7 : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ S_{7} \f$ 
+    */
     S_7(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$<S_7>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<S_7>@f$
+    * @return return the observable S_7
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class S_8
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<S_8>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the observable S_8. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<S_8>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP average helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <S_8>= \frac {<\Sigma_{8}>}{<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class S_8 : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ S_{8} \f$ 
+    */
     S_8(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$<S_8>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<S_8>@f$
+    * @return return the observable S_8
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class S_9
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<S_9>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the observable S_9. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<S_9>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP average helicity coefficients 
- * @f$<\Sigma_i>@f$, computed in the MVll class:
- * @f[
- * <S_9>= \frac {<\Sigma_{9}>}{<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class S_9 : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ S_{9} \f$ 
+    */
     S_9(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$<S_9>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<S_9>@f$
+    * @return return the observable S_9
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class A_6
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<A_6>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the observable A_6. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<A_6>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP average helicity coefficients 
- * @f$<\Delta_i>@f$, computed in the MVll class:
- * @f[
- * <A_6>= \frac {<\Delta_{6}>}{<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class A_6 : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ A_{6} \f$ 
+    */
     A_6(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$<A_6>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<A_6>@f$
+    * @return return the observable A_6
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class A_9
- * @ingroup Flavour
- * @brief A class for the binned observable @f$<A_9>@f$ in @f$M \to V l^+l^-@f$. 
+ * @ingroup flavour
+ * @brief A class for the observable A_9. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the binned observable @f$<A_9>@f$ in 
- * @f$M \to V l^+l^-@f$ in terms of the binned CP average helicity coefficients 
- * @f$<\Delta_i>@f$, computed in the MVll class:
- * @f[
- * <A_9>= \frac {<\Delta_{9}>}{<\Gamma'>} \,.
- * @f]
+ * @details 
  */
 class A_9 : public GammaPrime{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ A_{9} \f$ 
+    */
     A_9(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The observable @f$<A_9>@f$ in @f$M \to V l^+l^-@f$.
-    * @return @f$<A_9>@f$
+    * @return return the observable A_9
     */
     double computeThValue ();
    
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class V0
- * @ingroup Flavour
- * @brief A class for the form factor @f$<V_0>@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the form factor V_0. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the averaged form factor @f$<V_0>@f$ in 
- * @f$B \to K^*@f$ using LCSR results at low @f$q^2@f$ and lattice results at high @f$q^2@f$
+ * @details 
  */
 class V0 : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ V_{0} \f$ 
+    */
     V0(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The averaged form factor @f$<V_0>@f$ in @f$B \to K^*@f$.
-    * @return @f$<V_0>@f$
+    * @return return the form factor V_0
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class Vp
- * @ingroup Flavour
- * @brief A class for the form factor @f$<V_+>@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the form factor V_+. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the averaged form factor @f$<V_+>@f$ in 
- * @f$B \to K^*@f$ using LCSR results at low @f$q^2@f$ and lattice results at high @f$q^2@f$
+ * @details 
  */
 class Vp : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ V_{+} \f$ 
+    */
     Vp(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The averaged form factor @f$<V_+>@f$ in @f$B \to K^*@f$.
-    * @return @f$<V_+>@f$
+    * @return return the form factor V_+
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class Vm
- * @ingroup Flavour
- * @brief A class for the form factor @f$<V_->@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the form factor V_-. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the averaged form factor @f$<V_->@f$ in 
- * @f$B \to K^*@f$ using LCSR results at low @f$q^2@f$ and lattice results at high @f$q^2@f$
+ * @details 
  */
 class Vm : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ V_{-} \f$ 
+    */
     Vm(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The averaged form factor @f$<V_->@f$ in @f$B \to K^*@f$.
-    * @return @f$<V_->@f$
+    * @return return the form factor V_-
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class T0
- * @ingroup Flavour
- * @brief A class for the form factor @f$<T_0>@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the form factor T_0. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the averaged form factor @f$<T_0>@f$ in 
- * @f$B \to K^*@f$ using LCSR results at low @f$q^2@f$ and lattice results at high @f$q^2@f$
+ * @details 
  */
 class T0 : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ V_{0} \f$ 
+    */
     T0(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The averaged form factor @f$<T_0>@f$ in @f$B \to K^*@f$.
-    * @return @f$<T_0>@f$
+    * @return return the form factor T_0
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class Tp
- * @ingroup Flavour
- * @brief A class for the form factor @f$<T_+>@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the form factor T_+. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the averaged form factor @f$<T_+>@f$ in 
- * @f$B \to K^*@f$ using LCSR results at low @f$q^2@f$ and lattice results at high @f$q^2@f$
+ * @details 
  */
 class Tp : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ T_{+} \f$ 
+    */
     Tp(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The averaged form factor @f$<T_+>@f$ in @f$B \to K^*@f$.
-    * @return @f$<T_+>@f$
+    * @return return the form factor T_+
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class Tm
- * @ingroup Flavour
- * @brief A class for the form factor @f$<T_->@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the form factor T_-. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the averaged form factor @f$<T_->@f$ in 
- * @f$B \to K^*@f$ using LCSR results at low @f$q^2@f$ and lattice results at high @f$q^2@f$
+ * @details 
  */
 class Tm : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ T_{-} \f$ 
+    */
     Tm(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
     
     /**
-    * @brief The averaged form factor @f$<T_->@f$ in @f$B \to K^*@f$.
-    * @return @f$<T_->@f$
+    * @return return the form factor T_-
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 /**
  * @class S
- * @ingroup Flavour
- * @brief A class for the form factor @f$<S>@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the form factor S. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the averaged form factor @f$<S>@f$ in 
- * @f$B \to K^*@f$ using LCSR results at low @f$q^2@f$ and lattice results at high @f$q^2@f$
+ * @details 
  */
 class S : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] lep_i final leptons of the decay
-     */
+    * @brief \f$ S \f$ 
+    */
     S(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i);
 
     /**
-    * @brief The averaged form factor @f$<S>@f$ in @f$B \to K^*@f$.
-    * @return @f$<S>@f$
+    * @return return the form factor S
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
 
 };
 
 
 
 /**
- * @class gtilde_1
- * @ingroup Flavour
- * @brief A class for the correction @f$\tilde{g}_1@f$ in @f$B \to K^*@f$. 
+ * @class Delta_C9_1
+ * @ingroup flavour
+ * @brief A class for the correction to C9 Delta_C9_1. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the correction @f$\tilde{g}_1@f$ in 
- * @f$B \to K^*@f$ 
+ * @details 
  */
 class gtilde_1 : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] typ_i observable type
-     */
+    * @brief \f$ \Delta_{C9}^1 \f$ 
+    */
     gtilde_1(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i, unsigned int typ_i);
 
     /**
-    * @brief The averaged correction @f$\tilde{g}_1@f$ in @f$B \to K^*@f$.
-    * @return @f$\tilde{g}_1@f$
+    * @return return the factor gtilde_1
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
-    unsigned int typ;/**< Observable type: 1 for averaged real part, 2 for averaged 
-                      * immaginary part, 3 for averaged absolute part, 4 for averaged
-                      * argument part, 5 for real part, 6 for immaginary part,
-                      * 7 for absolute part, 8 for argument part. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
+    unsigned int typ;
 };
 
 
 
 /**
  * @class gtilde_2
- * @ingroup Flavour
- * @brief A class for the correction @f$\tilde{g}_2@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the correction to C9 gtilde_2. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the correction @f$\tilde{g}_2@f$ in 
- * @f$B \to K^*@f$ 
+ * @details 
  */
 class gtilde_2 : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] typ_i observable type
-     */
+    * @brief \f$ \Delta_{C9}^2 \f$ 
+    */
     gtilde_2(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i, unsigned int typ_i);
 
     /**
-    * @brief The averaged correction @f$\tilde{g}_1@f$ in @f$B \to K^*@f$.
-    * @return @f$\tilde{g}_1@f$
+    * @return return the factor gtilde_2
     */
     double computeThValue();
     
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
-    unsigned int typ;/**< Observable type: 1 for averaged real part, 2 for averaged 
-                      * immaginary part, 3 for averaged absolute part, 4 for averaged
-                      * argument part, 5 for real part, 6 for immaginary part,
-                      * 7 for absolute part, 8 for argument part. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
+    unsigned int typ;
 };
     
     
     
     /**
  * @class gtilde_3
- * @ingroup Flavour
- * @brief A class for the correction @f$\tilde{g}_3@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the correction to C9 Delta_C9_3. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the correction @f$\tilde{g}_3@f$ in 
- * @f$B \to K^*@f$
+ * @details 
  */
 class gtilde_3 : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] typ_i observable type
-     */
+    * @brief \f$ \Delta_{C9}^3 \f$ 
+    */
     gtilde_3(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i, unsigned int typ_i);
 
     /**
-    * @brief The averaged correction @f$\tilde{g}_1@f$ in @f$B \to K^*@f$.
-    * @return @f$\tilde{g}_1@f$
+    * @return return the factor gtilde_3
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
-    unsigned int typ;/**< Observable type: 1 for averaged real part, 2 for averaged 
-                      * immaginary part, 3 for averaged absolute part, 4 for averaged
-                      * argument part, 5 for real part, 6 for immaginary part,
-                      * 7 for absolute part, 8 for argument part. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
+    unsigned int typ;
 };
 
 /**
  * @class h_0
- * @ingroup Flavour
- * @brief A class for the correction @f$h_0@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the bin averaged value of h_0. 
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the correction @f$h_0@f$ in 
- * @f$B \to K^*@f$
+ * @details 
  */
 class h_0 : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] typ_i observable type
-     */
+    * @brief \f$ h_0 \f$ 
+    */
     h_0(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i, unsigned int typ_i);
 
     /**
-    * @brief The correction @f$h_0@f$ in @f$B \to K^*@f$.
-    * @return @f$h_0@f$
+    * @return return the factor h_0
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
-    unsigned int typ;/**< Observable type: 1 for averaged real part, 2 for averaged 
-                      * immaginary part, 3 for averaged absolute part, 4 for averaged
-                      * argument part. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
+    unsigned int typ;
 };
 
 
 
 /**
  * @class h_p
- * @ingroup Flavour
- * @brief A class for the correction @f$h_+@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the bin averaged value of h_p.
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the correction @f$h_+@f$ in 
- * @f$B \to K^*@f$
+ * @details 
  */
 class h_p : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] typ_i observable type
-     */
+    * @brief \f$ h_{+} \f$ 
+    */
     h_p(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i, unsigned int typ_i);
 
     /**
-    * @brief The correction @f$h_+@f$ in @f$B \to K^*@f$.
-    * @return @f$h_+@f$
+    * @return return the factor h_p
     */
     double computeThValue();
     
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
-    unsigned int typ;/**< Observable type: 1 for averaged real part, 2 for averaged 
-                      * immaginary part, 3 for averaged absolute part, 4 for averaged
-                      * argument part. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
+    unsigned int typ;
 };
     
     
     
 /**
  * @class h_m
- * @ingroup Flavour
- * @brief A class for the correction @f$h_-@f$ in @f$B \to K^*@f$. 
+ * @ingroup flavour
+ * @brief A class for the bin averaged value of h_m.
  * @author SusyFit Collaboration
  * @copyright GNU General Public License
- * @details This class is used to compute the correction @f$h_-@f$ in 
- * @f$B \to K^*@f$
+ * @details 
  */
 class h_m : public ThObservable{
 public:
     
     /**
-     * @brief Constructor.
-     * @param[in] SM_i a reference to an object of type StandardModel
-     * @param[in] meson_i initial meson of the decay
-     * @param[in] vector_i final vector meson of the decay
-     * @param[in] typ_i observable type
-     */
+    * @brief \f$ h_{-} \f$ 
+    */
     h_m(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i, StandardModel::lepton lep_i, unsigned int typ_i);
 
     /**
-    * @brief The correction @f$h_-@f$ in @f$B \to K^*@f$.
-    * @return @f$h_-@f$
+    * @return return the factor h_m
     */
     double computeThValue();
 
 private:
-    StandardModel::lepton lep; /**< Final leptons type. */
-    StandardModel::meson meson; /**< Initial meson type. */
-    StandardModel::meson vectorM; /**< Final vector meson type. */
-    unsigned int typ;/**< Observable type: 1 for averaged real part, 2 for averaged 
-                      * immaginary part, 3 for averaged absolute part, 4 for averaged
-                      * argument part. */
+    StandardModel::lepton lep;
+    StandardModel::meson meson;
+    StandardModel::meson vectorM;
+    unsigned int typ;
 };
 
 

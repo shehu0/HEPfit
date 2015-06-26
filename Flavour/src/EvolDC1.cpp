@@ -10,11 +10,10 @@
 #include <stdexcept>
 
 
-EvolDC1::EvolDC1(unsigned int dim_i, schemes scheme, orders order, const StandardModel& model) 
-:           RGEvolutor(dim_i, scheme, order), model(model),
-            v(dim_i,0.), vi(dim_i,0.), js(dim_i,0.), h(dim_i,0.), gg(dim_i,0.),s_s(dim_i,0.),
-            jssv(dim_i,0.), jss(dim_i,0.), jv(dim_i,0.), vij(dim_i,0.), e(dim_i,0.), dim(dim_i) 
-{
+EvolDC1::EvolDC1(unsigned int dim_i, schemes scheme, orders order,
+             const StandardModel& model) : RGEvolutor(dim_i, scheme, order), model(model),
+             v(dim_i,0.), vi(dim_i,0.), js(dim_i,0.), h(dim_i,0.), gg(dim_i,0.),s_s(dim_i,0.),
+             jssv(dim_i,0.), jss(dim_i,0.), jv(dim_i,0.), vij(dim_i,0.), e(dim_i,0.), dim(dim_i) {
     
     /* magic numbers a & b */
     
@@ -76,11 +75,11 @@ EvolDC1::EvolDC1(unsigned int dim_i, schemes scheme, orders order, const Standar
     }
 }
     
-EvolDC1::~EvolDC1() 
-{}
+EvolDC1::~EvolDC1() {
+}
 
-matrix<double> EvolDC1::AnomalousDimension_M(orders order, unsigned int n_u, unsigned int n_d) const
-{
+matrix<double> EvolDC1::AnomalousDimension_M(orders order, unsigned int n_u,
+        unsigned int n_d) const{
     
     /* Delta F = 1 anomalous dimension in Misiak basis, 
        ref.: M. Misiak, Nucl. Phys. B393 (1993) 23, B439 (1995) 461 (E),  
@@ -221,8 +220,7 @@ matrix<double> EvolDC1::AnomalousDimension_M(orders order, unsigned int n_u, uns
 }
 
 
-matrix<double> EvolDC1::ToRescaledBasis(orders order, unsigned int n_u, unsigned int n_d) const
-{
+matrix<double> EvolDC1::ToRescaledBasis(orders order, unsigned int n_u, unsigned int n_d) const{
     
     /* matrix entries for the anomalous dimension in the Chetyrkin, Misiak and Munz basis,
        ref. hep-ph/9711280v1, hep-ph/0504194 */
@@ -300,8 +298,7 @@ matrix<double> EvolDC1::ToRescaledBasis(orders order, unsigned int n_u, unsigned
     
 }
 
-matrix<double> EvolDC1::ToEffectiveBasis(matrix<double> mat) const
-{
+matrix<double> EvolDC1::ToEffectiveBasis(matrix<double> mat) const{
     
     gslpp::matrix<double> y(dim, 0.);
     
@@ -330,8 +327,7 @@ matrix<double> EvolDC1::ToEffectiveBasis(matrix<double> mat) const
     
 }
 
-matrix<double>& EvolDC1::DC1Evol(double mu, double M, orders order, schemes scheme) 
-{
+matrix<double>& EvolDC1::DC1Evol(double mu, double M, orders order, schemes scheme) {
     switch (scheme) {
         case NDR:
             break;
@@ -343,14 +339,8 @@ matrix<double>& EvolDC1::DC1Evol(double mu, double M, orders order, schemes sche
             throw std::runtime_error("EvolDC1::Df1EvolDC1(): scheme " + out.str() + " not implemented "); 
     }
 
-    double alsMZ = model.getAlsMz();
-    double Mz = model.getMz();
-    if(alsMZ == alsMZ_cache && Mz == Mz_cache) {
-        if (mu == this->mu && M == this->M && scheme == this->scheme)
-            return (*Evol(order));        
-    }
-    alsMZ_cache = alsMZ;
-    Mz_cache = Mz;
+    if (mu == this->mu && M == this->M && scheme == this->scheme)
+        return (*Evol(order));
 
     if (M < mu) {
         std::stringstream out;
@@ -375,8 +365,7 @@ matrix<double>& EvolDC1::DC1Evol(double mu, double M, orders order, schemes sche
     
     }
     
- void EvolDC1::DC1Evol(double mu, double M, double nf, schemes scheme) 
- {
+ void EvolDC1::DC1Evol(double mu, double M, double nf, schemes scheme) {
 
     matrix<double> resLO(dim, 0.), resNLO(dim, 0.), resNNLO(dim, 0.);
 

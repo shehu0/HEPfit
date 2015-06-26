@@ -78,8 +78,6 @@ namespace gslpp
       matrix<double> transpose();
       /** Inverse matrix */
       matrix<double> inverse();
-      /** Determinant matrix */
-      double determinant();
       /** Eigenvalues and eigenvectors */
       void eigensystem(matrix<complex> &U, vector<complex> &S);
       /** Conversion */

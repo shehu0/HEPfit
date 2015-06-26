@@ -1180,11 +1180,6 @@ double NPEffectiveGIMR::muZH(const double sqrt_s) const
     return mu;
 }
 
-double NPEffectiveGIMR::mueeZH(const double sqrt_s) const
-{
-    return 1.;
-}
-
 double NPEffectiveGIMR::muVH(const double sqrt_s) const
 {
     double sigmaWH_SM = computeSigmaWH(sqrt_s);
@@ -1194,7 +1189,7 @@ double NPEffectiveGIMR::muVH(const double sqrt_s) const
     return ((sigmaWH + sigmaZH) / (sigmaWH_SM + sigmaZH_SM));
 }
 
-double NPEffectiveGIMR::muVBFpVH(const double sqrt_s) const
+double NPEffectiveGIMR::muVBFVH(const double sqrt_s) const
 {
     double sigmaWH_SM = computeSigmaWH(sqrt_s);
     double sigmaZH_SM = computeSigmaZH(sqrt_s);
@@ -1224,7 +1219,7 @@ double NPEffectiveGIMR::muttH(const double sqrt_s) const
     return mu;
 }
 
-double NPEffectiveGIMR::muggHpttH(const double sqrt_s) const
+double NPEffectiveGIMR::muggFttH(const double sqrt_s) const
 {
     double sigmaggH_SM = computeSigmaggH(sqrt_s);
     double sigmattH_SM = computeSigmattH(sqrt_s);

@@ -23,10 +23,6 @@
 #include "EWSMThreeLoopEW.h"
 #include "EWSMApproximateFormulae.h"
 #include <Flavour.h>
-/** BEGIN: REMOVE FROM THE PACKAGE **/
-#include "EWSMTwoFermionsLEP2.h"
-#include <LeptonFlavour.h>
-/** END: REMOVE FROM THE PACKAGE **/
 
 
 const std::string StandardModel::SMvars[NSMvars] = {
@@ -82,9 +78,6 @@ Ye(3, 3, 0.)
     myThreeLoopEW2QCD = NULL;
     myThreeLoopEW = NULL;
     myApproximateFormulae = NULL;
-    /** BEGIN: REMOVE FROM THE PACKAGE **/
-    myTwoFermionsLEP2 = NULL;
-    /** END: REMOVE FROM THE PACKAGE **/
     myStandardModelMatching = NULL;
 
     // Particle(std::string name, double mass, double mass_scale = 0., double width = 0., double charge = 0.,double isospin = 0.);
@@ -135,10 +128,6 @@ StandardModel::~StandardModel()
         if (myApproximateFormulae != NULL) delete(myApproximateFormulae);
         if (myStandardModelMatching != NULL) delete(myStandardModelMatching);
         if (myFlavour != NULL) delete(myFlavour);
-        /** BEGIN: REMOVE FROM THE PACKAGE **/
-        if (myTwoFermionsLEP2 != NULL) delete(myTwoFermionsLEP2);
-        if (myLeptonFlavour != NULL) delete(myLeptonFlavour);
-        /** END: REMOVE FROM THE PACKAGE **/
     }
 }
 
@@ -158,10 +147,6 @@ bool StandardModel::InitializeModel()
     myApproximateFormulae = new EWSMApproximateFormulae(*myEWSMcache); ///< A pointer to an object of type EWSMApproximateFormulae.
     myStandardModelMatching = new StandardModelMatching(*this);
     myFlavour = new Flavour(*this);
-    /** BEGIN: REMOVE FROM THE PACKAGE **/
-    myTwoFermionsLEP2 = new EWSMTwoFermionsLEP2(*myEWSMcache); ///< A pointer to an object of type EWSMTwoFermionsLEP2.
-    myLeptonFlavour = new LeptonFlavour(*this);
-    /** END: REMOVE FROM THE PACKAGE **/
     setModelInitialized(true);
     return (true);
 }

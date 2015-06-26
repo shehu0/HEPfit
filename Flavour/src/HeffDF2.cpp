@@ -8,8 +8,8 @@
 #include "HeffDF2.h"
 #include <QCD.h>
 
-HeffDF2::HeffDF2(const StandardModel& SM)
-:       model(SM),
+HeffDF2::HeffDF2(const StandardModel& SM):
+        model(SM),
         drNDRLRI(5, 5, 0),
         coeffbd(5, NDR, NLO),
         coeffbs(5, NDR, NLO),
@@ -31,11 +31,10 @@ HeffDF2::HeffDF2(const StandardModel& SM)
     drNDRLRI(4,4) = (2. + log(4.)) / Nc;
 }
 
-HeffDF2::~HeffDF2() 
-{}
+HeffDF2::~HeffDF2() {
+}
 
-vector<complex>** HeffDF2::ComputeCoeffBd(double mu, schemes scheme) 
-{
+vector<complex>** HeffDF2::ComputeCoeffBd(double mu, schemes scheme) {
 
      std::vector<WilsonCoefficient>& mc = model.getMyMatching()->CMdbd2();
     
@@ -60,8 +59,7 @@ vector<complex>** HeffDF2::ComputeCoeffBd(double mu, schemes scheme)
     return coeffbd.getCoeff();
 }
 
-vector<complex>** HeffDF2::ComputeCoeffBs(double mu, schemes scheme) 
-{
+vector<complex>** HeffDF2::ComputeCoeffBs(double mu, schemes scheme) {
 
      std::vector<WilsonCoefficient>& mc = model.getMyMatching()->CMdbs2();
 
@@ -86,8 +84,7 @@ vector<complex>** HeffDF2::ComputeCoeffBs(double mu, schemes scheme)
     return coeffbs.getCoeff();
 }
 
-vector<complex>** HeffDF2::ComputeCoeffdd(double mu, schemes scheme) 
-{
+vector<complex>** HeffDF2::ComputeCoeffdd(double mu, schemes scheme) {
 
      std::vector<WilsonCoefficient>& mc = model.getMyMatching()->CMdd2();
     
@@ -112,8 +109,7 @@ vector<complex>** HeffDF2::ComputeCoeffdd(double mu, schemes scheme)
     return coeffDd.getCoeff();
 }
 
-vector<complex>** HeffDF2::ComputeCoeffK(double mu, schemes scheme) 
-{
+vector<complex>** HeffDF2::ComputeCoeffK(double mu, schemes scheme) {
 
      std::vector<WilsonCoefficient>& mc = model.getMyMatching()->CMdk2();
     vector<complex> zero(5,0.);
@@ -164,8 +160,7 @@ vector<complex>** HeffDF2::ComputeCoeffK(double mu, schemes scheme)
 }
 
 
-vector<complex>** HeffDF2::ComputeCoeffmK(double mu, schemes scheme) 
-{
+vector<complex>** HeffDF2::ComputeCoeffmK(double mu, schemes scheme) {
 
      std::vector<WilsonCoefficient>& mc = model.getMyMatching()->CMdk2();
     vector<complex> zero(5,0.);
@@ -194,8 +189,7 @@ vector<complex>** HeffDF2::ComputeCoeffmK(double mu, schemes scheme)
     return coeffmk.getCoeff();
 }
 
-void HeffDF2::ChangeScheme(schemes schout, WilsonCoefficient& c_in, orders order) 
-{
+void HeffDF2::ChangeScheme(schemes schout, WilsonCoefficient& c_in, orders order) {
     schemes schin = c_in.getScheme();
     if (schout == schin || order == LO) return;
     WilsonCoefficient c_out(5, schout, order);

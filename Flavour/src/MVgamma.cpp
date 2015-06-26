@@ -9,18 +9,17 @@
 #include "MVgamma.h"
 
 
-MVgamma::MVgamma(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i) : ThObservable(SM_i)
-{
+MVgamma::MVgamma(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i) : ThObservable(SM_i){
     meson = meson_i;
     vectorM = vector_i;
 }
 
 
-MVgamma::~MVgamma() 
-{}
+MVgamma::~MVgamma() {
+/** Check to see if GSL pointers are released!!*/
+}
 
-void MVgamma::updateParameters()
-{
+void MVgamma::updateParameters(){
     GF = SM.getGF();
     ale = SM.getAle();
     MM = SM.getMesons(meson).getMass();
@@ -36,17 +35,17 @@ void MVgamma::updateParameters()
     
     switch(vectorM){
         case StandardModel::K_star :
-            a_0T1=SM.geta_0T1();
-            a_1T1=SM.geta_1T1();
-            a_2T1=SM.geta_2T1();
-            dmT1=SM.getdmT1();
+            r_1T1=SM.getr_1T1();
+            r_2T1=SM.getr_1T3t() + SM.getr_2T3t() - r_1T1;//SM.getr_2T1();
+            m_RT1=SM.getm_RT1();
+            m_fit2T1=SM.getm_fit2T1();
             
             break;
         case StandardModel::PHI :
-            a_0T1=SM.geta_0T1phi();
-            a_1T1=SM.geta_1T1phi();
-            a_2T1=SM.geta_2T1phi();
-            dmT1=SM.getdmT1phi();
+            r_1T1=SM.getr_1T1phi();
+            r_2T1=SM.getr_1T3tphi() + SM.getr_2T3tphi() - r_1T1;//SM.getr_2T1();
+            m_RT1=SM.getm_RT1phi();
+            m_fit2T1=SM.getm_fit2T1phi();
             
             break;
         default:
@@ -71,9 +70,8 @@ void MVgamma::updateParameters()
 /*******************************************************************************
  * Form Factor                                                     *
  * ****************************************************************************/
-double MVgamma::T_1()
-{
-    return SM.getMyFlavour()->getMVll(meson, vectorM, StandardModel::MU)->LCSR_fit(0., a_0T1, a_1T1, a_2T1, dmT1);
+double MVgamma::T_1(){
+    return SM.getMyFlavour()->getMVll(meson, vectorM, StandardModel::MU)->LCSR_fit1(0., r_1T1, r_2T1, pow(m_RT1, 2.), m_fit2T1);
 }
 
 
@@ -81,23 +79,19 @@ double MVgamma::T_1()
 /*******************************************************************************
  * Helicity amplitudes                                                         *
  * ****************************************************************************/
-complex MVgamma::H_V_m() 
-{
+complex MVgamma::H_V_m() {
     return lambda_t * (C_7 *T_1() * lambda / MM2 - MM/(2*Mb)*16*M_PI*M_PI*h[1]);
 }
 
-gslpp::complex MVgamma::H_V_p() 
-{
+complex MVgamma::H_V_p() {
     return lambda_t * (- C_7p *T_1() * lambda / MM2 - MM/(2*Mb)*16*M_PI*M_PI*h[0]);
 }
 
-gslpp::complex MVgamma::H_V_m_bar() 
-{
+complex MVgamma::H_V_m_bar() {
     return lambda_t.conjugate() * (C_7 *T_1() * lambda / MM2 - MM/(2*Mb)*16*M_PI*M_PI*h[1]);
 }
 
-gslpp::complex MVgamma::H_V_p_bar() 
-{
+complex MVgamma::H_V_p_bar() {
     return lambda_t.conjugate() * (- C_7p *T_1() * lambda / MM2 - MM/(2*Mb)*16*M_PI*M_PI*h[0]);
 }
 
@@ -106,28 +100,23 @@ gslpp::complex MVgamma::H_V_p_bar()
  * ****************************************************************************/
 
 
-BR_MVgamma::BR_MVgamma(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i) 
-: MVgamma(SM_i, meson_i, vector_i) 
-{
+BR_MVgamma::BR_MVgamma(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i) : MVgamma(SM_i, meson_i, vector_i) {
     meson = meson_i;
     vectorM = vector_i;
 }
 
-double BR_MVgamma::computeThValue()
-{
+double BR_MVgamma::computeThValue(){
     updateParameters();
     
     return ale * pow(GF * Mb / (4 * M_PI * M_PI), 2.) * MM * lambda /(4. * width) * (H_V_p().abs2() + H_V_m().abs2() + H_V_p_bar().abs2() + H_V_m_bar().abs2());
 }
 
-ACP_MVgamma::ACP_MVgamma(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i) : MVgamma(SM_i, meson_i, vector_i) 
-{
+ACP_MVgamma::ACP_MVgamma(const StandardModel& SM_i, StandardModel::meson meson_i, StandardModel::meson vector_i) : MVgamma(SM_i, meson_i, vector_i) {
     meson = meson_i;
     vectorM = vector_i;
 }
 
-double ACP_MVgamma::computeThValue()
-{
+double ACP_MVgamma::computeThValue(){
     updateParameters();
     
     return ((H_V_p().abs2() + H_V_m().abs2() - H_V_p_bar().abs2() - H_V_m_bar().abs2())) / (H_V_p().abs2() + H_V_m().abs2() + H_V_p_bar().abs2() + H_V_m_bar().abs2());

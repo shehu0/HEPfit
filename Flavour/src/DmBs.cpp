@@ -7,7 +7,6 @@
 
 #include "DmBs.h"
 
-double  DmBs::computeThValue() 
-{
+double  DmBs::computeThValue() {
     return(2. * AmpBs(FULLNLO).abs());
 }
