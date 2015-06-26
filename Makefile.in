@@ -496,9 +496,8 @@ am__objects_3 = ComputeObservables/src/ExamplesSrc_LibMode_header_analysis-Compu
 	StandardModel/src/ExamplesSrc_LibMode_header_analysis-StandardModel.$(OBJEXT) \
 	StandardModel/src/ExamplesSrc_LibMode_header_analysis-StandardModelMatching.$(OBJEXT) \
 	StandardModel/src/ExamplesSrc_LibMode_header_analysis-WilsonCoefficient.$(OBJEXT)
-am__objects_4 = $(am__objects_3) \
-	ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.$(OBJEXT)
-am_ExamplesSrc_LibMode_header_analysis_OBJECTS = $(am__objects_4)
+am_ExamplesSrc_LibMode_header_analysis_OBJECTS = $(am__objects_3) \
+	ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.$(OBJEXT)
 ExamplesSrc_LibMode_header_analysis_OBJECTS =  \
 	$(am_ExamplesSrc_LibMode_header_analysis_OBJECTS)
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -506,7 +505,7 @@ am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
 ExamplesSrc_LibMode_header_analysis_DEPENDENCIES =  \
 	$(am__DEPENDENCIES_2)
-am__objects_5 = ComputeObservables/src/ExamplesSrc_MonteCarloMode_analysis-ComputeObservables.$(OBJEXT) \
+am__objects_4 = ComputeObservables/src/ExamplesSrc_MonteCarloMode_analysis-ComputeObservables.$(OBJEXT) \
 	EW/src/ExamplesSrc_MonteCarloMode_analysis-Abottom.$(OBJEXT) \
 	EW/src/ExamplesSrc_MonteCarloMode_analysis-Acharm.$(OBJEXT) \
 	EW/src/ExamplesSrc_MonteCarloMode_analysis-AFBbottom.$(OBJEXT) \
@@ -615,9 +614,8 @@ am__objects_5 = ComputeObservables/src/ExamplesSrc_MonteCarloMode_analysis-Compu
 	StandardModel/src/ExamplesSrc_MonteCarloMode_analysis-StandardModel.$(OBJEXT) \
 	StandardModel/src/ExamplesSrc_MonteCarloMode_analysis-StandardModelMatching.$(OBJEXT) \
 	StandardModel/src/ExamplesSrc_MonteCarloMode_analysis-WilsonCoefficient.$(OBJEXT)
-am__objects_6 = $(am__objects_5) \
-	ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.$(OBJEXT)
-am_ExamplesSrc_MonteCarloMode_analysis_OBJECTS = $(am__objects_6)
+am_ExamplesSrc_MonteCarloMode_analysis_OBJECTS = $(am__objects_4) \
+	ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.$(OBJEXT)
 ExamplesSrc_MonteCarloMode_analysis_OBJECTS =  \
 	$(am_ExamplesSrc_MonteCarloMode_analysis_OBJECTS)
 ExamplesSrc_MonteCarloMode_analysis_DEPENDENCIES =  \
@@ -1123,8 +1121,8 @@ StandardModel/src/StandardModelMatching.cpp \
 StandardModel/src/WilsonCoefficient.cpp 
 
 ExamplesSrc_LibMode_config_analysis_SOURCES = $(themySOURCES) ExamplesSrc/LibMode_config/libmode_config.cpp
-ExamplesSrc_LibMode_header_analysis_SOURCES = $(ExamplesSrc_LibMode_config_analysis_SOURCES) 
-ExamplesSrc_MonteCarloMode_analysis_SOURCES = $(ExamplesSrc_LibMode_config_analysis_SOURCES) 
+ExamplesSrc_LibMode_header_analysis_SOURCES = $(themySOURCES) ExamplesSrc/LibMode_header/libmode_header.cpp
+ExamplesSrc_MonteCarloMode_analysis_SOURCES = $(themySOURCES) ExamplesSrc/MonteCarloMode/MCMC.cpp 
 ExamplesSrc_LibMode_config_analysis_CPPFLAGS = $(SuF_CFLAGS) $(GSL_CFLAGS) -I@ROOTINCDIR@  $(BOOST_CPPFLAGS)
 ExamplesSrc_LibMode_header_analysis_CPPFLAGS = $(ExamplesSrc_LibMode_config_analysis_CPPFLAGS) 
 ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS = $(ExamplesSrc_LibMode_config_analysis_CPPFLAGS) 
@@ -2298,12 +2296,15 @@ StandardModel/src/ExamplesSrc_LibMode_header_analysis-StandardModelMatching.$(OB
 StandardModel/src/ExamplesSrc_LibMode_header_analysis-WilsonCoefficient.$(OBJEXT):  \
 	StandardModel/src/$(am__dirstamp) \
 	StandardModel/src/$(DEPDIR)/$(am__dirstamp)
-ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.$(OBJEXT):  \
-	ExamplesSrc/LibMode_config/$(am__dirstamp) \
-	ExamplesSrc/LibMode_config/$(DEPDIR)/$(am__dirstamp)
 ExamplesSrc/LibMode_header/$(am__dirstamp):
 	@$(MKDIR_P) ExamplesSrc/LibMode_header
 	@: > ExamplesSrc/LibMode_header/$(am__dirstamp)
+ExamplesSrc/LibMode_header/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ExamplesSrc/LibMode_header/$(DEPDIR)
+	@: > ExamplesSrc/LibMode_header/$(DEPDIR)/$(am__dirstamp)
+ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.$(OBJEXT):  \
+	ExamplesSrc/LibMode_header/$(am__dirstamp) \
+	ExamplesSrc/LibMode_header/$(DEPDIR)/$(am__dirstamp)
 
 ExamplesSrc/LibMode_header/analysis$(EXEEXT): $(ExamplesSrc_LibMode_header_analysis_OBJECTS) $(ExamplesSrc_LibMode_header_analysis_DEPENDENCIES) $(EXTRA_ExamplesSrc_LibMode_header_analysis_DEPENDENCIES) ExamplesSrc/LibMode_header/$(am__dirstamp)
 	@rm -f ExamplesSrc/LibMode_header/analysis$(EXEEXT)
@@ -2615,12 +2616,15 @@ StandardModel/src/ExamplesSrc_MonteCarloMode_analysis-StandardModelMatching.$(OB
 StandardModel/src/ExamplesSrc_MonteCarloMode_analysis-WilsonCoefficient.$(OBJEXT):  \
 	StandardModel/src/$(am__dirstamp) \
 	StandardModel/src/$(DEPDIR)/$(am__dirstamp)
-ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.$(OBJEXT):  \
-	ExamplesSrc/LibMode_config/$(am__dirstamp) \
-	ExamplesSrc/LibMode_config/$(DEPDIR)/$(am__dirstamp)
 ExamplesSrc/MonteCarloMode/$(am__dirstamp):
 	@$(MKDIR_P) ExamplesSrc/MonteCarloMode
 	@: > ExamplesSrc/MonteCarloMode/$(am__dirstamp)
+ExamplesSrc/MonteCarloMode/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ExamplesSrc/MonteCarloMode/$(DEPDIR)
+	@: > ExamplesSrc/MonteCarloMode/$(DEPDIR)/$(am__dirstamp)
+ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.$(OBJEXT):  \
+	ExamplesSrc/MonteCarloMode/$(am__dirstamp) \
+	ExamplesSrc/MonteCarloMode/$(DEPDIR)/$(am__dirstamp)
 
 ExamplesSrc/MonteCarloMode/analysis$(EXEEXT): $(ExamplesSrc_MonteCarloMode_analysis_OBJECTS) $(ExamplesSrc_MonteCarloMode_analysis_DEPENDENCIES) $(EXTRA_ExamplesSrc_MonteCarloMode_analysis_DEPENDENCIES) ExamplesSrc/MonteCarloMode/$(am__dirstamp)
 	@rm -f ExamplesSrc/MonteCarloMode/analysis$(EXEEXT)
@@ -2668,6 +2672,8 @@ mostlyclean-compile:
 	-rm -f EW/src/*.$(OBJEXT)
 	-rm -f EW/src/*.lo
 	-rm -f ExamplesSrc/LibMode_config/*.$(OBJEXT)
+	-rm -f ExamplesSrc/LibMode_header/*.$(OBJEXT)
+	-rm -f ExamplesSrc/MonteCarloMode/*.$(OBJEXT)
 	-rm -f Flavour/src/*.$(OBJEXT)
 	-rm -f Flavour/src/*.lo
 	-rm -f HiggsExtensions/src/*.$(OBJEXT)
@@ -2755,8 +2761,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@EW/src/$(DEPDIR)/libSusyFit_@SusyFit_API_VERSION@_la-sigmaHadron.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@EW/src/$(DEPDIR)/libSusyFit_@SusyFit_API_VERSION@_la-sin2thetaEff.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_LibMode_config_analysis-libmode_config.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_config.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-libmode_config.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@ExamplesSrc/LibMode_header/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_header.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@ExamplesSrc/MonteCarloMode/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-MCMC.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@Flavour/src/$(DEPDIR)/ExamplesSrc_LibMode_config_analysis-AmpDB2.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@Flavour/src/$(DEPDIR)/ExamplesSrc_LibMode_config_analysis-AmpDD2.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@Flavour/src/$(DEPDIR)/ExamplesSrc_LibMode_config_analysis-AmpDK2.Po@am__quote@
@@ -6983,19 +6989,19 @@ StandardModel/src/ExamplesSrc_LibMode_header_analysis-WilsonCoefficient.obj: Sta
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_LibMode_header_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o StandardModel/src/ExamplesSrc_LibMode_header_analysis-WilsonCoefficient.obj `if test -f 'StandardModel/src/WilsonCoefficient.cpp'; then $(CYGPATH_W) 'StandardModel/src/WilsonCoefficient.cpp'; else $(CYGPATH_W) '$(srcdir)/StandardModel/src/WilsonCoefficient.cpp'; fi`
 
-ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.o: ExamplesSrc/LibMode_config/libmode_config.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_LibMode_header_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.o -MD -MP -MF ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_config.Tpo -c -o ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.o `test -f 'ExamplesSrc/LibMode_config/libmode_config.cpp' || echo '$(srcdir)/'`ExamplesSrc/LibMode_config/libmode_config.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_config.Tpo ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_config.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ExamplesSrc/LibMode_config/libmode_config.cpp' object='ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.o' libtool=no @AMDEPBACKSLASH@
+ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.o: ExamplesSrc/LibMode_header/libmode_header.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_LibMode_header_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.o -MD -MP -MF ExamplesSrc/LibMode_header/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_header.Tpo -c -o ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.o `test -f 'ExamplesSrc/LibMode_header/libmode_header.cpp' || echo '$(srcdir)/'`ExamplesSrc/LibMode_header/libmode_header.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ExamplesSrc/LibMode_header/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_header.Tpo ExamplesSrc/LibMode_header/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_header.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ExamplesSrc/LibMode_header/libmode_header.cpp' object='ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_LibMode_header_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.o `test -f 'ExamplesSrc/LibMode_config/libmode_config.cpp' || echo '$(srcdir)/'`ExamplesSrc/LibMode_config/libmode_config.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_LibMode_header_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.o `test -f 'ExamplesSrc/LibMode_header/libmode_header.cpp' || echo '$(srcdir)/'`ExamplesSrc/LibMode_header/libmode_header.cpp
 
-ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.obj: ExamplesSrc/LibMode_config/libmode_config.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_LibMode_header_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.obj -MD -MP -MF ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_config.Tpo -c -o ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.obj `if test -f 'ExamplesSrc/LibMode_config/libmode_config.cpp'; then $(CYGPATH_W) 'ExamplesSrc/LibMode_config/libmode_config.cpp'; else $(CYGPATH_W) '$(srcdir)/ExamplesSrc/LibMode_config/libmode_config.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_config.Tpo ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_config.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ExamplesSrc/LibMode_config/libmode_config.cpp' object='ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.obj' libtool=no @AMDEPBACKSLASH@
+ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.obj: ExamplesSrc/LibMode_header/libmode_header.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_LibMode_header_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.obj -MD -MP -MF ExamplesSrc/LibMode_header/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_header.Tpo -c -o ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.obj `if test -f 'ExamplesSrc/LibMode_header/libmode_header.cpp'; then $(CYGPATH_W) 'ExamplesSrc/LibMode_header/libmode_header.cpp'; else $(CYGPATH_W) '$(srcdir)/ExamplesSrc/LibMode_header/libmode_header.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ExamplesSrc/LibMode_header/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_header.Tpo ExamplesSrc/LibMode_header/$(DEPDIR)/ExamplesSrc_LibMode_header_analysis-libmode_header.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ExamplesSrc/LibMode_header/libmode_header.cpp' object='ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_LibMode_header_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ExamplesSrc/LibMode_config/ExamplesSrc_LibMode_header_analysis-libmode_config.obj `if test -f 'ExamplesSrc/LibMode_config/libmode_config.cpp'; then $(CYGPATH_W) 'ExamplesSrc/LibMode_config/libmode_config.cpp'; else $(CYGPATH_W) '$(srcdir)/ExamplesSrc/LibMode_config/libmode_config.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_LibMode_header_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ExamplesSrc/LibMode_header/ExamplesSrc_LibMode_header_analysis-libmode_header.obj `if test -f 'ExamplesSrc/LibMode_header/libmode_header.cpp'; then $(CYGPATH_W) 'ExamplesSrc/LibMode_header/libmode_header.cpp'; else $(CYGPATH_W) '$(srcdir)/ExamplesSrc/LibMode_header/libmode_header.cpp'; fi`
 
 ComputeObservables/src/ExamplesSrc_MonteCarloMode_analysis-ComputeObservables.o: ComputeObservables/src/ComputeObservables.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ComputeObservables/src/ExamplesSrc_MonteCarloMode_analysis-ComputeObservables.o -MD -MP -MF ComputeObservables/src/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-ComputeObservables.Tpo -c -o ComputeObservables/src/ExamplesSrc_MonteCarloMode_analysis-ComputeObservables.o `test -f 'ComputeObservables/src/ComputeObservables.cpp' || echo '$(srcdir)/'`ComputeObservables/src/ComputeObservables.cpp
@@ -8523,19 +8529,19 @@ StandardModel/src/ExamplesSrc_MonteCarloMode_analysis-WilsonCoefficient.obj: Sta
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o StandardModel/src/ExamplesSrc_MonteCarloMode_analysis-WilsonCoefficient.obj `if test -f 'StandardModel/src/WilsonCoefficient.cpp'; then $(CYGPATH_W) 'StandardModel/src/WilsonCoefficient.cpp'; else $(CYGPATH_W) '$(srcdir)/StandardModel/src/WilsonCoefficient.cpp'; fi`
 
-ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.o: ExamplesSrc/LibMode_config/libmode_config.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.o -MD -MP -MF ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-libmode_config.Tpo -c -o ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.o `test -f 'ExamplesSrc/LibMode_config/libmode_config.cpp' || echo '$(srcdir)/'`ExamplesSrc/LibMode_config/libmode_config.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-libmode_config.Tpo ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-libmode_config.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ExamplesSrc/LibMode_config/libmode_config.cpp' object='ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.o' libtool=no @AMDEPBACKSLASH@
+ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.o: ExamplesSrc/MonteCarloMode/MCMC.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.o -MD -MP -MF ExamplesSrc/MonteCarloMode/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-MCMC.Tpo -c -o ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.o `test -f 'ExamplesSrc/MonteCarloMode/MCMC.cpp' || echo '$(srcdir)/'`ExamplesSrc/MonteCarloMode/MCMC.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ExamplesSrc/MonteCarloMode/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-MCMC.Tpo ExamplesSrc/MonteCarloMode/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-MCMC.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ExamplesSrc/MonteCarloMode/MCMC.cpp' object='ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.o `test -f 'ExamplesSrc/LibMode_config/libmode_config.cpp' || echo '$(srcdir)/'`ExamplesSrc/LibMode_config/libmode_config.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.o `test -f 'ExamplesSrc/MonteCarloMode/MCMC.cpp' || echo '$(srcdir)/'`ExamplesSrc/MonteCarloMode/MCMC.cpp
 
-ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.obj: ExamplesSrc/LibMode_config/libmode_config.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.obj -MD -MP -MF ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-libmode_config.Tpo -c -o ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.obj `if test -f 'ExamplesSrc/LibMode_config/libmode_config.cpp'; then $(CYGPATH_W) 'ExamplesSrc/LibMode_config/libmode_config.cpp'; else $(CYGPATH_W) '$(srcdir)/ExamplesSrc/LibMode_config/libmode_config.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-libmode_config.Tpo ExamplesSrc/LibMode_config/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-libmode_config.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ExamplesSrc/LibMode_config/libmode_config.cpp' object='ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.obj' libtool=no @AMDEPBACKSLASH@
+ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.obj: ExamplesSrc/MonteCarloMode/MCMC.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.obj -MD -MP -MF ExamplesSrc/MonteCarloMode/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-MCMC.Tpo -c -o ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.obj `if test -f 'ExamplesSrc/MonteCarloMode/MCMC.cpp'; then $(CYGPATH_W) 'ExamplesSrc/MonteCarloMode/MCMC.cpp'; else $(CYGPATH_W) '$(srcdir)/ExamplesSrc/MonteCarloMode/MCMC.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) ExamplesSrc/MonteCarloMode/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-MCMC.Tpo ExamplesSrc/MonteCarloMode/$(DEPDIR)/ExamplesSrc_MonteCarloMode_analysis-MCMC.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ExamplesSrc/MonteCarloMode/MCMC.cpp' object='ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ExamplesSrc/LibMode_config/ExamplesSrc_MonteCarloMode_analysis-libmode_config.obj `if test -f 'ExamplesSrc/LibMode_config/libmode_config.cpp'; then $(CYGPATH_W) 'ExamplesSrc/LibMode_config/libmode_config.cpp'; else $(CYGPATH_W) '$(srcdir)/ExamplesSrc/LibMode_config/libmode_config.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ExamplesSrc_MonteCarloMode_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ExamplesSrc/MonteCarloMode/ExamplesSrc_MonteCarloMode_analysis-MCMC.obj `if test -f 'ExamplesSrc/MonteCarloMode/MCMC.cpp'; then $(CYGPATH_W) 'ExamplesSrc/MonteCarloMode/MCMC.cpp'; else $(CYGPATH_W) '$(srcdir)/ExamplesSrc/MonteCarloMode/MCMC.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -8885,7 +8891,9 @@ distclean-generic:
 	-rm -f EW/src/$(am__dirstamp)
 	-rm -f ExamplesSrc/LibMode_config/$(DEPDIR)/$(am__dirstamp)
 	-rm -f ExamplesSrc/LibMode_config/$(am__dirstamp)
+	-rm -f ExamplesSrc/LibMode_header/$(DEPDIR)/$(am__dirstamp)
 	-rm -f ExamplesSrc/LibMode_header/$(am__dirstamp)
+	-rm -f ExamplesSrc/MonteCarloMode/$(DEPDIR)/$(am__dirstamp)
 	-rm -f ExamplesSrc/MonteCarloMode/$(am__dirstamp)
 	-rm -f Flavour/src/$(DEPDIR)/$(am__dirstamp)
 	-rm -f Flavour/src/$(am__dirstamp)
@@ -8917,7 +8925,7 @@ clean-am: clean-binPROGRAMS clean-generic clean-libtool \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ComputeObservables/src/$(DEPDIR) EW/src/$(DEPDIR) ExamplesSrc/LibMode_config/$(DEPDIR) Flavour/src/$(DEPDIR) HiggsExtensions/src/$(DEPDIR) InputParser/src/$(DEPDIR) LoopFunctions/src/$(DEPDIR) MonteCarlo/src/$(DEPDIR) NewPhysics/src/$(DEPDIR) Observables/src/$(DEPDIR) StandardModel/src/$(DEPDIR) gslpp/src/$(DEPDIR)
+	-rm -rf ComputeObservables/src/$(DEPDIR) EW/src/$(DEPDIR) ExamplesSrc/LibMode_config/$(DEPDIR) ExamplesSrc/LibMode_header/$(DEPDIR) ExamplesSrc/MonteCarloMode/$(DEPDIR) Flavour/src/$(DEPDIR) HiggsExtensions/src/$(DEPDIR) InputParser/src/$(DEPDIR) LoopFunctions/src/$(DEPDIR) MonteCarlo/src/$(DEPDIR) NewPhysics/src/$(DEPDIR) Observables/src/$(DEPDIR) StandardModel/src/$(DEPDIR) gslpp/src/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -8967,7 +8975,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ComputeObservables/src/$(DEPDIR) EW/src/$(DEPDIR) ExamplesSrc/LibMode_config/$(DEPDIR) Flavour/src/$(DEPDIR) HiggsExtensions/src/$(DEPDIR) InputParser/src/$(DEPDIR) LoopFunctions/src/$(DEPDIR) MonteCarlo/src/$(DEPDIR) NewPhysics/src/$(DEPDIR) Observables/src/$(DEPDIR) StandardModel/src/$(DEPDIR) gslpp/src/$(DEPDIR)
+	-rm -rf ComputeObservables/src/$(DEPDIR) EW/src/$(DEPDIR) ExamplesSrc/LibMode_config/$(DEPDIR) ExamplesSrc/LibMode_header/$(DEPDIR) ExamplesSrc/MonteCarloMode/$(DEPDIR) Flavour/src/$(DEPDIR) HiggsExtensions/src/$(DEPDIR) InputParser/src/$(DEPDIR) LoopFunctions/src/$(DEPDIR) MonteCarlo/src/$(DEPDIR) NewPhysics/src/$(DEPDIR) Observables/src/$(DEPDIR) StandardModel/src/$(DEPDIR) gslpp/src/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

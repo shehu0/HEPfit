@@ -54,7 +54,7 @@ See the INSTALL file for detailed installation instructions.
 
 After a successfull installation, the three examples can be executed:
 
-./ExamplesSrc/MonteCarloMode/analysis ExamplesSrc/config/StandardModel.conf 
+./ExamplesSrc/MonteCarloMode/analysis ExamplesSrc/config/StandardModel.conf
 
 ./ExamplesSrc/LibMode_config/analysis ExamplesSrc/config/StandardModel.conf
 

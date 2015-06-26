@@ -260,8 +260,8 @@ StandardModel/src/StandardModelMatching.cpp \
 StandardModel/src/WilsonCoefficient.cpp 
 
 ExamplesSrc_LibMode_config_analysis_SOURCES =  $(themySOURCES) ExamplesSrc/LibMode_config/libmode_config.cpp
-ExamplesSrc_LibMode_header_analysis_SOURCES =  $(ExamplesSrc_LibMode_config_analysis_SOURCES) 
-ExamplesSrc_MonteCarloMode_analysis_SOURCES =  $(ExamplesSrc_LibMode_config_analysis_SOURCES) 
+ExamplesSrc_LibMode_header_analysis_SOURCES =  $(themySOURCES) ExamplesSrc/LibMode_header/libmode_header.cpp
+ExamplesSrc_MonteCarloMode_analysis_SOURCES =  $(themySOURCES) ExamplesSrc/MonteCarloMode/MCMC.cpp 
 
 
 ExamplesSrc_LibMode_config_analysis_CPPFLAGS = $(SuF_CFLAGS) $(GSL_CFLAGS) -I@ROOTINCDIR@  $(BOOST_CPPFLAGS)
