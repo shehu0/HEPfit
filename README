@@ -25,7 +25,7 @@ The Monte Carlo mode is based on the BAT (Bayesian Analysis Toolkit) library.
 
 Availability:
 -------------
-SusyFit is available from [the SusyFit webpage](http://susyfit.roma1.infn.it/).
+SusyFit is available from [the SusyFit webpage](http://hepfit.roma1.infn.it/).
 See COPYING file for licensing terms.
 
 Installation:
@@ -66,7 +66,7 @@ Support:
 --------
 There is not yet a manual for SusyFit. For additional information and
 contacting the authors, please, consult [the SusyFit
-webpage](http://susyfit.roma1.infn.it/).
+webpage](http://hepfit.roma1.infn.it/).
 
 ===========================================================================
 This file is part of SusyFit
