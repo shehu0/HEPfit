@@ -374,16 +374,20 @@ am__objects_1 = BHWIDEWrapper/src/libHEPfit_@HEPfit_API_VERSION@_la-BHWIDEWrappe
 	SUSY/src/libHEPfit_@HEPfit_API_VERSION@_la-SUSY.lo \
 	SUSYMassInsertion/src/libHEPfit_@HEPfit_API_VERSION@_la-SUSYMassInsertionMatching.lo \
 	SUSYMassInsertion/src/libHEPfit_@HEPfit_API_VERSION@_la-SUSYMassInsertion.lo \
-	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo \
+	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.lo \
+	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.lo \
+	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo \
 	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.lo \
+	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.lo \
+	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo \
 	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-positivity.lo \
 	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-STU.lo \
 	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMcache.lo \
-	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo \
-	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo \
-	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo \
+	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo \
 	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMfunctions.lo \
-	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo
+	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo \
+	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.lo \
+	THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo
 am_libHEPfit_@HEPfit_API_VERSION@_la_OBJECTS = $(am__objects_1)
 libHEPfit_@HEPfit_API_VERSION@_la_OBJECTS =  \
 	$(am_libHEPfit_@HEPfit_API_VERSION@_la_OBJECTS)
@@ -626,16 +630,20 @@ am__objects_2 =  \
 	SUSY/src/Analysis_analysis-SUSY.$(OBJEXT) \
 	SUSYMassInsertion/src/Analysis_analysis-SUSYMassInsertionMatching.$(OBJEXT) \
 	SUSYMassInsertion/src/Analysis_analysis-SUSYMassInsertion.$(OBJEXT) \
-	THDM/src/Analysis_analysis-THDM.$(OBJEXT) \
+	THDM/src/Analysis_analysis-bsgamma.$(OBJEXT) \
+	THDM/src/Analysis_analysis-CPoddHiggs.$(OBJEXT) \
+	THDM/src/Analysis_analysis-EWPO.$(OBJEXT) \
 	THDM/src/Analysis_analysis-globalminimum.$(OBJEXT) \
+	THDM/src/Analysis_analysis-heavyHiggs.$(OBJEXT) \
+	THDM/src/Analysis_analysis-lightHiggs.$(OBJEXT) \
 	THDM/src/Analysis_analysis-positivity.$(OBJEXT) \
 	THDM/src/Analysis_analysis-STU.$(OBJEXT) \
 	THDM/src/Analysis_analysis-THDMcache.$(OBJEXT) \
-	THDM/src/Analysis_analysis-EWPO.$(OBJEXT) \
-	THDM/src/Analysis_analysis-unitarity.$(OBJEXT) \
-	THDM/src/Analysis_analysis-THDMMatching.$(OBJEXT) \
+	THDM/src/Analysis_analysis-THDM.$(OBJEXT) \
 	THDM/src/Analysis_analysis-THDMfunctions.$(OBJEXT) \
-	THDM/src/Analysis_analysis-lightHiggs.$(OBJEXT)
+	THDM/src/Analysis_analysis-THDMMatching.$(OBJEXT) \
+	THDM/src/Analysis_analysis-THDMquantities.$(OBJEXT) \
+	THDM/src/Analysis_analysis-unitarity.$(OBJEXT)
 am_Analysis_analysis_OBJECTS = $(am__objects_2) \
 	Analysis/Analysis_analysis-main.$(OBJEXT)
 Analysis_analysis_OBJECTS = $(am_Analysis_analysis_OBJECTS)
@@ -1476,16 +1484,20 @@ SUSY/src/SUSYSpectrum.cpp \
 SUSY/src/SUSY.cpp \
 SUSYMassInsertion/src/SUSYMassInsertionMatching.cpp \
 SUSYMassInsertion/src/SUSYMassInsertion.cpp \
-THDM/src/THDM.cpp \
+THDM/src/bsgamma.cpp \
+THDM/src/CPoddHiggs.cpp \
+THDM/src/EWPO.cpp \
 THDM/src/globalminimum.cpp \
+THDM/src/heavyHiggs.cpp	\
+THDM/src/lightHiggs.cpp \
 THDM/src/positivity.cpp \
 THDM/src/STU.cpp \
 THDM/src/THDMcache.cpp \
-THDM/src/EWPO.cpp \
-THDM/src/unitarity.cpp \
-THDM/src/THDMMatching.cpp \
+THDM/src/THDM.cpp \
 THDM/src/THDMfunctions.cpp \
-THDM/src/lightHiggs.cpp 
+THDM/src/THDMMatching.cpp \
+THDM/src/THDMquantities.cpp \
+THDM/src/unitarity.cpp       
 
 Analysis_analysis_SOURCES = $(themySOURCES) Analysis/main.cpp
 Analysis_analysis_CPPFLAGS = $(SuF_CFLAGS) -I@ROOTINCDIR@  $(BOOST_CPPFLAGS) $(GSL_CFLAGS) 
@@ -2512,9 +2524,17 @@ THDM/src/$(am__dirstamp):
 THDM/src/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) THDM/src/$(DEPDIR)
 	@: > THDM/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo:  \
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.lo:  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.lo:  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo:  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
 THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.lo:  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.lo:  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo:  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
 THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-positivity.lo:  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
@@ -2522,15 +2542,15 @@ THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-STU.lo:  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
 THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMcache.lo:  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo:  \
-	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo:  \
-	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo:  \
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo:  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
 THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMfunctions.lo:  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo:  \
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo:  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.lo:  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo:  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
 
 libHEPfit-@HEPfit_API_VERSION@.la: $(libHEPfit_@HEPfit_API_VERSION@_la_OBJECTS) $(libHEPfit_@HEPfit_API_VERSION@_la_DEPENDENCIES) $(EXTRA_libHEPfit_@HEPfit_API_VERSION@_la_DEPENDENCIES) 
@@ -3229,9 +3249,17 @@ SUSYMassInsertion/src/Analysis_analysis-SUSYMassInsertionMatching.$(OBJEXT):  \
 SUSYMassInsertion/src/Analysis_analysis-SUSYMassInsertion.$(OBJEXT):  \
 	SUSYMassInsertion/src/$(am__dirstamp) \
 	SUSYMassInsertion/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/Analysis_analysis-THDM.$(OBJEXT): THDM/src/$(am__dirstamp) \
+THDM/src/Analysis_analysis-bsgamma.$(OBJEXT):  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/Analysis_analysis-CPoddHiggs.$(OBJEXT):  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/Analysis_analysis-EWPO.$(OBJEXT): THDM/src/$(am__dirstamp) \
 	THDM/src/$(DEPDIR)/$(am__dirstamp)
 THDM/src/Analysis_analysis-globalminimum.$(OBJEXT):  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/Analysis_analysis-heavyHiggs.$(OBJEXT):  \
+	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
+THDM/src/Analysis_analysis-lightHiggs.$(OBJEXT):  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
 THDM/src/Analysis_analysis-positivity.$(OBJEXT):  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
@@ -3239,15 +3267,15 @@ THDM/src/Analysis_analysis-STU.$(OBJEXT): THDM/src/$(am__dirstamp) \
 	THDM/src/$(DEPDIR)/$(am__dirstamp)
 THDM/src/Analysis_analysis-THDMcache.$(OBJEXT):  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/Analysis_analysis-EWPO.$(OBJEXT): THDM/src/$(am__dirstamp) \
+THDM/src/Analysis_analysis-THDM.$(OBJEXT): THDM/src/$(am__dirstamp) \
 	THDM/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/Analysis_analysis-unitarity.$(OBJEXT):  \
+THDM/src/Analysis_analysis-THDMfunctions.$(OBJEXT):  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
 THDM/src/Analysis_analysis-THDMMatching.$(OBJEXT):  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/Analysis_analysis-THDMfunctions.$(OBJEXT):  \
+THDM/src/Analysis_analysis-THDMquantities.$(OBJEXT):  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
-THDM/src/Analysis_analysis-lightHiggs.$(OBJEXT):  \
+THDM/src/Analysis_analysis-unitarity.$(OBJEXT):  \
 	THDM/src/$(am__dirstamp) THDM/src/$(DEPDIR)/$(am__dirstamp)
 Analysis/$(am__dirstamp):
 	@$(MKDIR_P) Analysis
@@ -3819,23 +3847,31 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@StandardModel/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-StandardModel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@StandardModel/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-StandardModelMatching.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@StandardModel/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-WilsonCoefficient.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-CPoddHiggs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-STU.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-THDMcache.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-THDMfunctions.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-THDMquantities.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-bsgamma.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-globalminimum.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-heavyHiggs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-positivity.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-STU.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDM.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMcache.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMfunctions.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-positivity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.Plo@am__quote@
@@ -5479,12 +5515,26 @@ SUSYMassInsertion/src/libHEPfit_@HEPfit_API_VERSION@_la-SUSYMassInsertion.lo: SU
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SUSYMassInsertion/src/libHEPfit_@HEPfit_API_VERSION@_la-SUSYMassInsertion.lo `test -f 'SUSYMassInsertion/src/SUSYMassInsertion.cpp' || echo '$(srcdir)/'`SUSYMassInsertion/src/SUSYMassInsertion.cpp
 
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo: THDM/src/THDM.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDM.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo `test -f 'THDM/src/THDM.cpp' || echo '$(srcdir)/'`THDM/src/THDM.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDM.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDM.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDM.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo' libtool=yes @AMDEPBACKSLASH@
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.lo: THDM/src/bsgamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.lo `test -f 'THDM/src/bsgamma.cpp' || echo '$(srcdir)/'`THDM/src/bsgamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/bsgamma.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo `test -f 'THDM/src/THDM.cpp' || echo '$(srcdir)/'`THDM/src/THDM.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-bsgamma.lo `test -f 'THDM/src/bsgamma.cpp' || echo '$(srcdir)/'`THDM/src/bsgamma.cpp
+
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.lo: THDM/src/CPoddHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.lo `test -f 'THDM/src/CPoddHiggs.cpp' || echo '$(srcdir)/'`THDM/src/CPoddHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/CPoddHiggs.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-CPoddHiggs.lo `test -f 'THDM/src/CPoddHiggs.cpp' || echo '$(srcdir)/'`THDM/src/CPoddHiggs.cpp
+
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo: THDM/src/EWPO.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo `test -f 'THDM/src/EWPO.cpp' || echo '$(srcdir)/'`THDM/src/EWPO.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/EWPO.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo `test -f 'THDM/src/EWPO.cpp' || echo '$(srcdir)/'`THDM/src/EWPO.cpp
 
 THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.lo: THDM/src/globalminimum.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.lo `test -f 'THDM/src/globalminimum.cpp' || echo '$(srcdir)/'`THDM/src/globalminimum.cpp
@@ -5492,6 +5542,20 @@ THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.lo: THDM/src/globalmini
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/globalminimum.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-globalminimum.lo `test -f 'THDM/src/globalminimum.cpp' || echo '$(srcdir)/'`THDM/src/globalminimum.cpp
+
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.lo: THDM/src/heavyHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.lo `test -f 'THDM/src/heavyHiggs.cpp' || echo '$(srcdir)/'`THDM/src/heavyHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/heavyHiggs.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-heavyHiggs.lo `test -f 'THDM/src/heavyHiggs.cpp' || echo '$(srcdir)/'`THDM/src/heavyHiggs.cpp
+
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo: THDM/src/lightHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo `test -f 'THDM/src/lightHiggs.cpp' || echo '$(srcdir)/'`THDM/src/lightHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/lightHiggs.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo `test -f 'THDM/src/lightHiggs.cpp' || echo '$(srcdir)/'`THDM/src/lightHiggs.cpp
 
 THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-positivity.lo: THDM/src/positivity.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-positivity.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-positivity.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-positivity.lo `test -f 'THDM/src/positivity.cpp' || echo '$(srcdir)/'`THDM/src/positivity.cpp
@@ -5514,26 +5578,12 @@ THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMcache.lo: THDM/src/THDMcache.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMcache.lo `test -f 'THDM/src/THDMcache.cpp' || echo '$(srcdir)/'`THDM/src/THDMcache.cpp
 
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo: THDM/src/EWPO.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo `test -f 'THDM/src/EWPO.cpp' || echo '$(srcdir)/'`THDM/src/EWPO.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/EWPO.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo' libtool=yes @AMDEPBACKSLASH@
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo: THDM/src/THDM.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDM.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo `test -f 'THDM/src/THDM.cpp' || echo '$(srcdir)/'`THDM/src/THDM.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDM.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDM.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDM.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-EWPO.lo `test -f 'THDM/src/EWPO.cpp' || echo '$(srcdir)/'`THDM/src/EWPO.cpp
-
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo: THDM/src/unitarity.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo `test -f 'THDM/src/unitarity.cpp' || echo '$(srcdir)/'`THDM/src/unitarity.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/unitarity.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo `test -f 'THDM/src/unitarity.cpp' || echo '$(srcdir)/'`THDM/src/unitarity.cpp
-
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo: THDM/src/THDMMatching.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo `test -f 'THDM/src/THDMMatching.cpp' || echo '$(srcdir)/'`THDM/src/THDMMatching.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDMMatching.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo `test -f 'THDM/src/THDMMatching.cpp' || echo '$(srcdir)/'`THDM/src/THDMMatching.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDM.lo `test -f 'THDM/src/THDM.cpp' || echo '$(srcdir)/'`THDM/src/THDM.cpp
 
 THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMfunctions.lo: THDM/src/THDMfunctions.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMfunctions.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMfunctions.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMfunctions.lo `test -f 'THDM/src/THDMfunctions.cpp' || echo '$(srcdir)/'`THDM/src/THDMfunctions.cpp
@@ -5542,12 +5592,26 @@ THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMfunctions.lo: THDM/src/THDMfuncti
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMfunctions.lo `test -f 'THDM/src/THDMfunctions.cpp' || echo '$(srcdir)/'`THDM/src/THDMfunctions.cpp
 
-THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo: THDM/src/lightHiggs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo `test -f 'THDM/src/lightHiggs.cpp' || echo '$(srcdir)/'`THDM/src/lightHiggs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/lightHiggs.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo' libtool=yes @AMDEPBACKSLASH@
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo: THDM/src/THDMMatching.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo `test -f 'THDM/src/THDMMatching.cpp' || echo '$(srcdir)/'`THDM/src/THDMMatching.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDMMatching.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-lightHiggs.lo `test -f 'THDM/src/lightHiggs.cpp' || echo '$(srcdir)/'`THDM/src/lightHiggs.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMMatching.lo `test -f 'THDM/src/THDMMatching.cpp' || echo '$(srcdir)/'`THDM/src/THDMMatching.cpp
+
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.lo: THDM/src/THDMquantities.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.lo `test -f 'THDM/src/THDMquantities.cpp' || echo '$(srcdir)/'`THDM/src/THDMquantities.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDMquantities.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-THDMquantities.lo `test -f 'THDM/src/THDMquantities.cpp' || echo '$(srcdir)/'`THDM/src/THDMquantities.cpp
+
+THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo: THDM/src/unitarity.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo -MD -MP -MF THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.Tpo -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo `test -f 'THDM/src/unitarity.cpp' || echo '$(srcdir)/'`THDM/src/unitarity.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.Tpo THDM/src/$(DEPDIR)/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/unitarity.cpp' object='THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libHEPfit_@HEPfit_API_VERSION@_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/libHEPfit_@HEPfit_API_VERSION@_la-unitarity.lo `test -f 'THDM/src/unitarity.cpp' || echo '$(srcdir)/'`THDM/src/unitarity.cpp
 
 BHWIDEWrapper/src/Analysis_analysis-BHWIDEWrapper.o: BHWIDEWrapper/src/BHWIDEWrapper.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT BHWIDEWrapper/src/Analysis_analysis-BHWIDEWrapper.o -MD -MP -MF BHWIDEWrapper/src/$(DEPDIR)/Analysis_analysis-BHWIDEWrapper.Tpo -c -o BHWIDEWrapper/src/Analysis_analysis-BHWIDEWrapper.o `test -f 'BHWIDEWrapper/src/BHWIDEWrapper.cpp' || echo '$(srcdir)/'`BHWIDEWrapper/src/BHWIDEWrapper.cpp
@@ -8755,19 +8819,47 @@ SUSYMassInsertion/src/Analysis_analysis-SUSYMassInsertion.obj: SUSYMassInsertion
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SUSYMassInsertion/src/Analysis_analysis-SUSYMassInsertion.obj `if test -f 'SUSYMassInsertion/src/SUSYMassInsertion.cpp'; then $(CYGPATH_W) 'SUSYMassInsertion/src/SUSYMassInsertion.cpp'; else $(CYGPATH_W) '$(srcdir)/SUSYMassInsertion/src/SUSYMassInsertion.cpp'; fi`
 
-THDM/src/Analysis_analysis-THDM.o: THDM/src/THDM.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDM.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Tpo -c -o THDM/src/Analysis_analysis-THDM.o `test -f 'THDM/src/THDM.cpp' || echo '$(srcdir)/'`THDM/src/THDM.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDM.cpp' object='THDM/src/Analysis_analysis-THDM.o' libtool=no @AMDEPBACKSLASH@
+THDM/src/Analysis_analysis-bsgamma.o: THDM/src/bsgamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-bsgamma.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-bsgamma.Tpo -c -o THDM/src/Analysis_analysis-bsgamma.o `test -f 'THDM/src/bsgamma.cpp' || echo '$(srcdir)/'`THDM/src/bsgamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-bsgamma.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-bsgamma.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/bsgamma.cpp' object='THDM/src/Analysis_analysis-bsgamma.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDM.o `test -f 'THDM/src/THDM.cpp' || echo '$(srcdir)/'`THDM/src/THDM.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-bsgamma.o `test -f 'THDM/src/bsgamma.cpp' || echo '$(srcdir)/'`THDM/src/bsgamma.cpp
 
-THDM/src/Analysis_analysis-THDM.obj: THDM/src/THDM.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDM.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Tpo -c -o THDM/src/Analysis_analysis-THDM.obj `if test -f 'THDM/src/THDM.cpp'; then $(CYGPATH_W) 'THDM/src/THDM.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDM.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDM.cpp' object='THDM/src/Analysis_analysis-THDM.obj' libtool=no @AMDEPBACKSLASH@
+THDM/src/Analysis_analysis-bsgamma.obj: THDM/src/bsgamma.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-bsgamma.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-bsgamma.Tpo -c -o THDM/src/Analysis_analysis-bsgamma.obj `if test -f 'THDM/src/bsgamma.cpp'; then $(CYGPATH_W) 'THDM/src/bsgamma.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/bsgamma.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-bsgamma.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-bsgamma.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/bsgamma.cpp' object='THDM/src/Analysis_analysis-bsgamma.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDM.obj `if test -f 'THDM/src/THDM.cpp'; then $(CYGPATH_W) 'THDM/src/THDM.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDM.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-bsgamma.obj `if test -f 'THDM/src/bsgamma.cpp'; then $(CYGPATH_W) 'THDM/src/bsgamma.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/bsgamma.cpp'; fi`
+
+THDM/src/Analysis_analysis-CPoddHiggs.o: THDM/src/CPoddHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-CPoddHiggs.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-CPoddHiggs.Tpo -c -o THDM/src/Analysis_analysis-CPoddHiggs.o `test -f 'THDM/src/CPoddHiggs.cpp' || echo '$(srcdir)/'`THDM/src/CPoddHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-CPoddHiggs.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-CPoddHiggs.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/CPoddHiggs.cpp' object='THDM/src/Analysis_analysis-CPoddHiggs.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-CPoddHiggs.o `test -f 'THDM/src/CPoddHiggs.cpp' || echo '$(srcdir)/'`THDM/src/CPoddHiggs.cpp
+
+THDM/src/Analysis_analysis-CPoddHiggs.obj: THDM/src/CPoddHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-CPoddHiggs.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-CPoddHiggs.Tpo -c -o THDM/src/Analysis_analysis-CPoddHiggs.obj `if test -f 'THDM/src/CPoddHiggs.cpp'; then $(CYGPATH_W) 'THDM/src/CPoddHiggs.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/CPoddHiggs.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-CPoddHiggs.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-CPoddHiggs.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/CPoddHiggs.cpp' object='THDM/src/Analysis_analysis-CPoddHiggs.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-CPoddHiggs.obj `if test -f 'THDM/src/CPoddHiggs.cpp'; then $(CYGPATH_W) 'THDM/src/CPoddHiggs.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/CPoddHiggs.cpp'; fi`
+
+THDM/src/Analysis_analysis-EWPO.o: THDM/src/EWPO.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-EWPO.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Tpo -c -o THDM/src/Analysis_analysis-EWPO.o `test -f 'THDM/src/EWPO.cpp' || echo '$(srcdir)/'`THDM/src/EWPO.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/EWPO.cpp' object='THDM/src/Analysis_analysis-EWPO.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-EWPO.o `test -f 'THDM/src/EWPO.cpp' || echo '$(srcdir)/'`THDM/src/EWPO.cpp
+
+THDM/src/Analysis_analysis-EWPO.obj: THDM/src/EWPO.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-EWPO.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Tpo -c -o THDM/src/Analysis_analysis-EWPO.obj `if test -f 'THDM/src/EWPO.cpp'; then $(CYGPATH_W) 'THDM/src/EWPO.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/EWPO.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/EWPO.cpp' object='THDM/src/Analysis_analysis-EWPO.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-EWPO.obj `if test -f 'THDM/src/EWPO.cpp'; then $(CYGPATH_W) 'THDM/src/EWPO.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/EWPO.cpp'; fi`
 
 THDM/src/Analysis_analysis-globalminimum.o: THDM/src/globalminimum.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-globalminimum.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-globalminimum.Tpo -c -o THDM/src/Analysis_analysis-globalminimum.o `test -f 'THDM/src/globalminimum.cpp' || echo '$(srcdir)/'`THDM/src/globalminimum.cpp
@@ -8782,6 +8874,34 @@ THDM/src/Analysis_analysis-globalminimum.obj: THDM/src/globalminimum.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/globalminimum.cpp' object='THDM/src/Analysis_analysis-globalminimum.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-globalminimum.obj `if test -f 'THDM/src/globalminimum.cpp'; then $(CYGPATH_W) 'THDM/src/globalminimum.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/globalminimum.cpp'; fi`
+
+THDM/src/Analysis_analysis-heavyHiggs.o: THDM/src/heavyHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-heavyHiggs.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-heavyHiggs.Tpo -c -o THDM/src/Analysis_analysis-heavyHiggs.o `test -f 'THDM/src/heavyHiggs.cpp' || echo '$(srcdir)/'`THDM/src/heavyHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-heavyHiggs.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-heavyHiggs.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/heavyHiggs.cpp' object='THDM/src/Analysis_analysis-heavyHiggs.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-heavyHiggs.o `test -f 'THDM/src/heavyHiggs.cpp' || echo '$(srcdir)/'`THDM/src/heavyHiggs.cpp
+
+THDM/src/Analysis_analysis-heavyHiggs.obj: THDM/src/heavyHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-heavyHiggs.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-heavyHiggs.Tpo -c -o THDM/src/Analysis_analysis-heavyHiggs.obj `if test -f 'THDM/src/heavyHiggs.cpp'; then $(CYGPATH_W) 'THDM/src/heavyHiggs.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/heavyHiggs.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-heavyHiggs.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-heavyHiggs.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/heavyHiggs.cpp' object='THDM/src/Analysis_analysis-heavyHiggs.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-heavyHiggs.obj `if test -f 'THDM/src/heavyHiggs.cpp'; then $(CYGPATH_W) 'THDM/src/heavyHiggs.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/heavyHiggs.cpp'; fi`
+
+THDM/src/Analysis_analysis-lightHiggs.o: THDM/src/lightHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-lightHiggs.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Tpo -c -o THDM/src/Analysis_analysis-lightHiggs.o `test -f 'THDM/src/lightHiggs.cpp' || echo '$(srcdir)/'`THDM/src/lightHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/lightHiggs.cpp' object='THDM/src/Analysis_analysis-lightHiggs.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-lightHiggs.o `test -f 'THDM/src/lightHiggs.cpp' || echo '$(srcdir)/'`THDM/src/lightHiggs.cpp
+
+THDM/src/Analysis_analysis-lightHiggs.obj: THDM/src/lightHiggs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-lightHiggs.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Tpo -c -o THDM/src/Analysis_analysis-lightHiggs.obj `if test -f 'THDM/src/lightHiggs.cpp'; then $(CYGPATH_W) 'THDM/src/lightHiggs.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/lightHiggs.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/lightHiggs.cpp' object='THDM/src/Analysis_analysis-lightHiggs.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-lightHiggs.obj `if test -f 'THDM/src/lightHiggs.cpp'; then $(CYGPATH_W) 'THDM/src/lightHiggs.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/lightHiggs.cpp'; fi`
 
 THDM/src/Analysis_analysis-positivity.o: THDM/src/positivity.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-positivity.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-positivity.Tpo -c -o THDM/src/Analysis_analysis-positivity.o `test -f 'THDM/src/positivity.cpp' || echo '$(srcdir)/'`THDM/src/positivity.cpp
@@ -8825,47 +8945,19 @@ THDM/src/Analysis_analysis-THDMcache.obj: THDM/src/THDMcache.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDMcache.obj `if test -f 'THDM/src/THDMcache.cpp'; then $(CYGPATH_W) 'THDM/src/THDMcache.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDMcache.cpp'; fi`
 
-THDM/src/Analysis_analysis-EWPO.o: THDM/src/EWPO.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-EWPO.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Tpo -c -o THDM/src/Analysis_analysis-EWPO.o `test -f 'THDM/src/EWPO.cpp' || echo '$(srcdir)/'`THDM/src/EWPO.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/EWPO.cpp' object='THDM/src/Analysis_analysis-EWPO.o' libtool=no @AMDEPBACKSLASH@
+THDM/src/Analysis_analysis-THDM.o: THDM/src/THDM.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDM.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Tpo -c -o THDM/src/Analysis_analysis-THDM.o `test -f 'THDM/src/THDM.cpp' || echo '$(srcdir)/'`THDM/src/THDM.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDM.cpp' object='THDM/src/Analysis_analysis-THDM.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-EWPO.o `test -f 'THDM/src/EWPO.cpp' || echo '$(srcdir)/'`THDM/src/EWPO.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDM.o `test -f 'THDM/src/THDM.cpp' || echo '$(srcdir)/'`THDM/src/THDM.cpp
 
-THDM/src/Analysis_analysis-EWPO.obj: THDM/src/EWPO.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-EWPO.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Tpo -c -o THDM/src/Analysis_analysis-EWPO.obj `if test -f 'THDM/src/EWPO.cpp'; then $(CYGPATH_W) 'THDM/src/EWPO.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/EWPO.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-EWPO.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/EWPO.cpp' object='THDM/src/Analysis_analysis-EWPO.obj' libtool=no @AMDEPBACKSLASH@
+THDM/src/Analysis_analysis-THDM.obj: THDM/src/THDM.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDM.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Tpo -c -o THDM/src/Analysis_analysis-THDM.obj `if test -f 'THDM/src/THDM.cpp'; then $(CYGPATH_W) 'THDM/src/THDM.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDM.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDM.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDM.cpp' object='THDM/src/Analysis_analysis-THDM.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-EWPO.obj `if test -f 'THDM/src/EWPO.cpp'; then $(CYGPATH_W) 'THDM/src/EWPO.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/EWPO.cpp'; fi`
-
-THDM/src/Analysis_analysis-unitarity.o: THDM/src/unitarity.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-unitarity.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Tpo -c -o THDM/src/Analysis_analysis-unitarity.o `test -f 'THDM/src/unitarity.cpp' || echo '$(srcdir)/'`THDM/src/unitarity.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/unitarity.cpp' object='THDM/src/Analysis_analysis-unitarity.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-unitarity.o `test -f 'THDM/src/unitarity.cpp' || echo '$(srcdir)/'`THDM/src/unitarity.cpp
-
-THDM/src/Analysis_analysis-unitarity.obj: THDM/src/unitarity.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-unitarity.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Tpo -c -o THDM/src/Analysis_analysis-unitarity.obj `if test -f 'THDM/src/unitarity.cpp'; then $(CYGPATH_W) 'THDM/src/unitarity.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/unitarity.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/unitarity.cpp' object='THDM/src/Analysis_analysis-unitarity.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-unitarity.obj `if test -f 'THDM/src/unitarity.cpp'; then $(CYGPATH_W) 'THDM/src/unitarity.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/unitarity.cpp'; fi`
-
-THDM/src/Analysis_analysis-THDMMatching.o: THDM/src/THDMMatching.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDMMatching.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Tpo -c -o THDM/src/Analysis_analysis-THDMMatching.o `test -f 'THDM/src/THDMMatching.cpp' || echo '$(srcdir)/'`THDM/src/THDMMatching.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDMMatching.cpp' object='THDM/src/Analysis_analysis-THDMMatching.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDMMatching.o `test -f 'THDM/src/THDMMatching.cpp' || echo '$(srcdir)/'`THDM/src/THDMMatching.cpp
-
-THDM/src/Analysis_analysis-THDMMatching.obj: THDM/src/THDMMatching.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDMMatching.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Tpo -c -o THDM/src/Analysis_analysis-THDMMatching.obj `if test -f 'THDM/src/THDMMatching.cpp'; then $(CYGPATH_W) 'THDM/src/THDMMatching.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDMMatching.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDMMatching.cpp' object='THDM/src/Analysis_analysis-THDMMatching.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDMMatching.obj `if test -f 'THDM/src/THDMMatching.cpp'; then $(CYGPATH_W) 'THDM/src/THDMMatching.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDMMatching.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDM.obj `if test -f 'THDM/src/THDM.cpp'; then $(CYGPATH_W) 'THDM/src/THDM.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDM.cpp'; fi`
 
 THDM/src/Analysis_analysis-THDMfunctions.o: THDM/src/THDMfunctions.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDMfunctions.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDMfunctions.Tpo -c -o THDM/src/Analysis_analysis-THDMfunctions.o `test -f 'THDM/src/THDMfunctions.cpp' || echo '$(srcdir)/'`THDM/src/THDMfunctions.cpp
@@ -8881,19 +8973,47 @@ THDM/src/Analysis_analysis-THDMfunctions.obj: THDM/src/THDMfunctions.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDMfunctions.obj `if test -f 'THDM/src/THDMfunctions.cpp'; then $(CYGPATH_W) 'THDM/src/THDMfunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDMfunctions.cpp'; fi`
 
-THDM/src/Analysis_analysis-lightHiggs.o: THDM/src/lightHiggs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-lightHiggs.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Tpo -c -o THDM/src/Analysis_analysis-lightHiggs.o `test -f 'THDM/src/lightHiggs.cpp' || echo '$(srcdir)/'`THDM/src/lightHiggs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/lightHiggs.cpp' object='THDM/src/Analysis_analysis-lightHiggs.o' libtool=no @AMDEPBACKSLASH@
+THDM/src/Analysis_analysis-THDMMatching.o: THDM/src/THDMMatching.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDMMatching.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Tpo -c -o THDM/src/Analysis_analysis-THDMMatching.o `test -f 'THDM/src/THDMMatching.cpp' || echo '$(srcdir)/'`THDM/src/THDMMatching.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDMMatching.cpp' object='THDM/src/Analysis_analysis-THDMMatching.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-lightHiggs.o `test -f 'THDM/src/lightHiggs.cpp' || echo '$(srcdir)/'`THDM/src/lightHiggs.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDMMatching.o `test -f 'THDM/src/THDMMatching.cpp' || echo '$(srcdir)/'`THDM/src/THDMMatching.cpp
 
-THDM/src/Analysis_analysis-lightHiggs.obj: THDM/src/lightHiggs.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-lightHiggs.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Tpo -c -o THDM/src/Analysis_analysis-lightHiggs.obj `if test -f 'THDM/src/lightHiggs.cpp'; then $(CYGPATH_W) 'THDM/src/lightHiggs.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/lightHiggs.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-lightHiggs.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/lightHiggs.cpp' object='THDM/src/Analysis_analysis-lightHiggs.obj' libtool=no @AMDEPBACKSLASH@
+THDM/src/Analysis_analysis-THDMMatching.obj: THDM/src/THDMMatching.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDMMatching.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Tpo -c -o THDM/src/Analysis_analysis-THDMMatching.obj `if test -f 'THDM/src/THDMMatching.cpp'; then $(CYGPATH_W) 'THDM/src/THDMMatching.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDMMatching.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDMMatching.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDMMatching.cpp' object='THDM/src/Analysis_analysis-THDMMatching.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-lightHiggs.obj `if test -f 'THDM/src/lightHiggs.cpp'; then $(CYGPATH_W) 'THDM/src/lightHiggs.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/lightHiggs.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDMMatching.obj `if test -f 'THDM/src/THDMMatching.cpp'; then $(CYGPATH_W) 'THDM/src/THDMMatching.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDMMatching.cpp'; fi`
+
+THDM/src/Analysis_analysis-THDMquantities.o: THDM/src/THDMquantities.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDMquantities.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDMquantities.Tpo -c -o THDM/src/Analysis_analysis-THDMquantities.o `test -f 'THDM/src/THDMquantities.cpp' || echo '$(srcdir)/'`THDM/src/THDMquantities.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDMquantities.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDMquantities.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDMquantities.cpp' object='THDM/src/Analysis_analysis-THDMquantities.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDMquantities.o `test -f 'THDM/src/THDMquantities.cpp' || echo '$(srcdir)/'`THDM/src/THDMquantities.cpp
+
+THDM/src/Analysis_analysis-THDMquantities.obj: THDM/src/THDMquantities.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-THDMquantities.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-THDMquantities.Tpo -c -o THDM/src/Analysis_analysis-THDMquantities.obj `if test -f 'THDM/src/THDMquantities.cpp'; then $(CYGPATH_W) 'THDM/src/THDMquantities.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDMquantities.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-THDMquantities.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-THDMquantities.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/THDMquantities.cpp' object='THDM/src/Analysis_analysis-THDMquantities.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-THDMquantities.obj `if test -f 'THDM/src/THDMquantities.cpp'; then $(CYGPATH_W) 'THDM/src/THDMquantities.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/THDMquantities.cpp'; fi`
+
+THDM/src/Analysis_analysis-unitarity.o: THDM/src/unitarity.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-unitarity.o -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Tpo -c -o THDM/src/Analysis_analysis-unitarity.o `test -f 'THDM/src/unitarity.cpp' || echo '$(srcdir)/'`THDM/src/unitarity.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/unitarity.cpp' object='THDM/src/Analysis_analysis-unitarity.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-unitarity.o `test -f 'THDM/src/unitarity.cpp' || echo '$(srcdir)/'`THDM/src/unitarity.cpp
+
+THDM/src/Analysis_analysis-unitarity.obj: THDM/src/unitarity.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT THDM/src/Analysis_analysis-unitarity.obj -MD -MP -MF THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Tpo -c -o THDM/src/Analysis_analysis-unitarity.obj `if test -f 'THDM/src/unitarity.cpp'; then $(CYGPATH_W) 'THDM/src/unitarity.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/unitarity.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Tpo THDM/src/$(DEPDIR)/Analysis_analysis-unitarity.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='THDM/src/unitarity.cpp' object='THDM/src/Analysis_analysis-unitarity.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o THDM/src/Analysis_analysis-unitarity.obj `if test -f 'THDM/src/unitarity.cpp'; then $(CYGPATH_W) 'THDM/src/unitarity.cpp'; else $(CYGPATH_W) '$(srcdir)/THDM/src/unitarity.cpp'; fi`
 
 Analysis/Analysis_analysis-main.o: Analysis/main.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(Analysis_analysis_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Analysis/Analysis_analysis-main.o -MD -MP -MF Analysis/$(DEPDIR)/Analysis_analysis-main.Tpo -c -o Analysis/Analysis_analysis-main.o `test -f 'Analysis/main.cpp' || echo '$(srcdir)/'`Analysis/main.cpp

@@ -597,17 +597,20 @@ SUSY/src/SUSYSpectrum.cpp \
 SUSY/src/SUSY.cpp \
 SUSYMassInsertion/src/SUSYMassInsertionMatching.cpp \
 SUSYMassInsertion/src/SUSYMassInsertion.cpp \
-THDM/src/THDM.cpp \
+THDM/src/bsgamma.cpp \
+THDM/src/CPoddHiggs.cpp \
+THDM/src/EWPO.cpp \
 THDM/src/globalminimum.cpp \
+THDM/src/heavyHiggs.cpp	\
+THDM/src/lightHiggs.cpp \
 THDM/src/positivity.cpp \
 THDM/src/STU.cpp \
 THDM/src/THDMcache.cpp \
-THDM/src/EWPO.cpp \
-THDM/src/unitarity.cpp \
-THDM/src/THDMMatching.cpp \
+THDM/src/THDM.cpp \
 THDM/src/THDMfunctions.cpp \
-THDM/src/lightHiggs.cpp 
-
+THDM/src/THDMMatching.cpp \
+THDM/src/THDMquantities.cpp \
+THDM/src/unitarity.cpp       
 
 Analysis_analysis_SOURCES =  $(themySOURCES) Analysis/main.cpp
 

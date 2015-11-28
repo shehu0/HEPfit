@@ -15,9 +15,6 @@
 /* Define to 1 if you have the `BAT' library (-lBAT). */
 #undef HAVE_LIBBAT
 
-/* Define to 1 if you have the `FH' library (-lFH). */
-#undef HAVE_LIBFH
-
 /* Define to 1 if you have the `gslcblas' library (-lgslcblas). */
 #undef HAVE_LIBGSLCBLAS
 
